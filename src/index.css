@@ -1,0 +1,270 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================================
+   My Chinese Name — design tokens
+   Light = warm rice-paper + ink. Dark = black lacquer + gold leaf + cinnabar.
+   ========================================================================== */
+:root {
+  --paper-100: #faf6ec;
+  --paper-200: #f5f0e6;
+  --paper-300: #ede6d6;
+  --paper-400: #e2d9c5;
+
+  --ink-900: #1c1b18;
+  --ink-700: #2e2c28;
+  --ink-500: #57534a;
+  --ink-300: #8a8478;
+
+  --seal-600: #a82a18;
+  --seal-500: #c8341f;
+  --seal-400: #d85a43;
+  --seal-100: #f3ddd5;
+
+  --gold-600: #9a7b33;
+  --gold-500: #b8923f;
+  --gold-300: #d9bc7a;
+  --gold-100: #efe2c4;
+
+  --line-soft: rgba(28, 27, 24, 0.08);
+  --line-mid: rgba(28, 27, 24, 0.16);
+  --overlay: rgba(28, 27, 24, 0.4);
+
+  --success: #5e7a52;
+  --warning: #b8923f;
+  --error: #a82a18;
+  --info: #4a6670;
+
+  --grain-opacity: 0.035;
+}
+
+:root[data-theme='dark'] {
+  --paper-100: #20211d;
+  --paper-200: #181916;
+  --paper-300: #121310;
+  --paper-400: #2a2b26;
+
+  --ink-900: #f2ecdd;
+  --ink-700: #ddd5c4;
+  --ink-500: #a8a091;
+  --ink-300: #6f6a5e;
+
+  --seal-600: #d8492f;
+  --seal-500: #e2553b;
+  --seal-400: #ed6b50;
+  --seal-100: #3a211b;
+
+  --gold-600: #d9bc7a;
+  --gold-500: #c9a85c;
+  --gold-300: #a98c4e;
+  --gold-100: #2e281c;
+
+  --line-soft: rgba(242, 236, 221, 0.1);
+  --line-mid: rgba(242, 236, 221, 0.18);
+  --overlay: rgba(0, 0, 0, 0.55);
+
+  --success: #84a074;
+  --warning: #c9a85c;
+  --error: #e2553b;
+  --info: #7a98a2;
+
+  --grain-opacity: 0.05;
+}
+
+@layer base {
+  * {
+    border-color: var(--line-soft);
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    margin: 0;
+    background-color: var(--paper-200);
+    color: var(--ink-900);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  /* Rice-paper grain — whispers at ≤5% opacity (don't shout) */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  #root {
+    position: relative;
+    z-index: 1;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Fraunces', 'Noto Serif SC', Georgia, serif;
+    color: var(--ink-900);
+    font-weight: 400;
+  }
+  ::selection {
+    background: var(--seal-100);
+    color: var(--seal-600);
+  }
+  :focus-visible {
+    outline: 2px solid var(--gold-500);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  /* Small-caps gold eyebrow — "METHODOLOGY · 法" */
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    color: var(--gold-600);
+  }
+  .han {
+    font-family: 'Noto Serif SC', 'Fraunces', serif;
+    letter-spacing: 0.04em;
+  }
+  .brush {
+    font-family: 'LXGW WenKai', 'Noto Serif SC', serif;
+  }
+
+  /* Page section — ceremonial vertical breathing room */
+  .section {
+    padding-block: clamp(96px, 14vh, 192px);
+  }
+  .container-band {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: clamp(24px, 6vw, 120px);
+  }
+  .container-reading {
+    width: 100%;
+    max-width: 680px;
+    margin-inline: auto;
+    padding-inline: clamp(24px, 6vw, 48px);
+  }
+
+  /* Gold hairline that draws in from the left */
+  .hairline {
+    height: 1px;
+    background: var(--gold-300);
+    transform-origin: left;
+  }
+
+  /* Primary action — the single vermilion CTA per view */
+  .btn-seal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: var(--seal-500);
+    color: #faf6ec;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    padding: 0.85rem 1.75rem;
+    border-radius: 2px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .btn-seal:hover {
+    background: var(--seal-400);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(200, 52, 31, 0.25);
+  }
+  .btn-seal:active {
+    transform: translateY(0);
+    background: var(--seal-600);
+  }
+  .btn-seal:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Secondary — ink outline, restrained */
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--ink-900);
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.8rem 1.6rem;
+    border-radius: 2px;
+    border: 1px solid var(--line-mid);
+    cursor: pointer;
+    transition: border-color 0.25s ease, background 0.25s ease;
+  }
+  .btn-ghost:hover {
+    border-color: var(--ink-900);
+    background: var(--paper-300);
+  }
+
+  /* Brush-stroke underline that paints in on hover */
+  .link-brush {
+    position: relative;
+    color: var(--ink-900);
+    text-decoration: none;
+    background-image: linear-gradient(var(--gold-500), var(--gold-500));
+    background-size: 0% 1.5px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .link-brush:hover {
+    background-size: 100% 1.5px;
+  }
+
+  /* Raised paper card */
+  .card-paper {
+    background: var(--paper-100);
+    border: 1px solid var(--line-soft);
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(28, 27, 24, 0.05), 0 8px 24px rgba(28, 27, 24, 0.06);
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+  .writing-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+  }
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

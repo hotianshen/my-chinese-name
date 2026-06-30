@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/seal.svg" />
+
+    <!-- SPA routing on static hosts: restore the deep-link path stashed by 404.html -->
+    <script>
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search.slice(1).split('&').map(function (s) {
+            return s.replace(/~and~/g, '&')
+          }).join('?')
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash)
+        }
+      })(window.location)
+    </script>
+
+    <title>My Chinese Name — The Art of a Name That Is Truly Yours</title>
+    <meta name="description" content="More than a translation — a bridge. Get an authentic, meaningful Chinese name built on the Ho Method: a 1,600-year tradition of Three Powers and Twelve Palaces. Not transliteration, not fortune-telling." />
+    <meta name="theme-color" content="#F5F0E6" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="My Chinese Name — A Name That Is Truly Yours" />
+    <meta property="og:description" content="An authentic Chinese name, crafted by a 1,600-year method. Sound, meaning, form, and roots — woven into a name you are proud to carry." />
+    <meta property="og:image" content="/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Fonts: Fraunces (display serif), Inter (body), Noto Serif SC (Han display) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- LXGW WenKai (warm brush accent) via CDN; non-blocking, falls back to Noto Serif SC -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css" media="print" onload="this.media='all'" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
