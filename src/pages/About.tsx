@@ -33,7 +33,7 @@ export function About() {
                 title={t('Chengtian — “carrying Heaven”', '承天——承接天道')}
                 body={t(
                   'The Ho tradition takes its name from chengtian: to carry, to receive, to be faithful to the Way of Heaven. A name is not invented from nothing; it is received — drawn down from what is true and good, and fitted to one particular life. The Way is the essence; the individual life is its expression. A good name holds both at once.',
-                  '何氏之传，名曰「承天」：承接、领受、忠于天道。名非凭空所造，而是承接而来——自至真至善处引下，合于此一独特之生命。道为体，individual之生命为用。佳名者，体用兼摄。',
+                  '何氏之传，名曰「承天」：承接、领受、忠于天道。名非凭空所造，而是承接而来——自至真至善处引下，合于此一独特之生命。道为体，个体之生命为用。佳名者，体用兼摄。',
                 )}
               />
             </Reveal>

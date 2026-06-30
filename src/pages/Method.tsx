@@ -17,7 +17,7 @@ export function Method() {
             <p className="text-lede text-ink-500 mt-xl text-pretty">
               {t(
                 'A good name is not assembled from parts. It is read across three registers — Heaven, Human, Earth — and twelve dimensions within them. This is the architecture behind every name we craft.',
-                '佳名非由零件拼凑。它须于三重境界——天、人、地——并其中十二宫之间通观。此即我们每一个名字背后的architecture。',
+                '佳名非由零件拼凑。它须于三重境界——天、人、地——并其中十二宫之间通观。此即我们为每一个名字所立的法度与构造。',
               )}
             </p>
           </Reveal>
