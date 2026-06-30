@@ -100,11 +100,14 @@ function buildCandidate(
 ): NameCandidate {
   const surname = pickSurname(intake, type)
   // Safe = clean two-beat (surname + 1). Cultural/Distinctive = 3 chars.
-  // A compound surname always pairs with a single given character.
-  const givenCount = surname?.compound ? 1 : type === 'Safe' ? 1 : 2
+  // A compound surname pairs with a single given character; a given-name-only
+  // result (no surname) always takes two characters so it reads as a real name.
+  const givenCount = surname?.compound ? 1 : !surname ? 2 : type === 'Safe' ? 1 : 2
 
-  const soundRanked = rankChars(anchor, intake, type, 'sound', penalize)
-  const meaningRanked = rankChars(anchor, intake, type, 'meaning', penalize)
+  // a given character must never duplicate the chosen surname (avoids 江江…)
+  const notSurname = (h: string) => h !== surname?.hanzi
+  const soundRanked = rankChars(anchor, intake, type, 'sound', penalize).filter((s) => notSurname(s.char.hanzi))
+  const meaningRanked = rankChars(anchor, intake, type, 'meaning', penalize).filter((s) => notSurname(s.char.hanzi))
 
   // Char A — the sound anchor (the thread back to the original name)
   const charA = soundRanked[0]?.char ?? meaningRanked[0].char

@@ -7,6 +7,7 @@ import { Seal } from '../components/Seal'
 import { PalaceRadar } from '../components/PalaceRadar'
 import type { GenerateResult, NameCandidate } from '../engine/types'
 import { captureLead, loadResult, track } from '../lib/store'
+import { speakChinese } from '../lib/speak'
 import { useT } from '../i18n'
 import { cn } from '../lib/cn'
 
@@ -123,7 +124,7 @@ function PrimaryName({ candidate }: { candidate: NameCandidate }) {
         )}
 
         <div className="flex flex-wrap items-center gap-md mt-xl">
-          <button className="btn-ghost !py-2.5" onClick={() => track('pronounce_click')}>
+          <button className="btn-ghost !py-2.5" onClick={() => { track('pronounce_click'); speakChinese(candidate.fullHanzi) }}>
             <Volume2 size={16} /> {t('Hear it', '听其声')}
           </button>
           <span className="text-caption text-ink-300">{t('Score', '总评')} <strong className="font-display text-lg text-seal-600">{candidate.totalScore}</strong>/100</span>
