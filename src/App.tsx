@@ -15,6 +15,9 @@ const Shared = lazy(() => import('./pages/Shared').then((m) => ({ default: m.Sha
 const Pricing = lazy(() => import('./pages/Pricing').then((m) => ({ default: m.Pricing })))
 const Gallery = lazy(() => import('./pages/Gallery').then((m) => ({ default: m.Gallery })))
 const About = lazy(() => import('./pages/About').then((m) => ({ default: m.About })))
+const Masters = lazy(() => import('./pages/Masters').then((m) => ({ default: m.Masters })))
+const NameDirectory = lazy(() => import('./pages/NameDirectory').then((m) => ({ default: m.NameDirectory })))
+const NameLanding = lazy(() => import('./pages/NameLanding').then((m) => ({ default: m.NameLanding })))
 const FAQ = lazy(() => import('./pages/FAQ').then((m) => ({ default: m.FAQ })))
 const NotFound = lazy(() => import('./pages/NotFound').then((m) => ({ default: m.NotFound })))
 const Terms = lazy(() => import('./pages/Legal').then((m) => ({ default: m.Terms })))
@@ -76,6 +79,9 @@ export default function App() {
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/about" element={<About />} />
+            <Route path="/masters" element={<Masters />} />
+            <Route path="/chinese-names" element={<NameDirectory />} />
+            <Route path="/chinese-name-for/:name" element={<NameLanding />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />

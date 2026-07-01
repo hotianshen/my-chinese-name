@@ -16,6 +16,7 @@ export function Nav() {
   const links = [
     { to: '/method', label: t('The Method', '取名之道') },
     { to: '/gallery', label: t('Fine Names', '佳名集') },
+    { to: '/masters', label: t('Masters', '取名师') },
     { to: '/pricing', label: t('Pricing', '价格') },
     { to: '/about', label: t('The Tradition', '何氏渊源') },
     { to: '/faq', label: t('FAQ', '常见问题') },

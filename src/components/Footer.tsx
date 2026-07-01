@@ -30,6 +30,7 @@ export function Footer() {
             { to: '/method', label: t('The Method', '取名之道') },
             { to: '/finder', label: t('Find Your Name', '寻得佳名') },
             { to: '/gallery', label: t('Fine Names', '佳名集') },
+            { to: '/chinese-names', label: t('Name Directory', '名字目录') },
             { to: '/pricing', label: t('Pricing', '价格') },
           ]} />
           <FooterCol title={t('The Tradition', '渊源')} links={[
