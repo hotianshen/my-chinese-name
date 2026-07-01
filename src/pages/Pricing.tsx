@@ -68,7 +68,7 @@ export function Pricing() {
                       <Eyebrow>{t(tier.taglineEn, tier.taglineZh)}</Eyebrow>
                     </div>
                     <h3 className="text-heading-3 mt-sm">{t(tier.name, tier.zh)}</h3>
-                    <p className="font-display text-4xl text-ink-900 mt-1">{tier.price === 'Free' ? t('Free', '免费') : tier.price === 'from $499' ? t('from $499', '$499 起') : tier.price}</p>
+                    <p className="font-display text-4xl text-ink-900 mt-1">{tier.price === 'Free' ? t('Free', '免费') : tier.price === 'from $9,999' ? t('from $9,999', '$9,999 起') : tier.price}</p>
                     <ul className="mt-lg space-y-2 flex-1">
                       {(t('en', 'zh') === 'zh' ? tier.featuresZh : tier.featuresEn).map((f) => (
                         <li key={f} className="flex items-start gap-2 text-[0.9rem] text-ink-700">

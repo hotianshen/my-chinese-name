@@ -8,11 +8,22 @@ import { grantLevel } from './tiers'
 
 type Tier = Order['tier']
 
+// The four live PayPal payment links, reused from the production site. These are
+// public URLs (safe to ship); an env var overrides each if you later switch to
+// Lemon Squeezy / Stripe. NOTE: each link charges the amount configured in
+// PayPal — keep the displayed tier price (tiers.ts) equal to the link's amount.
+const PAYPAL = {
+  listener: 'https://www.paypal.com/ncp/payment/5QJKSYE2C9B3N', // L1
+  insighter: 'https://www.paypal.com/ncp/payment/LE4EBE7L3XMD8', // L2
+  masters: 'https://www.paypal.com/ncp/payment/2SRZZPTREN5Q6', // L3
+  brand: 'https://www.paypal.com/ncp/payment/75VTSDG9PJ4DY', // L4
+}
+
 const LINKS: Record<Tier, string> = {
-  Listener: import.meta.env.VITE_CHECKOUT_LISTENER ?? '',
-  Insighter: import.meta.env.VITE_CHECKOUT_INSIGHTER ?? '',
-  "Master's Name": import.meta.env.VITE_CHECKOUT_MASTERS ?? '',
-  'Brand & Bearer': import.meta.env.VITE_CHECKOUT_BRAND ?? '',
+  Listener: import.meta.env.VITE_CHECKOUT_LISTENER ?? PAYPAL.listener,
+  Insighter: import.meta.env.VITE_CHECKOUT_INSIGHTER ?? PAYPAL.insighter,
+  "Master's Name": import.meta.env.VITE_CHECKOUT_MASTERS ?? PAYPAL.masters,
+  'Brand & Bearer': import.meta.env.VITE_CHECKOUT_BRAND ?? PAYPAL.brand,
 }
 
 const TIER_LEVEL: Record<Tier, number> = {

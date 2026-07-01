@@ -30,13 +30,13 @@ export function FAQ() {
     },
     {
       q: ['What do the tiers unlock?', '各级套餐解锁什么？'],
-      a: ['The free Seeker tier gives you one real name on screen. Unlock all three names, audio, intro scripts and the radar with Listener ($19) — or free, by sharing your name card with three friends. Insighter ($49) adds the full Name Dossier: etymology, classical sources, the complete twelve-palace reading, and a printable PDF. Master ($149) is a name hand-crafted by a name-master.',
-        '免费的「寻名者」当即给你一个真名。以「闻音者」（$19）解锁全部三名、音频、介绍脚本与命盘——或免费：将你的名片分享给三位朋友。「明义者」（$49）再加完整《名册》：字源、典籍出处、十二宫全读，及可打印 PDF。「大师甄选」（$149）则由取名师亲手雕琢。'],
+      a: ['The free Seeker tier gives you one real name on screen. Unlock all three names, audio, intro scripts and the radar with Listener ($9.99) — or free, by sharing your name card with three friends. Insighter ($99.90) adds the full Name Dossier: etymology, classical sources, the complete twelve-palace reading, and a printable PDF. Master ($999) is a name hand-crafted by a name-master.',
+        '免费的「寻名者」当即给你一个真名。以「闻音者」（$9.99）解锁全部三名、音频、介绍脚本与命盘——或免费：将你的名片分享给三位朋友。「明义者」（$99.90）再加完整《名册》：字源、典籍出处、十二宫全读，及可打印 PDF。「大师甄选」（$999）则由取名师亲手雕琢。'],
     },
     {
       q: ['What is the Master’s Name?', '何为《大师之名》？'],
-      a: ['For $149, a name-master reviews your intake and crafts the name personally — with a written note in their hand, two rounds of revision, hi-res calligraphy, and a signed certificate. It is the closest thing to having a name made for you the old way.',
-        '一百四十九美元，由取名师亲阅你的资料并亲手雕琢——附亲笔题记、两轮修订、高清书法及署名证书。这最近于以古法为你亲制一名。'],
+      a: ['For $999, a name-master reviews your intake and crafts the name personally — with a written note in their hand, two rounds of revision, hi-res calligraphy, and a signed certificate. It is the closest thing to having a name made for you the old way.',
+        '九百九十九美元，由取名师亲阅你的资料并亲手雕琢——附亲笔题记、两轮修订、高清书法及署名证书。这最近于以古法为你亲制一名。'],
     },
     {
       q: ['Can I use my name on a business card, WeChat, or documents?', '我能将此名用于名片、微信或证件吗？'],

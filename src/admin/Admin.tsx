@@ -361,9 +361,9 @@ function Clients({ orders, leads }: { orders: Order[]; leads: Lead[] }) {
 
 function SettingsPanel() {
   const rows = [
-    { label: 'L1 Listener checkout ($19)', live: isLive('Listener'), env: 'VITE_CHECKOUT_LISTENER' },
-    { label: 'L2 Insighter checkout ($49)', live: isLive('Insighter'), env: 'VITE_CHECKOUT_INSIGHTER' },
-    { label: 'L3 Master’s checkout ($149)', live: isLive("Master's Name"), env: 'VITE_CHECKOUT_MASTERS' },
+    { label: 'L1 Listener checkout ($9.99)', live: isLive('Listener'), env: 'VITE_CHECKOUT_LISTENER' },
+    { label: 'L2 Insighter checkout ($99.90)', live: isLive('Insighter'), env: 'VITE_CHECKOUT_INSIGHTER' },
+    { label: 'L3 Master’s checkout ($999)', live: isLive("Master's Name"), env: 'VITE_CHECKOUT_MASTERS' },
     { label: 'L4 Brand checkout', live: isLive('Brand & Bearer'), env: 'VITE_CHECKOUT_BRAND' },
   ]
   return (

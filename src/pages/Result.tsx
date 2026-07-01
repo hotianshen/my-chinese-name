@@ -229,7 +229,7 @@ function UnlockGate({ result, shares, onChange, nav }: { result: GenerateResult;
           </div>
           {/* paid — Listener */}
           <div className="p-lg rounded-card text-center" style={{ background: 'var(--paper-200)' }}>
-            <div className="font-display text-lg mb-sm">{t('Now — $19', '即刻——$19')}</div>
+            <div className="font-display text-lg mb-sm">{t('Now — $9.99', '即刻——$9.99')}</div>
             <p className="text-ink-500 text-[0.92rem] mb-md">{t('L1 Listener: three names, audio, intros, radar & card.', 'L1 闻音者：三名、音频、介绍、命盘与名片。')}</p>
             <button onClick={buyListener} className="btn-seal w-full justify-center">{t('Unlock now', '即刻解锁')} <ArrowRight size={15} /></button>
           </div>
@@ -292,7 +292,7 @@ function DossierCta({ level, nav }: { level: number; nav: (p: string) => void })
             <div className="inline-block p-2xl rounded-modal" style={{ background: 'var(--paper-100)' }}>
               <Seal size={72} className="mx-auto mb-lg" />
               <p className="eyebrow">{t('THE NAME DOSSIER', '名册')}</p>
-              <p className="font-display text-6xl text-ink-900 mt-sm">{owned ? t('Yours', '已拥有') : '$49'}</p>
+              <p className="font-display text-6xl text-ink-900 mt-sm">{owned ? t('Yours', '已拥有') : '$99.90'}</p>
               <p className="text-caption text-ink-300 mt-1">{t('one-time · delivered instantly', '一次性 · 即时交付')}</p>
               <button className="btn-seal w-full justify-center mt-lg" onClick={() => { track('dossier_cta_click'); getDossier() }}>
                 {owned ? t('Open your Dossier', '打开你的名册') : t('Get the Dossier', '获取名册')} <ArrowRight size={16} />
