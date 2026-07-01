@@ -48,6 +48,25 @@ for (const name of NAMES) {
     .replace(/(<meta property="og:url" content=")[^"]*(")/, `$1${url}$2`)
     .replace('</head>', `  <link rel="canonical" href="${url}" />\n  </head>`)
 
+  // Schema.org structured data → richer search results
+  const ld = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: title,
+    description: desc,
+    url,
+    inLanguage: 'en',
+    isPartOf: { '@type': 'WebSite', name: 'My Chinese Name', url: PROD },
+    breadcrumb: {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Chinese Names', item: `${PROD}/chinese-names` },
+        { '@type': 'ListItem', position: 2, name: `Chinese name for ${name}`, item: url },
+      ],
+    },
+  }
+  html = html.replace('</head>', `  <script type="application/ld+json">${JSON.stringify(ld)}</script>\n  </head>`)
+
   const fallback =
     `<main style="max-width:680px;margin:0 auto;padding:48px 24px;font-family:Georgia,serif;color:#57534A">` +
     `<p style="letter-spacing:.18em;text-transform:uppercase;color:#9A7B33;font-size:12px">A Chinese name for</p>` +
