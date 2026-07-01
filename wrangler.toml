@@ -1,0 +1,9 @@
+# Cloudflare Pages config. Used by `wrangler pages deploy` (ignored by the
+# GitHub Pages workflow). Binds the entitlement KV so functions/api/* work.
+name = "my-chinese-name"
+pages_build_output_dir = "dist"
+compatibility_date = "2025-06-01"
+
+[[kv_namespaces]]
+binding = "MCN"
+id = "51956f67b046458a8c5aa8014522dc02"

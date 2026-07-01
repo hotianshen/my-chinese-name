@@ -1,5 +1,20 @@
 # Server backend — Cloudflare Pages Functions
 
+## ✅ LIVE (deployed 2026-07)
+- **Cloudflare Pages project:** `my-chinese-name` · **URL:** https://my-chinese-name-b80.pages.dev
+- **KV** namespace `MCN` (id `51956f67b046458a8c5aa8014522dc02`) bound via `wrangler.toml`.
+- **Secret** `GRANT_SECRET` set (Cloudflare Pages → production).
+- Verified live: `GET/POST /api/entitlement` works (grant persists in KV; bad secret rejected).
+- Redeploy anytime with: `npm run deploy:cf`
+- Client build uses `VITE_SERVER_BACKED=1` → same-origin `/api` (works on pages.dev and the apex domain).
+
+### Remaining (needs your action)
+1. **PayPal secrets** — in Cloudflare Pages → Settings → Variables, add `PAYPAL_CLIENT_ID`, `PAYPAL_SECRET`, `PAYPAL_WEBHOOK_ID`; then point a PayPal webhook at `https://my-chinese-name-b80.pages.dev/api/paypal-webhook` (event `PAYMENT.CAPTURE.COMPLETED`). Then payments auto-grant entitlement.
+2. **Custom domain `mychinese.name`** — add it to this Pages project in the dashboard. ⚠️ This REPLACES the currently-live old site on that domain — a deliberate cutover, do it when ready. (I have zone-read only, so I cannot and will not repoint DNS.)
+
+---
+
+
 These make entitlement **server-authoritative** (paid/share unlocks can no longer
 be bypassed in the browser) and let **PayPal auto-grant** access after payment —
 closing the gap that raw PayPal payment links leave (no callback → no auto

@@ -1,0 +1,4 @@
+# Cloudflare Pages SPA fallback. Functions (/api/*) and real static files
+# (assets, /chinese-name-for/*, og-image) are served first; only unmatched
+# client routes fall through to the app shell. (GitHub Pages ignores this file.)
+/*    /index.html   200

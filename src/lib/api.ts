@@ -3,10 +3,14 @@
 // into localStorage so the existing synchronous reads (src/lib/tiers.ts) see the
 // server truth. With no API configured, everything falls back to localStorage —
 // the current static-site behaviour — so the live site is unaffected.
+// VITE_SERVER_BACKED=1 → functions are on the same origin (Cloudflare Pages), so
+// use relative /api paths (works on pages.dev and the apex domain without a
+// rebuild). VITE_API_BASE can point to a different origin if ever needed.
 const API = (import.meta.env.VITE_API_BASE as string | undefined) ?? ''
+const SELF = import.meta.env.VITE_SERVER_BACKED === '1'
 
 export function isServerBacked(): boolean {
-  return Boolean(API)
+  return SELF || Boolean(API)
 }
 
 export async function fetchEntitlement(email: string): Promise<number | null> {
