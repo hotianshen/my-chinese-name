@@ -77,8 +77,8 @@ function Hero() {
 function Contrast() {
   const t = useT()
   const rows = [
-    { sound: 'Suo-fei-ya', crafted: '苏菲', orig: 'Sophia', note: t('Three borrowed syllables vs. a name with its own meaning', '三个借来的音节 · 一个自有其意的名字') },
-    { sound: 'Ke-li-si-tuo-fu', crafted: '柯睿', orig: 'Christopher', note: t('A five-character phrase vs. a real two-beat name', '五字长串 · 一个真正的两字之名') },
+    { sound: 'Suo-fei-ya', crafted: '苏思菲', orig: 'Sophia', note: t('Three borrowed syllables vs. a real name with its own meaning', '三个借来的音节 · 一个自有其意的真名') },
+    { sound: 'Ke-li-si-tuo-fu', crafted: '柯睿哲', orig: 'Christopher', note: t('A five-syllable phrase vs. a proper three-character name', '五音长串 · 一个规整的三字之名') },
   ]
   return (
     <section className="section" style={{ background: 'var(--paper-300)' }}>
@@ -163,9 +163,9 @@ function ThreePowersPreview() {
 function ThreeNames() {
   const t = useT()
   const types = [
-    { type: t('Safe', '稳妥'), zh: '稳', desc: t('Easy, memorable, hard to get wrong — for daily life and business.', '易记、易称、难出错——宜于日常与商务。'), ex: '戴维' },
-    { type: t('Cultural', '文蕴'), zh: '雅', desc: t('A touch more allusion and atmosphere — for those who tell their name’s story.', '多一分典故与气韵——宜于愿讲述名字之人。'), ex: '戴文' },
-    { type: t('Distinctive', '卓然'), zh: '奇', desc: t('A stronger, more singular bearing — heard once, never forgotten.', '更具独特气度——一闻难忘。'), ex: '达川' },
+    { type: t('Safe', '稳妥'), zh: '稳', desc: t('Easy, memorable, hard to get wrong — for daily life and business.', '易记、易称、难出错——宜于日常与商务。'), ex: '何安明' },
+    { type: t('Cultural', '文蕴'), zh: '雅', desc: t('A touch more allusion and atmosphere — for those who tell their name’s story.', '多一分典故与气韵——宜于愿讲述名字之人。'), ex: '何书然' },
+    { type: t('Distinctive', '卓然'), zh: '奇', desc: t('A stronger, more singular bearing — heard once, never forgotten.', '更具独特气度——一闻难忘。'), ex: '何墨川' },
   ]
   return (
     <section className="section" style={{ background: 'var(--paper-300)' }}>

@@ -9,12 +9,13 @@ Legend: **[You]** = you provide it · **[Me]** = I wire it up once you've provid
 ## 1. Payments — the revenue switch ⭐ (highest priority)
 - [ ] **[You]** Create a **Lemon Squeezy** account (recommended — it's a Merchant of Record, so it collects & remits VAT/sales-tax worldwide automatically). ⏱ 20 min
   - Alternative: **Stripe** (cheaper fees, but you'd handle tax yourself).
-- [ ] **[You]** Create 3 products and copy their **checkout/buy-link URLs**:
-  - The Name Dossier — **$39**
-  - The Master's Name — **$149**
-  - Brand & Bearer — **$499** (or a "request a quote" product)
+- [ ] **[You]** Create 4 products and copy their **checkout/buy-link URLs** (the L1–L4 ladder):
+  - L1 Listener — **$19** (unlock all three names)
+  - L2 Insighter — **$49** (the full Name Dossier)
+  - L3 Master's Name — **$149**
+  - L4 Legacy / Brand — **$499** (or a "request a quote" product)
 - [ ] **[You]** (optional, for upsells) products for add-ons: audio +$9, certificate +$12, calligraphy +$15, canvas print, name seal.
-- [ ] **[Me]** Paste the links into `VITE_CHECKOUT_DOSSIER`, `VITE_CHECKOUT_MASTERS`, `VITE_CHECKOUT_BRAND` and redeploy. Demo mode turns off automatically.
+- [ ] **[Me]** Paste the links into `VITE_CHECKOUT_LISTENER`, `VITE_CHECKOUT_INSIGHTER`, `VITE_CHECKOUT_MASTERS`, `VITE_CHECKOUT_BRAND` and redeploy. Demo mode turns off automatically. *(Free names also unlock via share-to-3-friends — no payment needed.)*
 
 ## 2. Domain — your real address
 - [ ] **[You]** Decide the launch domain. You own **mychinese.name** — we can point it here.
