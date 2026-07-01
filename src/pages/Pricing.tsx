@@ -1,22 +1,27 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { ArrowRight, Check, Sparkles } from 'lucide-react'
 import { Container, Eyebrow, Reveal, SectionHeading } from '../components/ui'
 import { Seal } from '../components/Seal'
 import { startCheckout } from '../lib/checkout'
+import { loadResult } from '../lib/store'
 import { useT } from '../i18n'
 import { cn } from '../lib/cn'
 
 export function Pricing() {
   const t = useT()
+  const nav = useNavigate()
   const [toast, setToast] = useState('')
 
   const buy = (tier: 'Dossier' | "Master's Name", amount: number) => {
-    const mode = startCheckout(tier, amount)
-    if (mode === 'demo') {
-      setToast(t('Demo checkout recorded — see the Admin board. Add your Lemon Squeezy link to go live.', '已记录演示订单——见后台。接入 Lemon Squeezy 链接即可上线。'))
-      setTimeout(() => setToast(''), 5200)
+    if (startCheckout(tier, amount) !== 'demo') return
+    if (tier === 'Dossier') {
+      // deliver the dossier if a name exists, otherwise send them to create one first
+      nav(loadResult() ? '/dossier' : '/finder')
+      return
     }
+    setToast(t('Demo checkout recorded — see the Admin board. Add your Lemon Squeezy link to go live.', '已记录演示订单——见后台。接入 Lemon Squeezy 链接即可上线。'))
+    setTimeout(() => setToast(''), 5200)
   }
 
   const tiers = [

@@ -7,6 +7,8 @@ import { Seal } from '../components/Seal'
 import { PalaceRadar } from '../components/PalaceRadar'
 import type { GenerateResult, NameCandidate } from '../engine/types'
 import { captureLead, loadResult, track } from '../lib/store'
+import { startCheckout } from '../lib/checkout'
+import { subscribe } from '../lib/email'
 import { speakChinese } from '../lib/speak'
 import { useT } from '../i18n'
 import { cn } from '../lib/cn'
@@ -180,7 +182,9 @@ function EmailGate({ result, onUnlock }: { result: GenerateResult; onUnlock: () 
   const submit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!/.+@.+\..+/.test(email)) return
-    captureLead({ email, givenName: result.intake.givenName, topName: `${result.candidates[0].fullHanzi} ${result.candidates[0].fullPinyin}`, at: new Date().toISOString() })
+    const topName = `${result.candidates[0].fullHanzi} ${result.candidates[0].fullPinyin}`
+    captureLead({ email, givenName: result.intake.givenName, topName, at: new Date().toISOString() })
+    void subscribe(email, { givenName: result.intake.givenName, topName, list: 'name-unlock' })
     localStorage.setItem('mcn-unlocked', '1')
     setDone(true)
     setTimeout(onUnlock, 600)
@@ -213,6 +217,12 @@ function EmailGate({ result, onUnlock }: { result: GenerateResult; onUnlock: () 
 
 function DossierCta() {
   const t = useT()
+  const nav = useNavigate()
+  const buyDossier = () => {
+    // demo mode records the order and delivers the dossier; live mode redirects
+    // to the payment link (set its post-purchase URL to /dossier).
+    if (startCheckout('Dossier', 39) === 'demo') nav('/dossier')
+  }
   const includes = [
     t('All three names, fully explained', '三名俱全，逐一详解'),
     t('The complete twelve-palace reckoning', '十二宫完整品鉴'),
@@ -249,9 +259,9 @@ function DossierCta() {
               <p className="eyebrow">{t('THE NAME DOSSIER', '名册')}</p>
               <p className="font-display text-6xl text-ink-900 mt-sm">$39</p>
               <p className="text-caption text-ink-300 mt-1">{t('one-time · delivered instantly', '一次性 · 即时交付')}</p>
-              <Link to="/pricing" className="btn-seal w-full justify-center mt-lg" onClick={() => track('dossier_cta_click')}>
+              <button className="btn-seal w-full justify-center mt-lg" onClick={() => { track('dossier_cta_click'); buyDossier() }}>
                 {t('Get the Dossier', '获取名册')} <ArrowRight size={16} />
-              </Link>
+              </button>
               <Link to="/pricing" className="block text-caption text-ink-500 mt-md link-brush">{t('or commission a Master’s Name →', '或委以《大师之名》→')}</Link>
             </div>
           </div>

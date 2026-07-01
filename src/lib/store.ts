@@ -9,11 +9,17 @@ const ORDERS_KEY = 'mcn-orders'
 const EVENTS_KEY = 'mcn-events'
 
 export function saveResult(r: GenerateResult) {
-  try { sessionStorage.setItem(RESULT_KEY, JSON.stringify(r)) } catch { /* ignore */ }
+  // Persist to both: session for the immediate flow, local so the result
+  // survives the round-trip to the payment provider and back to the Dossier.
+  try {
+    const json = JSON.stringify(r)
+    sessionStorage.setItem(RESULT_KEY, json)
+    localStorage.setItem(RESULT_KEY, json)
+  } catch { /* ignore */ }
 }
 export function loadResult(): GenerateResult | null {
   try {
-    const raw = sessionStorage.getItem(RESULT_KEY)
+    const raw = sessionStorage.getItem(RESULT_KEY) || localStorage.getItem(RESULT_KEY)
     return raw ? (JSON.parse(raw) as GenerateResult) : null
   } catch { return null }
 }

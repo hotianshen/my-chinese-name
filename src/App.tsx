@@ -10,11 +10,15 @@ import { Home } from './pages/Home'
 const Method = lazy(() => import('./pages/Method').then((m) => ({ default: m.Method })))
 const Finder = lazy(() => import('./pages/Finder').then((m) => ({ default: m.Finder })))
 const Result = lazy(() => import('./pages/Result').then((m) => ({ default: m.Result })))
+const Dossier = lazy(() => import('./pages/Dossier').then((m) => ({ default: m.Dossier })))
 const Pricing = lazy(() => import('./pages/Pricing').then((m) => ({ default: m.Pricing })))
 const Gallery = lazy(() => import('./pages/Gallery').then((m) => ({ default: m.Gallery })))
 const About = lazy(() => import('./pages/About').then((m) => ({ default: m.About })))
 const FAQ = lazy(() => import('./pages/FAQ').then((m) => ({ default: m.FAQ })))
 const NotFound = lazy(() => import('./pages/NotFound').then((m) => ({ default: m.NotFound })))
+const Terms = lazy(() => import('./pages/Legal').then((m) => ({ default: m.Terms })))
+const Privacy = lazy(() => import('./pages/Legal').then((m) => ({ default: m.Privacy })))
+const Refunds = lazy(() => import('./pages/Legal').then((m) => ({ default: m.Refunds })))
 const Admin = lazy(() => import('./admin/Admin').then((m) => ({ default: m.Admin })))
 
 function ScrollToTop() {
@@ -66,10 +70,14 @@ export default function App() {
             <Route path="/method" element={<Method />} />
             <Route path="/finder" element={<Finder />} />
             <Route path="/result" element={<Result />} />
+            <Route path="/dossier" element={<Dossier />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/refunds" element={<Refunds />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

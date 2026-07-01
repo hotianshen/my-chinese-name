@@ -22,7 +22,7 @@ export function Nav() {
   ]
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md" style={{ background: 'color-mix(in srgb, var(--paper-200) 86%, transparent)', borderBottom: '1px solid var(--line-soft)' }}>
+    <header className="no-print sticky top-0 z-50 backdrop-blur-md" style={{ background: 'color-mix(in srgb, var(--paper-200) 86%, transparent)', borderBottom: '1px solid var(--line-soft)' }}>
       <nav className="container-band flex items-center justify-between" style={{ height: 72 }}>
         <Link to="/" className="flex items-center gap-3 group" onClick={() => setOpen(false)}>
           <Seal size={36} />

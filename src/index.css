@@ -268,3 +268,20 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ——— Print: the Dossier as a clean, colour-accurate PDF ——— */
+@media print {
+  .no-print { display: none !important; }
+  body::before { display: none !important; }
+  body { background: #fff !important; }
+  .dossier {
+    box-shadow: none !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .break-before { break-before: page; }
+  a[href]::after { content: ''; }
+}
+@page { margin: 16mm 14mm; }

@@ -23,13 +23,13 @@ Legend: **[You]** = you provide it · **[Me]** = I wire it up once you've provid
 
 ## 3. Email — capture & nurture (turns free users into buyers)
 - [ ] **[You]** Create an email-marketing account (**MailerLite** is the cheapest start; **ConvertKit/Kit** is the standard). ⏱ 20 min
-- [ ] **[You]** Provide its API key / form ID.
-- [ ] **[Me]** Connect the Result-page email capture to it, and I'll draft a 5–7 email nurture sequence for you to approve.
+- [ ] **[You]** Create a **Zapier/Make catch-hook** (or MailerLite's webhook) that adds a subscriber, and send me its URL. *(The capture form + footer signup are already built and wired to `VITE_EMAIL_WEBHOOK`; captured emails already show in Admin → Leads.)*
+- [ ] **[Me]** Set `VITE_EMAIL_WEBHOOK`, then draft a 5–7 email nurture sequence for you to approve.
 
-## 4. Fulfilment — the auto-delivered Dossier
-- [ ] **[Decision]** How should the $39 Dossier be delivered? (a) an auto-generated **PDF**, (b) a private **web page** link, or (c) both. *(Recommended: a beautiful web dossier + a downloadable PDF.)*
-- [ ] **[You]** (optional) An **AI writing key** (Anthropic API) if you want each dossier's prose individually composed rather than templated. I can do high-quality templated prose without it.
-- [ ] **[Me]** Build the dossier generator + delivery.
+## 4. Fulfilment — the auto-delivered Dossier ✓ built
+- The **Name Dossier is built** (`/dossier`): a rich web document — all three names with per-character etymology, the full twelve-palace reckoning, a pronunciation & tone guide, usage scripts, a printable name card, and a "Naming Note" — with **Print / Save-as-PDF** built in. It's already the delivery for the $39 tier.
+- [ ] **[You]** When you set up the Lemon Squeezy $39 product, set its **post-purchase redirect URL** to `https://<your-domain>/dossier`. (The buyer generates the name before paying, so it's waiting for them.)
+- [ ] **[You]** (optional) An **AI writing key** later if you want each dossier's prose individually composed rather than the current high-quality templated prose.
 
 ## 5. Brand assets — the finishing polish
 - [ ] **[You]** Author **photo / portrait** of Ho Tianshen for the About page (optional but powerful).

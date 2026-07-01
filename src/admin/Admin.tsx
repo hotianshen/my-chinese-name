@@ -8,6 +8,7 @@ import {
   ensureDemoData, getEvents, getLeads, getOrders, updateOrderStatus, type Order,
 } from '../lib/store'
 import { isLive } from '../lib/checkout'
+import { isEmailLive } from '../lib/email'
 import { cn } from '../lib/cn'
 
 const ADMIN_CODE = import.meta.env.VITE_ADMIN_CODE ?? 'chengtian'
@@ -272,6 +273,22 @@ function SettingsPanel() {
         ))}
         <p className="text-caption text-ink-300 mt-lg">
           Set these to your Lemon Squeezy (recommended — Merchant of Record, automatic VAT/tax) or Stripe Payment Link URLs in a <code>.env</code> file, then redeploy. Until then, checkout runs in demo mode and records orders here.
+        </p>
+      </div>
+
+      <div className="card-paper p-xl max-w-2xl mt-lg">
+        <h3 className="font-display text-lg mb-lg">Email automation</h3>
+        <div className="flex items-center justify-between py-3">
+          <div>
+            <p className="text-ink-700">Lead → ESP webhook</p>
+            <code className="text-caption text-ink-300">VITE_EMAIL_WEBHOOK</code>
+          </div>
+          <span className={cn('text-sm px-3 py-1 rounded-full', isEmailLive() ? 'text-success' : 'text-ink-300')} style={{ background: isEmailLive() ? 'color-mix(in srgb, var(--success) 14%, transparent)' : 'var(--paper-300)' }}>
+            {isEmailLive() ? 'Live' : 'Local only'}
+          </span>
+        </div>
+        <p className="text-caption text-ink-300 mt-lg">
+          Point this at a Zapier / Make catch-hook or a small serverless endpoint that adds the subscriber to MailerLite / ConvertKit. Captured emails always appear under <strong>Leads</strong>; when live, they’re also forwarded to your list.
         </p>
       </div>
     </div>
