@@ -29,9 +29,9 @@ export function FAQ() {
         '完全不需要。一切皆以英文（及中文）讲解。你的名字附有拼音、发音与声调指南及音频，使你从第一天起便能自信地自我介绍。'],
     },
     {
-      q: ['What’s the difference between the free tool and the Dossier?', '免费工具与《名册》有何不同？'],
-      a: ['The free Name Finder gives you real names on screen. The $39 Dossier gives you the full reckoning behind them — all three names explained, the complete twelve-palace reading, character etymology, classical sources, pronunciation audio, and a printable name card and certificate.',
-        '免费的「寻名」当即给你真实的名字。三十九美元的《名册》则予你其背后完整的品鉴——三名俱解、十二宫全读、字源考据、典籍出处、发音音频，及可打印之名片与证书。'],
+      q: ['What do the tiers unlock?', '各级套餐解锁什么？'],
+      a: ['The free Seeker tier gives you one real name on screen. Unlock all three names, audio, intro scripts and the radar with Listener ($19) — or free, by sharing your name card with three friends. Insighter ($49) adds the full Name Dossier: etymology, classical sources, the complete twelve-palace reading, and a printable PDF. Master ($149) is a name hand-crafted by a name-master.',
+        '免费的「寻名者」当即给你一个真名。以「闻音者」（$19）解锁全部三名、音频、介绍脚本与命盘——或免费：将你的名片分享给三位朋友。「明义者」（$49）再加完整《名册》：字源、典籍出处、十二宫全读，及可打印 PDF。「大师甄选」（$149）则由取名师亲手雕琢。'],
     },
     {
       q: ['What is the Master’s Name?', '何为《大师之名》？'],

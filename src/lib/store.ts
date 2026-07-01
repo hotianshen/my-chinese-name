@@ -28,7 +28,7 @@ export interface Lead { email: string; givenName: string; topName: string; at: s
 export interface Order {
   id: string
   email: string
-  tier: 'Dossier' | "Master's Name" | 'Brand & Bearer'
+  tier: 'Listener' | 'Insighter' | "Master's Name" | 'Brand & Bearer'
   amount: number
   name: string
   status: 'paid' | 'in-fulfilment' | 'delivered'
@@ -75,11 +75,11 @@ export function ensureDemoData() {
   const now = Date.now()
   const day = 86400000
   const demo: Order[] = [
-    { id: 'MCN-1042', email: 'james.w@example.com', tier: 'Dossier', amount: 39, name: '高明哲 Gāo Míngzhé', status: 'delivered', at: new Date(now - 1 * day).toISOString() },
-    { id: 'MCN-1043', email: 'sofia.k@example.com', tier: 'Dossier', amount: 51, name: '苏菲 Sū Fēi', status: 'delivered', at: new Date(now - 1 * day).toISOString() },
-    { id: 'MCN-1044', email: 'm.dubois@example.com', tier: "Master's Name", amount: 149, name: '亨立 Hēng Lì', status: 'in-fulfilment', at: new Date(now - 0.4 * day).toISOString() },
+    { id: 'MCN-1042', email: 'james.w@example.com', tier: 'Insighter', amount: 49, name: '高明哲 Gāo Míngzhé', status: 'delivered', at: new Date(now - 1 * day).toISOString() },
+    { id: 'MCN-1043', email: 'sofia.k@example.com', tier: 'Listener', amount: 19, name: '苏文菲 Sū Wénfēi', status: 'delivered', at: new Date(now - 1 * day).toISOString() },
+    { id: 'MCN-1044', email: 'm.dubois@example.com', tier: "Master's Name", amount: 149, name: '亨立轩 Hēng Lìxuān', status: 'in-fulfilment', at: new Date(now - 0.4 * day).toISOString() },
     { id: 'MCN-1045', email: 'contact@nordictech.io', tier: 'Brand & Bearer', amount: 999, name: '(brand intake)', status: 'in-fulfilment', at: new Date(now - 0.2 * day).toISOString() },
-    { id: 'MCN-1046', email: 'priya.n@example.com', tier: 'Dossier', amount: 60, name: '潘宁 Pān Níng', status: 'paid', at: new Date(now - 0.1 * day).toISOString() },
+    { id: 'MCN-1046', email: 'priya.n@example.com', tier: 'Insighter', amount: 49, name: '潘宁远 Pān Níngyuǎn', status: 'paid', at: new Date(now - 0.1 * day).toISOString() },
   ]
   write(ORDERS_KEY, demo)
   const leads: Lead[] = [

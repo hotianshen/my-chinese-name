@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowRight, Check, Lock, Sparkles, Volume2 } from 'lucide-react'
+import { ArrowRight, Check, Lock, Share2, Sparkles, Volume2 } from 'lucide-react'
 import { Container, Eyebrow, Hairline, Reveal } from '../components/ui'
 import { Seal } from '../components/Seal'
 import { ShareCard } from '../components/ShareCard'
@@ -11,6 +11,7 @@ import { captureLead, loadResult, track } from '../lib/store'
 import { startCheckout } from '../lib/checkout'
 import { subscribe } from '../lib/email'
 import { speakChinese } from '../lib/speak'
+import { SHARE_UNLOCK_THRESHOLD, shareProgress, unlockedLevel } from '../lib/tiers'
 import { useT } from '../i18n'
 import { cn } from '../lib/cn'
 
@@ -18,18 +19,22 @@ export function Result() {
   const t = useT()
   const nav = useNavigate()
   const [result, setResult] = useState<GenerateResult | null>(null)
-  const [unlocked, setUnlocked] = useState(false)
+  const [level, setLevel] = useState(0)
+  const [shares, setShares] = useState(0)
+
+  const refresh = () => { setLevel(unlockedLevel()); setShares(shareProgress()) }
 
   useEffect(() => {
     const r = loadResult()
     if (!r) { nav('/finder'); return }
     setResult(r)
-    setUnlocked(localStorage.getItem('mcn-unlocked') === '1')
+    refresh()
     track('result_view', { givenName: r.intake.givenName })
   }, [nav])
 
   if (!result) return null
   const [safe, ...rest] = result.candidates
+  const unlocked = level >= 1
 
   return (
     <>
@@ -68,19 +73,19 @@ export function Result() {
               <LockedName key={c.type} candidate={c} unlocked={unlocked} />
             ))}
           </div>
-          {!unlocked && <EmailGate result={result} onUnlock={() => setUnlocked(true)} />}
+          {!unlocked && <UnlockGate result={result} shares={shares} onChange={refresh} nav={nav} />}
         </Container>
       </section>
 
-      {/* —— share (the viral loop) —— */}
+      {/* —— share (the viral loop + free unlock) —— */}
       <section className="section pt-0">
         <Container>
-          <ShareCard candidate={safe} fromName={result.intake.givenName} />
+          <ShareCard candidate={safe} fromName={result.intake.givenName} onShared={refresh} />
         </Container>
       </section>
 
-      {/* —— dossier upsell —— */}
-      <DossierCta />
+      {/* —— dossier upsell (L2) —— */}
+      <DossierCta level={level} nav={nav} />
     </>
   )
 }
@@ -89,7 +94,7 @@ function ToneRow({ candidate }: { candidate: NameCandidate }) {
   return (
     <div className="flex items-center gap-1.5" aria-hidden>
       {candidate.tonePattern.map((tn, i) => (
-        <span key={i} className="text-caption text-ink-300" title={`tone ${tn}`}>
+        <span key={i} className="text-caption text-ink-300">
           <span className="inline-block w-5 text-center font-display text-ink-500">{tn || '·'}</span>
         </span>
       ))}
@@ -101,7 +106,6 @@ function PrimaryName({ candidate }: { candidate: NameCandidate }) {
   const t = useT()
   return (
     <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-2xl items-center">
-      {/* the name + seal */}
       <div>
         <div className="flex items-center gap-md mb-lg">
           <span className="grid place-items-center w-10 h-10 rounded-full text-sm" style={{ border: '1px solid var(--gold-300)', color: 'var(--gold-600)' }}>稳</span>
@@ -148,7 +152,6 @@ function PrimaryName({ candidate }: { candidate: NameCandidate }) {
         </div>
       </div>
 
-      {/* the radar */}
       <div>
         <div className="card-paper p-xl">
           <p className="eyebrow text-center mb-md">{t('THE TWELVE-PALACE RECKONING · 十二宫', 'THE TWELVE-PALACE RECKONING · 十二宫')}</p>
@@ -190,54 +193,67 @@ function LockedName({ candidate, unlocked }: { candidate: NameCandidate; unlocke
   )
 }
 
-function EmailGate({ result, onUnlock }: { result: GenerateResult; onUnlock: () => void }) {
+function UnlockGate({ result, shares, onChange, nav }: { result: GenerateResult; shares: number; onChange: () => void; nav: (p: string) => void }) {
   const t = useT()
   const [email, setEmail] = useState('')
-  const [done, setDone] = useState(false)
-  const submit = (e: React.FormEvent) => {
+  const [saved, setSaved] = useState(false)
+  const pct = Math.min(100, (shares / SHARE_UNLOCK_THRESHOLD) * 100)
+
+  const saveEmail = (e: React.FormEvent) => {
     e.preventDefault()
     if (!/.+@.+\..+/.test(email)) return
     const topName = `${result.candidates[0].fullHanzi} ${result.candidates[0].fullPinyin}`
     captureLead({ email, givenName: result.intake.givenName, topName, at: new Date().toISOString() })
     void subscribe(email, { givenName: result.intake.givenName, topName, list: 'name-unlock' })
-    localStorage.setItem('mcn-unlocked', '1')
-    setDone(true)
-    setTimeout(onUnlock, 600)
+    setSaved(true)
   }
+  const buyListener = () => { if (startCheckout('Listener', 19) === 'demo') { onChange(); nav('/result') } }
+
   return (
     <Reveal>
-      <div className="card-paper p-xl md:p-2xl mt-xl text-center max-w-2xl mx-auto" style={{ borderColor: 'var(--gold-300)' }}>
-        {done ? (
-          <div className="py-md">
-            <Check className="mx-auto mb-md" style={{ color: 'var(--success)' }} size={28} />
-            <p className="font-display text-xl">{t('Unlocked. Enjoy your names.', '已解锁，请赏你的名字。')}</p>
+      <div className="card-paper p-xl md:p-2xl mt-xl max-w-3xl mx-auto" style={{ borderColor: 'var(--gold-300)' }}>
+        <div className="text-center mb-xl">
+          <Sparkles className="mx-auto mb-md" style={{ color: 'var(--gold-500)' }} size={24} />
+          <h3 className="text-heading-3">{t('Unlock all three names', '解锁全部三名')}</h3>
+          <p className="text-ink-500 mt-sm">{t('Two ways — one free.', '两种方式，其一免费。')}</p>
+        </div>
+        <div className="grid md:grid-cols-2 gap-lg">
+          {/* free — share to unlock */}
+          <div className="p-lg rounded-card text-center" style={{ background: 'var(--paper-200)' }}>
+            <div className="flex items-center justify-center gap-2 mb-sm"><Share2 size={16} style={{ color: 'var(--seal-500)' }} /><span className="font-display text-lg">{t('Free — share it', '免费——分享')}</span></div>
+            <p className="text-ink-500 text-[0.92rem] mb-md">{t(`Share your name card with ${SHARE_UNLOCK_THRESHOLD} friends.`, `将你的名片分享给 ${SHARE_UNLOCK_THRESHOLD} 位朋友。`)}</p>
+            <div className="h-2 rounded-full overflow-hidden mb-1" style={{ background: 'var(--paper-400)' }}>
+              <div className="h-full rounded-full transition-all duration-500" style={{ width: `${pct}%`, background: 'var(--seal-500)' }} />
+            </div>
+            <p className="text-caption text-ink-300">{shares} / {SHARE_UNLOCK_THRESHOLD} {t('shared — use the card below', '已分享——用下方名片')}</p>
           </div>
-        ) : (
-          <>
-            <Sparkles className="mx-auto mb-md" style={{ color: 'var(--gold-500)' }} size={24} />
-            <h3 className="text-heading-3 mb-sm">{t('Reveal all three names — free', '揭晓全部三名——免费')}</h3>
-            <p className="text-ink-500 mb-lg">{t('Enter your email to unlock your two other names and a shareable name card.', '留下邮箱，即可解锁另两个名字与一张可分享的名片。')}</p>
-            <form onSubmit={submit} className="flex flex-col sm:flex-row gap-md max-w-md mx-auto">
-              <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder={t('you@email.com', '你的邮箱')}
-                className="flex-1 bg-paper-200 border rounded-card px-md py-3 outline-none focus:border-gold-500" />
-              <button type="submit" className="btn-seal">{t('Unlock', '解锁')}</button>
+          {/* paid — Listener */}
+          <div className="p-lg rounded-card text-center" style={{ background: 'var(--paper-200)' }}>
+            <div className="font-display text-lg mb-sm">{t('Now — $19', '即刻——$19')}</div>
+            <p className="text-ink-500 text-[0.92rem] mb-md">{t('L1 Listener: three names, audio, intros, radar & card.', 'L1 闻音者：三名、音频、介绍、命盘与名片。')}</p>
+            <button onClick={buyListener} className="btn-seal w-full justify-center">{t('Unlock now', '即刻解锁')} <ArrowRight size={15} /></button>
+          </div>
+        </div>
+        {/* email save (lead) */}
+        <div className="mt-lg pt-lg text-center" style={{ borderTop: '1px solid var(--line-soft)' }}>
+          {saved ? (
+            <p className="text-[0.9rem] text-success flex items-center justify-center gap-2"><Check size={16} /> {t('Saved — we’ll email your result.', '已保存——结果将发至你的邮箱。')}</p>
+          ) : (
+            <form onSubmit={saveEmail} className="flex flex-col sm:flex-row gap-md max-w-md mx-auto">
+              <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder={t('Email me my result', '把结果发到我的邮箱')}
+                className="flex-1 bg-paper-200 border rounded-card px-md py-2.5 outline-none focus:border-gold-500" />
+              <button type="submit" className="btn-ghost">{t('Save', '保存')}</button>
             </form>
-            <p className="text-caption text-ink-300 mt-md">{t('No spam. Unsubscribe anytime.', '绝无骚扰，可随时退订。')}</p>
-          </>
-        )}
+          )}
+        </div>
       </div>
     </Reveal>
   )
 }
 
-function DossierCta() {
+function DossierCta({ level, nav }: { level: number; nav: (p: string) => void }) {
   const t = useT()
-  const nav = useNavigate()
-  const buyDossier = () => {
-    // demo mode records the order and delivers the dossier; live mode redirects
-    // to the payment link (set its post-purchase URL to /dossier).
-    if (startCheckout('Dossier', 39) === 'demo') nav('/dossier')
-  }
+  const owned = level >= 2
   const includes = [
     t('All three names, fully explained', '三名俱全，逐一详解'),
     t('The complete twelve-palace reckoning', '十二宫完整品鉴'),
@@ -246,12 +262,16 @@ function DossierCta() {
     t('A printable name card & certificate', '可打印名片与证书'),
     t('Usage notes for cards, WeChat & introductions', '名片、微信、介绍之用法'),
   ]
+  const getDossier = () => {
+    if (owned) { nav('/dossier'); return }
+    if (startCheckout('Insighter', 49) === 'demo') nav('/dossier')
+  }
   return (
     <section className="section" style={{ background: 'var(--ink-900)' }}>
       <Container>
         <div className="grid lg:grid-cols-2 gap-2xl items-center">
           <div>
-            <p className="eyebrow mb-md" style={{ color: 'var(--gold-500)' }}>{t('THE NAME DOSSIER · 名册', 'THE NAME DOSSIER · 名册')}</p>
+            <p className="eyebrow mb-md" style={{ color: 'var(--gold-500)' }}>{t('L2 · THE NAME DOSSIER · 名册', 'L2 · THE NAME DOSSIER · 名册')}</p>
             <h2 className="text-display-2" style={{ color: 'var(--paper-100)' }}>{t('Make it truly yours.', '使之真正属于你。')}</h2>
             <p className="mt-lg text-[1.05rem]" style={{ color: 'var(--paper-400)' }}>
               {t(
@@ -272,12 +292,12 @@ function DossierCta() {
             <div className="inline-block p-2xl rounded-modal" style={{ background: 'var(--paper-100)' }}>
               <Seal size={72} className="mx-auto mb-lg" />
               <p className="eyebrow">{t('THE NAME DOSSIER', '名册')}</p>
-              <p className="font-display text-6xl text-ink-900 mt-sm">$39</p>
+              <p className="font-display text-6xl text-ink-900 mt-sm">{owned ? t('Yours', '已拥有') : '$49'}</p>
               <p className="text-caption text-ink-300 mt-1">{t('one-time · delivered instantly', '一次性 · 即时交付')}</p>
-              <button className="btn-seal w-full justify-center mt-lg" onClick={() => { track('dossier_cta_click'); buyDossier() }}>
-                {t('Get the Dossier', '获取名册')} <ArrowRight size={16} />
+              <button className="btn-seal w-full justify-center mt-lg" onClick={() => { track('dossier_cta_click'); getDossier() }}>
+                {owned ? t('Open your Dossier', '打开你的名册') : t('Get the Dossier', '获取名册')} <ArrowRight size={16} />
               </button>
-              <Link to="/pricing" className="block text-caption text-ink-500 mt-md link-brush">{t('or commission a Master’s Name →', '或委以《大师之名》→')}</Link>
+              <Link to="/pricing" className="block text-caption text-ink-500 mt-md link-brush">{t('or see all five tiers →', '或查看五级套餐 →')}</Link>
             </div>
           </div>
         </div>

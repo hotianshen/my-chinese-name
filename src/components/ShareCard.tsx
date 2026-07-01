@@ -3,12 +3,15 @@ import { Check, Copy, Download, Gift, Share2 } from 'lucide-react'
 import { makeNameCard } from '../lib/card'
 import type { NameCandidate } from '../engine/types'
 import { track } from '../lib/store'
+import { recordShare } from '../lib/tiers'
 import { useT } from '../i18n'
 
 // The viral engine's front end: a beautiful, shareable name card. Every share
-// is a billboard; the link lands on a personalised "get yours" page.
-export function ShareCard({ candidate, fromName }: { candidate: NameCandidate; fromName?: string }) {
+// is a billboard; the link lands on a personalised "get yours" page. Each share
+// action also counts toward the free share-to-unlock.
+export function ShareCard({ candidate, fromName, onShared }: { candidate: NameCandidate; fromName?: string; onShared?: () => void }) {
   const t = useT()
+  const counted = () => { recordShare(); onShared?.() }
   const [dataUrl, setDataUrl] = useState('')
   const [blob, setBlob] = useState<Blob | null>(null)
   const [copied, setCopied] = useState(false)
@@ -87,18 +90,18 @@ export function ShareCard({ candidate, fromName }: { candidate: NameCandidate; f
           </p>
 
           <div className="flex flex-wrap gap-md">
-            <button className="btn-seal" onClick={nativeShare}><Share2 size={16} /> {t('Share', '分享')}</button>
-            <button className="btn-ghost" onClick={download}><Download size={16} /> {t('Save card', '保存名片')}</button>
+            <button className="btn-seal" onClick={() => { nativeShare(); counted() }}><Share2 size={16} /> {t('Share', '分享')}</button>
+            <button className="btn-ghost" onClick={() => { download(); counted() }}><Download size={16} /> {t('Save card', '保存名片')}</button>
           </div>
 
           <div className="flex flex-wrap items-center gap-2 mt-lg">
             {socials.map((s) => (
-              <a key={s.label} href={s.href} target="_blank" rel="noreferrer" onClick={() => track('share_social', { via: s.label })}
+              <a key={s.label} href={s.href} target="_blank" rel="noreferrer" onClick={() => { track('share_social', { via: s.label }); counted() }}
                 className="px-3 py-1.5 rounded-chip text-sm text-ink-700 transition-colors hover:border-ink-900" style={{ border: '1px solid var(--line-mid)' }}>
                 {s.label}
               </a>
             ))}
-            <button onClick={copyLink} className="px-3 py-1.5 rounded-chip text-sm text-ink-700 inline-flex items-center gap-1.5 transition-colors hover:border-ink-900" style={{ border: '1px solid var(--line-mid)' }}>
+            <button onClick={() => { copyLink(); counted() }} className="px-3 py-1.5 rounded-chip text-sm text-ink-700 inline-flex items-center gap-1.5 transition-colors hover:border-ink-900" style={{ border: '1px solid var(--line-mid)' }}>
               {copied ? <><Check size={14} style={{ color: 'var(--success)' }} /> {t('Copied', '已复制')}</> : <><Copy size={14} /> {t('Copy link', '复制链接')}</>}
             </button>
           </div>

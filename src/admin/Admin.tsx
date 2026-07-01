@@ -146,7 +146,7 @@ function Overview({ orders, leads, events }: { orders: Order[]; leads: unknown[]
         <div className="card-paper p-xl">
           <h3 className="font-display text-lg mb-lg">To do — your 5%</h3>
           <ul className="space-y-3 text-[0.95rem]">
-            <ToDo n={orders.filter((o) => o.tier !== 'Dossier' && o.status !== 'delivered').length} label="Master’s / Brand names to craft" />
+            <ToDo n={orders.filter((o) => (o.tier === "Master's Name" || o.tier === 'Brand & Bearer') && o.status !== 'delivered').length} label="Master’s / Brand names to craft" />
             <ToDo n={0} label="Support tickets the FAQ couldn’t deflect" />
             <ToDo n={1} label="Content batch to approve (SEO + cards)" />
           </ul>
@@ -187,7 +187,7 @@ function Fulfilment({ orders, onChange }: { orders: Order[]; onChange: () => voi
               </div>
               <div className="flex items-center gap-3">
                 <StatusBadge status={o.status} />
-                {o.status === 'paid' && o.tier !== 'Dossier' && (
+                {o.status === 'paid' && (o.tier === "Master's Name" || o.tier === 'Brand & Bearer') && (
                   <button onClick={() => { updateOrderStatus(o.id, 'in-fulfilment'); onChange() }} className="btn-ghost !py-2 !px-4 !text-sm">Start</button>
                 )}
                 <button onClick={() => { updateOrderStatus(o.id, 'delivered'); onChange() }} className="btn-seal !py-2 !px-4 !text-sm">Mark delivered</button>
@@ -256,7 +256,7 @@ function Leads() {
 
 function Analytics({ orders, leads, events }: { orders: Order[]; leads: Lead[]; events: AnalyticsEvent[] }) {
   const revenue = orders.reduce((a, o) => a + o.amount, 0)
-  const tiers: Order['tier'][] = ['Dossier', "Master's Name", 'Brand & Bearer']
+  const tiers: Order['tier'][] = ['Listener', 'Insighter', "Master's Name", 'Brand & Bearer']
   const byTier = tiers.map((t) => {
     const os = orders.filter((o) => o.tier === t)
     return { tier: t, count: os.length, rev: os.reduce((a, o) => a + o.amount, 0) }
@@ -322,7 +322,7 @@ function Clients({ orders, leads }: { orders: Order[]; leads: Lead[] }) {
   for (const l of [...leads].reverse()) {
     map.set(l.email, { email: l.email, name: l.givenName, tier: '—', spend: 0, orders: 0, since: l.at })
   }
-  const rank: Record<string, number> = { Dossier: 1, "Master's Name": 2, 'Brand & Bearer': 3 }
+  const rank: Record<string, number> = { Listener: 1, Insighter: 2, "Master's Name": 3, 'Brand & Bearer': 4 }
   for (const o of [...orders].reverse()) {
     const c = map.get(o.email) || { email: o.email, name: o.name.split(' ')[0] || o.email, tier: '—', spend: 0, orders: 0, since: o.at }
     c.spend += o.amount
@@ -361,9 +361,10 @@ function Clients({ orders, leads }: { orders: Order[]; leads: Lead[] }) {
 
 function SettingsPanel() {
   const rows = [
-    { label: 'Dossier checkout ($39)', live: isLive('Dossier'), env: 'VITE_CHECKOUT_DOSSIER' },
-    { label: 'Master’s checkout ($149)', live: isLive("Master's Name"), env: 'VITE_CHECKOUT_MASTERS' },
-    { label: 'Brand checkout', live: isLive('Brand & Bearer'), env: 'VITE_CHECKOUT_BRAND' },
+    { label: 'L1 Listener checkout ($19)', live: isLive('Listener'), env: 'VITE_CHECKOUT_LISTENER' },
+    { label: 'L2 Insighter checkout ($49)', live: isLive('Insighter'), env: 'VITE_CHECKOUT_INSIGHTER' },
+    { label: 'L3 Master’s checkout ($149)', live: isLive("Master's Name"), env: 'VITE_CHECKOUT_MASTERS' },
+    { label: 'L4 Brand checkout', live: isLive('Brand & Bearer'), env: 'VITE_CHECKOUT_BRAND' },
   ]
   return (
     <div>
@@ -414,7 +415,7 @@ function Header({ title, subtitle }: { title: string; subtitle: string }) {
   )
 }
 function TierBadge({ tier }: { tier: Order['tier'] }) {
-  const c = tier === 'Dossier' ? 'var(--gold-600)' : tier === "Master's Name" ? 'var(--seal-500)' : 'var(--info)'
+  const c = tier === 'Listener' ? 'var(--gold-500)' : tier === 'Insighter' ? 'var(--gold-600)' : tier === "Master's Name" ? 'var(--seal-500)' : 'var(--info)'
   return <span className="text-xs px-2 py-0.5 rounded-full" style={{ color: c, background: `color-mix(in srgb, ${c} 12%, transparent)` }}>{tier}</span>
 }
 function StatusBadge({ status }: { status: Order['status'] }) {
