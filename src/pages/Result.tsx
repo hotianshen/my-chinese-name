@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Check, Lock, Sparkles, Volume2 } from 'lucide-react'
 import { Container, Eyebrow, Hairline, Reveal } from '../components/ui'
 import { Seal } from '../components/Seal'
+import { ShareCard } from '../components/ShareCard'
 import { PalaceRadar } from '../components/PalaceRadar'
 import type { GenerateResult, NameCandidate } from '../engine/types'
 import { captureLead, loadResult, track } from '../lib/store'
@@ -68,6 +69,13 @@ export function Result() {
             ))}
           </div>
           {!unlocked && <EmailGate result={result} onUnlock={() => setUnlocked(true)} />}
+        </Container>
+      </section>
+
+      {/* —— share (the viral loop) —— */}
+      <section className="section pt-0">
+        <Container>
+          <ShareCard candidate={safe} fromName={result.intake.givenName} />
         </Container>
       </section>
 

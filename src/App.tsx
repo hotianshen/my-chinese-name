@@ -11,6 +11,7 @@ const Method = lazy(() => import('./pages/Method').then((m) => ({ default: m.Met
 const Finder = lazy(() => import('./pages/Finder').then((m) => ({ default: m.Finder })))
 const Result = lazy(() => import('./pages/Result').then((m) => ({ default: m.Result })))
 const Dossier = lazy(() => import('./pages/Dossier').then((m) => ({ default: m.Dossier })))
+const Shared = lazy(() => import('./pages/Shared').then((m) => ({ default: m.Shared })))
 const Pricing = lazy(() => import('./pages/Pricing').then((m) => ({ default: m.Pricing })))
 const Gallery = lazy(() => import('./pages/Gallery').then((m) => ({ default: m.Gallery })))
 const About = lazy(() => import('./pages/About').then((m) => ({ default: m.About })))
@@ -71,6 +72,7 @@ export default function App() {
             <Route path="/finder" element={<Finder />} />
             <Route path="/result" element={<Result />} />
             <Route path="/dossier" element={<Dossier />} />
+            <Route path="/shared" element={<Shared />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/about" element={<About />} />
