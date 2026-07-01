@@ -289,7 +289,7 @@ function StepRoots({ form, set }: { form: Intake; set: (p: Partial<Intake>) => v
       <Field label={t('Cultural leanings', '文化偏好')} hint={t('Optional — poetry, mountains, jade, modern business…', '可选——诗词、山水、美玉、现代商业……')}>
         <input className={inputCls} value={form.cultureAffinity} onChange={(e) => set({ cultureAffinity: e.target.value })} placeholder={t('e.g. classical poetry, rivers, quiet strength', '例如：古典诗词、江河、静水流深')} />
       </Field>
-      <Field label={t('Birth year', '出生年份')} hint={t('Optional — unlocks a Five-Elements cultural note in your dossier. A cultural lens, not fortune-telling.', '可选——解锁名册中的五行文化注记。文化视角，非算命。')}>
+      <Field label={t('Birth year', '出生年份')} hint={t('Optional — used only for the Master’s-tier Five-Elements & Birth-Harmony reading. A cultural lens, never fortune-telling; 命 is one palace of twelve.', '可选——仅用于《大师之名》的「五行 · 生辰之和」文化解读。文化视角，绝非算命；命只是十二宫之一。')}>
         <input type="number" className={inputCls} value={form.birthYear ?? ''} min={1900} max={2100}
           onChange={(e) => set({ birthYear: e.target.value ? parseInt(e.target.value, 10) : undefined })} placeholder="1990" />
       </Field>

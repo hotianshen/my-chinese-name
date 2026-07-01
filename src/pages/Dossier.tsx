@@ -7,6 +7,7 @@ import type { CharRecord, GenerateResult, NameCandidate } from '../engine/types'
 import { loadResult, track } from '../lib/store'
 import { toneInfo } from '../lib/pronounce'
 import { birthReading, ELEMENTS, harmonyNote } from '../engine/wuxing'
+import { unlockedLevel } from '../lib/tiers'
 import { useLang, useT } from '../i18n'
 
 // The Name Dossier — the paid deliverable. A rich, printable document rendered
@@ -62,10 +63,26 @@ export function Dossier() {
           <SectionRule label={t('VI · The Naming Note', 'VI · 取名记')} />
           <NamingNote result={result} primary={primary} />
 
-          {result.intake.birthYear && (
+          {/* Five Elements is a MASTER-TIER (L3/L4) cultural layer only — never in
+              the free/entry funnel, so the serious methodology-first positioning
+              stays intact. A quiet teaser invites L2 buyers up to the Master's tier. */}
+          {result.intake.birthYear && unlockedLevel() >= 3 && (
             <>
               <SectionRule label={t('Appendix · Five Elements & Birth Harmony', '附 · 五行 · 生辰之和')} />
               <FiveElements year={result.intake.birthYear} />
+            </>
+          )}
+          {result.intake.birthYear && unlockedLevel() < 3 && (
+            <>
+              <SectionRule label={t('Appendix · Five Elements & Birth Harmony', '附 · 五行 · 生辰之和')} />
+              <div className="container-reading !px-0">
+                <p className="text-ink-500 leading-relaxed">
+                  {t(
+                    'A Five-Elements & Birth-Harmony reading — how the fuller Chinese tradition would also weigh your name against your birth year, offered as a cultural lens (never fortune-telling) — is part of the Master’s Name. 命 remains one palace of twelve, and never decides the name.',
+                    '「五行 · 生辰之和」——中国传统上会如何结合你的生辰再权衡此名，作为一种文化视角（绝非算命）——属《大师之名》所含。命，始终只是十二宫之一，从不决定名字。',
+                  )}
+                </p>
+              </div>
             </>
           )}
 
@@ -301,7 +318,7 @@ function FiveElements({ year }: { year: number }) {
       </div>
       <p className="text-ink-700 leading-relaxed" style={{ fontFamily: 'Fraunces, serif', fontSize: '1.08rem', lineHeight: 1.8 }}>{harmonyNote(r, lang)}</p>
       <p className="text-caption text-ink-300 mt-lg" style={{ borderTop: '1px solid var(--line-soft)', paddingTop: '0.75rem' }}>
-        {t('A cultural interpretation offered for completeness — not fortune-telling, and no promise about fate. The full four-pillar reading is part of the Master’s service.', '此为求完整而附的文化诠释——非算命，不承诺命运。完整四柱解读属《大师甄选》之服务。')}
+        {t('A cultural interpretation offered for completeness — not fortune-telling, and no promise about luck or fate. 命 (destiny) is one palace of twelve, and never decides the name. The full four-pillar reading is part of the Master’s service.', '此为求完整而附的文化诠释——非算命，不承诺吉凶祸福。命，只是十二宫之一，从不决定名字。完整四柱解读属《大师之名》之服务。')}
       </p>
     </div>
   )

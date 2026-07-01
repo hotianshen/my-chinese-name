@@ -1,0 +1,971 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Chinese Name — A name that is truly yours</title>
+<meta name="description" content="More than a translation — a bridge between the name you carry and the culture you meet. An authentic Chinese name by the Ho Method: Three Powers and Twelve Palaces, a tradition 1,600 years deep." />
+<meta name="theme-color" content="#FCFBF8" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================================
+   留白 · Quiet Editorial — "My Chinese Name"
+   Scandinavian-minimal / quiet luxury. The luxury is the restraint.
+   Near-white paper, near-black ink, one desaturated-vermilion seal at ~1%.
+   ============================================================================ */
+
+:root{
+  /* Paper & ink */
+  --paper:      #FCFBF8;
+  --paper-pure: #FFFFFF;
+  --ink:        #1A1A1A;
+  --ink-soft:   #3A3A38;
+  --ink-mute:   #6B6B66;
+  --ink-faint:  #6E6E68;   /* passes 4.5:1 on paper — quiet, still legible */
+  --rule:       #E4E1D8;   /* hairline */
+  --rule-soft:  #EDEBE3;
+
+  /* The single spot of colour — desaturated vermilion. Used at ~1%. */
+  --seal:       #B24A38;
+  --seal-ink:   #9E4030;   /* text-legible variant (>=4.5:1 on paper) */
+
+  /* Type */
+  --serif: "EB Garamond", Georgia, "Times New Roman", serif;
+  --sans:  "Inter", system-ui, -apple-system, sans-serif;
+  --han:   "Noto Serif SC", var(--serif);
+
+  /* Rhythm */
+  --measure: 62ch;
+  --gutter: clamp(1.5rem, 5vw, 8rem);
+  --band:   clamp(5.5rem, 12vw, 11rem);
+
+  /* Motion */
+  --ease: cubic-bezier(.16,1,.3,1);
+  --z-nav: 100;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:clamp(1.05rem, .55vw + .95rem, 1.2rem);
+  line-height:1.72;
+  font-feature-settings:"onum" 1, "liga" 1, "kern" 1;   /* oldstyle figures */
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+
+::selection{ background:rgba(178,74,56,.14); color:var(--ink); }
+
+/* Layout primitives -------------------------------------------------------- */
+.shell{ max-width:1360px; margin-inline:auto; padding-inline:var(--gutter); }
+.band{ padding-block:var(--band); }
+.rule{ border:0; border-top:1px solid var(--rule); margin:0; }
+.measure{ max-width:var(--measure); }
+
+/* A quiet UI label — Inter, small, tracked. Used *sparingly*, not per section. */
+.label{
+  font-family:var(--sans);
+  font-size:.72rem;
+  font-weight:500;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--ink-mute);
+}
+.label--seal{ color:var(--seal-ink); }
+
+/* Display serif — the few enormous moments */
+h1,h2,h3{ font-weight:400; letter-spacing:-.012em; text-wrap:balance; }
+p{ text-wrap:pretty; }
+
+/* ============================================================================
+   Top navigation
+   ============================================================================ */
+.nav{
+  position:sticky; top:0; z-index:var(--z-nav);
+  background:color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter:saturate(1.05) blur(10px);
+  -webkit-backdrop-filter:saturate(1.05) blur(10px);
+  border-bottom:1px solid transparent;
+  transition:border-color .5s var(--ease), background .5s var(--ease);
+}
+.nav.is-scrolled{ border-bottom-color:var(--rule); }
+.nav__in{
+  max-width:1360px; margin-inline:auto;
+  padding:1.1rem var(--gutter);
+  display:flex; align-items:center; gap:2rem;
+}
+.brand{ display:flex; align-items:center; gap:.7rem; text-decoration:none; color:var(--ink); }
+.brand__seal{ width:26px; height:26px; flex:none; display:block; }
+.brand__name{ font-family:var(--serif); font-size:1.18rem; letter-spacing:.005em; white-space:nowrap; }
+.brand__name em{ font-style:italic; color:var(--ink-soft); }
+
+.nav__links{
+  display:flex; gap:2rem; margin-left:auto;
+  font-family:var(--sans); font-size:.82rem; font-weight:500; letter-spacing:.02em;
+}
+.nav__links a{ color:var(--ink-soft); text-decoration:none; position:relative; padding-block:.2rem; }
+.nav__links a::after{
+  content:""; position:absolute; left:0; right:0; bottom:-1px; height:1px;
+  background:var(--ink); transform:scaleX(0); transform-origin:left; transition:transform .4s var(--ease);
+}
+.nav__links a:hover::after{ transform:scaleX(1); }
+
+.nav__lang{ font-family:var(--sans); font-size:.75rem; letter-spacing:.12em; color:var(--ink-faint); white-space:nowrap; }
+.nav__cta{
+  font-family:var(--sans); font-size:.8rem; font-weight:500; letter-spacing:.01em;
+  color:var(--paper); background:var(--ink);
+  padding:.62rem 1.15rem; border-radius:1px; text-decoration:none; white-space:nowrap;
+  transition:background .35s var(--ease), transform .35s var(--ease);
+}
+.nav__cta:hover{ background:var(--seal-ink); }
+
+.nav__menu{ display:none; }
+@media (max-width: 900px){
+  .nav__links, .nav__lang{ display:none; }
+}
+
+/* ============================================================================
+   Buttons (shared)
+   ============================================================================ */
+.btn{
+  display:inline-flex; align-items:center; gap:.6rem;
+  font-family:var(--sans); font-size:.86rem; font-weight:500; letter-spacing:.015em;
+  text-decoration:none; border-radius:1px; cursor:pointer;
+  padding:.85rem 1.5rem; transition:background .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease), transform .35s var(--ease);
+}
+.btn--primary{ background:var(--ink); color:var(--paper); border:1px solid var(--ink); }
+.btn--primary:hover{ background:var(--seal-ink); border-color:var(--seal-ink); }
+.btn--ghost{ background:transparent; color:var(--ink); border:1px solid var(--rule); }
+.btn--ghost:hover{ border-color:var(--ink); }
+.btn__arrow{ transition:transform .35s var(--ease); }
+.btn:hover .btn__arrow{ transform:translateX(3px); }
+
+/* ============================================================================
+   HERO
+   ============================================================================ */
+.hero{ position:relative; padding-top:clamp(3.5rem, 9vw, 7rem); padding-bottom:var(--band); }
+.hero__grid{
+  display:grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  gap:clamp(2rem,6vw,6rem);
+  align-items:start;
+}
+.hero__eyebrow{ display:flex; align-items:center; gap:.9rem; flex-wrap:wrap; margin-bottom:clamp(2rem,4vw,3rem); }
+.hero__eyebrow .tick{ width:1.6rem; height:1px; background:var(--seal); display:inline-block; }
+
+.hero h1{
+  font-size:clamp(2.9rem, 7.2vw, 6rem);
+  line-height:1.02;
+  letter-spacing:-.022em;
+  margin:0;
+  max-width:14ch;
+}
+.hero h1 em{ font-style:italic; }
+.hero h1 .truly{ position:relative; white-space:nowrap; }
+/* the single hairline brush-underline */
+.hero h1 .truly svg{
+  position:absolute; left:-2%; bottom:-.14em; width:104%; height:.34em; overflow:visible;
+}
+.hero h1 .truly path{
+  fill:none; stroke:var(--seal); stroke-width:2.2; stroke-linecap:round;
+  stroke-dasharray:1; stroke-dashoffset:1; pathLength:1;
+}
+
+.hero__sub{
+  font-size:clamp(1.15rem,1.4vw,1.35rem);
+  color:var(--ink-soft);
+  max-width:46ch;
+  margin:clamp(1.8rem,3.5vw,2.6rem) 0 clamp(2.2rem,4vw,3rem);
+  line-height:1.6;
+}
+.hero__sub em{ font-style:italic; color:var(--ink); }
+
+.hero__cta{ display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }
+.hero__note{ font-family:var(--sans); font-size:.76rem; letter-spacing:.02em; color:var(--ink-faint); margin-top:1.4rem; }
+
+/* The vermilion seal — the brand mark, the only real colour in the hero */
+.seal{
+  --s: clamp(120px, 15vw, 172px);
+  width:var(--s); height:var(--s); flex:none;
+  display:grid; place-items:center;
+  position:relative;
+}
+.seal svg{ width:100%; height:100%; display:block; }
+.seal__cap{ font-family:var(--sans); font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-faint); text-align:center; margin-top:1rem; }
+.hero__sealwrap{ justify-self:end; text-align:center; padding-top:.4rem; }
+@media (max-width: 820px){
+  .hero__grid{ grid-template-columns:1fr; }
+  .hero__sealwrap{ justify-self:start; order:-1; margin-bottom:1rem; }
+  .seal{ --s: 116px; }
+}
+
+/* ============================================================================
+   THE DIFFERENCE — transliteration vs. a crafted name
+   ============================================================================ */
+.diff__head{ display:grid; grid-template-columns:1fr; gap:1.4rem; margin-bottom:clamp(3rem,6vw,5rem); max-width:52ch; }
+.diff h2{ font-size:clamp(2rem,4vw,3.1rem); line-height:1.08; margin:0; }
+.diff h2 em{ font-style:italic; }
+.diff__lede{ color:var(--ink-soft); max-width:50ch; margin:0; }
+
+.compare{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(1.5rem,4vw,4rem);
+  align-items:stretch;
+}
+.compare__col{ padding-top:2rem; border-top:1px solid var(--rule); }
+.compare__tag{ display:flex; align-items:center; gap:.6rem; margin-bottom:1.6rem; }
+.compare__tag .label{ font-size:.68rem; }
+.compare__dot{ width:6px; height:6px; border-radius:50%; }
+.compare__dot--off{ background:var(--ink-faint); }
+.compare__dot--on{ background:var(--seal); }
+
+.specimen{ line-height:1; }
+.specimen__pin{ font-family:var(--sans); font-size:.86rem; letter-spacing:.04em; color:var(--ink-mute); }
+.specimen--off .specimen__han{
+  font-family:var(--han); font-weight:300;
+  font-size:clamp(2.4rem,6vw,3.6rem);
+  color:var(--ink-faint); letter-spacing:.04em; margin:.5rem 0 0;
+}
+.specimen--off .specimen__rom{ font-family:var(--serif); font-style:italic; font-size:1.25rem; color:var(--ink-faint); }
+.specimen--on .specimen__han{
+  font-family:var(--han); font-weight:500;
+  font-size:clamp(2.8rem,7.5vw,4.4rem);
+  color:var(--ink); letter-spacing:.04em; margin:.5rem 0 0; line-height:1;
+}
+.specimen--on .specimen__rom{ font-family:var(--serif); font-size:1.5rem; color:var(--ink); }
+.specimen--on .specimen__rom em{ color:var(--seal-ink); font-style:normal; }
+.specimen__note{ font-family:var(--serif); font-size:1.02rem; color:var(--ink-soft); margin:1.4rem 0 0; max-width:30ch; line-height:1.55; }
+.specimen__gloss{ font-family:var(--sans); font-size:.74rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-mute); margin-top:1.6rem; }
+
+@media (max-width: 640px){
+  .compare{ grid-template-columns:1fr; gap:0; }
+  .compare__col + .compare__col{ margin-top:2.5rem; }
+}
+
+/* ============================================================================
+   THREE POWERS & TWELVE PALACES — the signature diagram
+   ============================================================================ */
+.palaces{ background:var(--paper-pure); border-block:1px solid var(--rule); }
+.palaces__grid{
+  display:grid;
+  grid-template-columns: 1fr minmax(300px, 620px);
+  gap:clamp(2.5rem,6vw,6rem);
+  align-items:center;
+}
+.palaces__intro .label{ margin-bottom:1.4rem; display:block; }
+.palaces h2{ font-size:clamp(2.1rem,4.2vw,3.4rem); line-height:1.06; margin:0 0 1.6rem; }
+.palaces h2 em{ font-style:italic; }
+.palaces__body{ color:var(--ink-soft); max-width:44ch; margin:0 0 2rem; }
+.palaces__body em{ font-style:italic; color:var(--ink); }
+
+.powers{ display:flex; flex-direction:column; gap:0; margin-top:2rem; border-top:1px solid var(--rule); }
+.power{ display:grid; grid-template-columns:auto 1fr; gap:1.3rem; align-items:baseline; padding:1.15rem 0; border-bottom:1px solid var(--rule); }
+.power__han{ font-family:var(--han); font-weight:400; font-size:1.7rem; color:var(--ink); width:1.5em; }
+.power__en{ font-family:var(--sans); font-size:.72rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-mute); }
+.power__desc{ font-family:var(--serif); font-size:1rem; color:var(--ink-soft); margin-top:.25rem; line-height:1.5; }
+
+/* The radial 命盘 — thin ink strokes, lots of air */
+.chart{ width:100%; height:auto; display:block; }
+.chart .c-rule{ fill:none; stroke:var(--rule); stroke-width:1; }
+.chart .c-hair{ fill:none; stroke:var(--rule-soft); stroke-width:1; }
+.chart .c-spoke{ fill:none; stroke:var(--rule); stroke-width:1; }
+.chart .c-ink{ fill:none; stroke:var(--ink); stroke-width:1; }
+.chart .c-seal{ fill:none; stroke:var(--seal); stroke-width:1.4; }
+.chart .c-dot{ fill:var(--ink); }
+.chart .c-dot-seal{ fill:var(--seal); }
+.chart .c-han{ font-family:var(--han); font-weight:400; fill:var(--ink); }
+.chart .c-tier{ font-family:var(--han); font-weight:500; }
+.chart .c-lbl{ font-family:var(--sans); font-size:6.4px; font-weight:500; letter-spacing:.14em; fill:var(--ink-mute); text-transform:uppercase; }
+.chart .c-num{ font-family:var(--sans); font-size:5.6px; fill:var(--ink-faint); letter-spacing:.05em; }
+.chart .c-center-han{ font-family:var(--han); font-weight:500; fill:var(--seal); }
+.chart .c-center-en{ font-family:var(--sans); font-size:5.4px; font-weight:500; letter-spacing:.22em; fill:var(--ink-mute); text-transform:uppercase; }
+
+/* animated draw of the outer ring + spokes */
+.chart .draw{ stroke-dasharray:var(--len,1000); stroke-dashoffset:var(--len,1000); }
+.chart .fade{ opacity:0; }
+
+@media (max-width: 860px){
+  .palaces__grid{ grid-template-columns:1fr; }
+  .chart-wrap{ max-width:520px; margin-inline:auto; width:100%; }
+}
+
+/* ============================================================================
+   GALLERY OF FINE NAMES
+   ============================================================================ */
+.gallery__head{ display:flex; align-items:flex-end; justify-content:space-between; gap:2rem; margin-bottom:clamp(2.5rem,5vw,4rem); flex-wrap:wrap; }
+.gallery h2{ font-size:clamp(2rem,4vw,3.1rem); line-height:1.08; margin:0; max-width:16ch; }
+.gallery h2 em{ font-style:italic; }
+.gallery__aside{ font-family:var(--serif); font-style:italic; color:var(--ink-mute); max-width:34ch; font-size:1.05rem; }
+
+.names{ display:grid; grid-template-columns:1fr; }
+.name{
+  display:grid;
+  grid-template-columns: minmax(140px, .5fr) minmax(0,1fr) minmax(0,1.1fr);
+  gap:clamp(1.5rem,4vw,4rem);
+  align-items:baseline;
+  padding:clamp(2rem,4vw,2.8rem) 0;
+  border-top:1px solid var(--rule);
+}
+.name:last-child{ border-bottom:1px solid var(--rule); }
+.name__han{ font-family:var(--han); font-weight:400; font-size:clamp(2.4rem,5vw,3.4rem); color:var(--ink); line-height:1; letter-spacing:.03em; }
+.name__pin{ font-family:var(--serif); font-size:1.35rem; color:var(--ink); line-height:1.15; }
+.name__pin em{ font-style:italic; color:var(--ink-mute); font-size:.82em; display:block; margin-top:.35rem; }
+.name__meaning{ font-family:var(--serif); font-size:1.08rem; color:var(--ink-soft); line-height:1.55; margin:0; }
+.name__meaning .who{ display:block; font-family:var(--sans); font-size:.7rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:.7rem; }
+.name__meaning q{ font-style:italic; quotes:'“' '”'; }
+.name__meaning q::before{ color:var(--seal-ink); }
+
+@media (max-width: 780px){
+  .name{ grid-template-columns:auto 1fr; gap:1.2rem 1.6rem; }
+  .name__meaning{ grid-column:1 / -1; margin-top:.4rem; }
+}
+@media (max-width: 440px){
+  .name{ grid-template-columns:1fr; gap:.7rem; }
+  .name__meaning{ grid-column:auto; }
+}
+
+/* ============================================================================
+   PHILOSOPHY / THE TRADITION
+   ============================================================================ */
+.tradition{ background:var(--ink); color:var(--paper); }
+.tradition ::selection{ background:rgba(178,74,56,.4); color:#fff; }
+.tradition__grid{ display:grid; grid-template-columns: 1fr; gap:clamp(2.5rem,5vw,4rem); }
+.tradition .label{ color:#B7B4AB; }
+.tradition__seal{ width:52px; height:52px; margin-bottom:2.2rem; display:block; }
+
+.tradition__lead{
+  font-family:var(--serif);
+  font-size:clamp(1.7rem,3.4vw,2.7rem);
+  line-height:1.34;
+  letter-spacing:-.01em;
+  color:#F4F2EC;
+  max-width:22ch;
+  margin:0 0 clamp(2.5rem,5vw,3.5rem);
+  font-weight:400;
+}
+.tradition__lead em{ font-style:italic; color:#fff; }
+.tradition__lead .drop{ color:var(--seal); }
+
+.tradition__cols{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:clamp(2rem,4vw,4rem); }
+.tradition__cols p{ color:#C9C6BD; max-width:40ch; margin:0 0 1.3rem; line-height:1.72; font-size:1.04rem; }
+.tradition__cols p:last-child{ margin-bottom:0; }
+.tradition__cols em{ font-style:italic; color:#EDEBE4; }
+.tradition__cols strong{ font-weight:500; color:#F4F2EC; }
+
+.tradition__pull{
+  font-family:var(--serif); font-style:italic;
+  font-size:clamp(1.25rem,2vw,1.55rem);
+  color:#EDEBE4; line-height:1.5; max-width:30ch;
+  padding-left:1.6rem; border-left:1px solid rgba(178,74,56,.55);
+  margin:0;
+}
+.tradition__cite{ display:block; font-family:var(--sans); font-style:normal; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:#8F8C84; margin-top:1.4rem; }
+
+.tradition__provenance{ margin-top:clamp(3rem,6vw,4.5rem); padding-top:2.4rem; border-top:1px solid rgba(228,225,216,.16); display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:2rem; }
+.prov__k{ font-family:var(--sans); font-size:.68rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:#8F8C84; margin-bottom:.6rem; }
+.prov__v{ font-family:var(--serif); font-size:1.08rem; color:#E7E4DC; line-height:1.4; }
+.prov__v em{ font-style:italic; }
+
+/* ============================================================================
+   PRICING TEASER
+   ============================================================================ */
+.pricing__head{ max-width:46ch; margin-bottom:clamp(3rem,6vw,4.5rem); }
+.pricing h2{ font-size:clamp(2rem,4vw,3.1rem); line-height:1.08; margin:0 0 1.4rem; }
+.pricing h2 em{ font-style:italic; }
+.pricing__lede{ color:var(--ink-soft); margin:0; }
+
+.tiers{ display:grid; grid-template-columns:repeat(3, 1fr); gap:0; border-top:1px solid var(--rule); }
+.tier{ padding:clamp(2rem,3.5vw,2.8rem) clamp(1.6rem,2.5vw,2.4rem) clamp(2rem,3.5vw,2.6rem) 0; position:relative; }
+.tier + .tier{ border-left:1px solid var(--rule); padding-left:clamp(1.6rem,2.5vw,2.4rem); }
+.tier__step{ font-family:var(--sans); font-size:.7rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:1.6rem; display:flex; align-items:center; gap:.6rem; }
+.tier__step .n{ color:var(--seal-ink); }
+.tier__name{ font-family:var(--serif); font-size:1.7rem; color:var(--ink); margin:0 0 .3rem; letter-spacing:-.01em; }
+.tier__name em{ font-style:italic; }
+.tier__price{ font-family:var(--serif); font-size:1.15rem; color:var(--ink-mute); margin:0 0 1.4rem; }
+.tier__price .free{ color:var(--seal-ink); font-style:italic; }
+.tier__desc{ font-family:var(--serif); font-size:1.02rem; color:var(--ink-soft); line-height:1.55; margin:0; max-width:32ch; }
+.tier--feature .tier__name{ position:relative; }
+.tier__mark{ font-family:var(--sans); font-size:.62rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--seal-ink); display:inline-block; margin-left:.7rem; vertical-align:middle; }
+
+@media (max-width: 760px){
+  .tiers{ grid-template-columns:1fr; }
+  .tier{ padding:2rem 0; border-top:1px solid var(--rule); }
+  .tier:first-child{ border-top:0; }
+  .tier + .tier{ border-left:0; padding-left:0; }
+}
+
+/* ============================================================================
+   FINAL CTA
+   ============================================================================ */
+.finalcta{ text-align:center; }
+.finalcta__seal{ width:44px; height:44px; margin:0 auto 2rem; display:block; }
+.finalcta h2{
+  font-family:var(--serif);
+  font-size:clamp(2.4rem,6vw,4.6rem);
+  line-height:1.06; letter-spacing:-.018em;
+  margin:0 auto clamp(2rem,4vw,2.8rem); max-width:16ch;
+}
+.finalcta h2 em{ font-style:italic; }
+.finalcta__btns{ display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+.finalcta__whisper{ font-family:var(--serif); font-style:italic; color:var(--ink-mute); margin:2.4rem 0 0; font-size:1.1rem; }
+
+/* ============================================================================
+   FOOTER
+   ============================================================================ */
+.foot{ border-top:1px solid var(--rule); }
+.foot__in{ display:grid; grid-template-columns: 1.4fr 1fr 1fr; gap:clamp(2rem,4vw,4rem); padding-block:clamp(3.5rem,6vw,5rem) 2rem; }
+.foot__brand{ display:flex; align-items:center; gap:.7rem; text-decoration:none; color:var(--ink); margin-bottom:1.3rem; }
+.foot__brand svg{ width:24px; height:24px; }
+.foot__brand span{ font-family:var(--serif); font-size:1.12rem; }
+.foot__tag{ font-family:var(--serif); font-style:italic; color:var(--ink-soft); max-width:34ch; margin:0 0 1.6rem; line-height:1.55; }
+.foot__motto{ font-family:var(--han); font-size:1.05rem; color:var(--ink-mute); letter-spacing:.1em; }
+.foot__motto .sep{ color:var(--rule); margin:0 .5rem; }
+.foot__coltitle{ font-family:var(--sans); font-size:.68rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:1.2rem; }
+.foot__links{ display:flex; flex-direction:column; gap:.7rem; }
+.foot__links a{ font-family:var(--serif); font-size:1.02rem; color:var(--ink-soft); text-decoration:none; transition:color .3s var(--ease); }
+.foot__links a:hover{ color:var(--seal-ink); }
+.foot__bottom{ display:flex; justify-content:space-between; gap:1rem; padding-block:1.8rem; border-top:1px solid var(--rule); font-family:var(--sans); font-size:.74rem; letter-spacing:.02em; color:var(--ink-faint); flex-wrap:wrap; }
+.foot__bottom a{ color:var(--ink-mute); text-decoration:none; }
+@media (max-width: 720px){ .foot__in{ grid-template-columns:1fr 1fr; } .foot__brandcol{ grid-column:1 / -1; } }
+@media (max-width: 440px){ .foot__in{ grid-template-columns:1fr; } }
+
+/* ============================================================================
+   MOTION — barely there. content fades up 8px, slow.
+   ============================================================================ */
+.reveal{ opacity:0; transform:translateY(8px); transition:opacity 1.1s var(--ease), transform 1.1s var(--ease); will-change:opacity, transform; }
+.reveal.in{ opacity:1; transform:none; }
+.reveal[data-d="1"]{ transition-delay:.08s; }
+.reveal[data-d="2"]{ transition-delay:.16s; }
+.reveal[data-d="3"]{ transition-delay:.24s; }
+.reveal[data-d="4"]{ transition-delay:.32s; }
+
+@media (prefers-reduced-motion: reduce){
+  .reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
+  .chart .draw{ stroke-dashoffset:0 !important; }
+  .chart .fade{ opacity:1 !important; }
+  .hero h1 .truly path{ stroke-dashoffset:0 !important; }
+  *{ animation:none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav" id="nav">
+  <div class="nav__in">
+    <a href="#top" class="brand" aria-label="My Chinese Name — home">
+      <svg class="brand__seal" viewBox="0 0 40 40" aria-hidden="true">
+        <rect x="1.5" y="1.5" width="37" height="37" rx="2.5" fill="none" stroke="var(--seal)" stroke-width="2"/>
+        <line x1="20" y1="4" x2="20" y2="36" stroke="var(--seal)" stroke-width="1"/>
+        <line x1="4" y1="20" x2="36" y2="20" stroke="var(--seal)" stroke-width="1"/>
+        <text x="12" y="14.5" font-family="Noto Serif SC, serif" font-size="10.5" fill="var(--seal)" text-anchor="middle">我</text>
+        <text x="28" y="14.5" font-family="Noto Serif SC, serif" font-size="10.5" fill="var(--seal)" text-anchor="middle">有</text>
+        <text x="12" y="31"   font-family="Noto Serif SC, serif" font-size="10.5" fill="var(--seal)" text-anchor="middle">嘉</text>
+        <text x="28" y="31"   font-family="Noto Serif SC, serif" font-size="10.5" fill="var(--seal)" text-anchor="middle">名</text>
+      </svg>
+      <span class="brand__name">My Chinese <em>Name</em></span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#method">The Method</a>
+      <a href="#names">Fine Names</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#tradition">The Tradition</a>
+    </nav>
+    <span class="nav__lang" aria-hidden="true">EN&nbsp;·&nbsp;中文</span>
+    <a href="#start" class="nav__cta">Begin your name</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ===================== HERO ===================== -->
+<section class="hero shell" aria-labelledby="hero-h">
+  <div class="hero__grid">
+    <div class="hero__lede">
+      <div class="hero__eyebrow reveal">
+        <span class="tick" aria-hidden="true"></span>
+        <span class="label label--seal">The Ho Method · 承天</span>
+        <span class="label">Three Powers &amp; Twelve Palaces</span>
+      </div>
+
+      <h1 id="hero-h" class="reveal" data-d="1">
+        A Chinese name<br>that is <em class="truly">truly<svg viewBox="0 0 200 12" aria-hidden="true" preserveAspectRatio="none"><path d="M2,8 C40,3 90,3 130,6 C160,8 185,6 198,4" pathLength="1"/></svg></em> yours.
+      </h1>
+
+      <p class="hero__sub reveal" data-d="2">
+        Not a transliteration, and not fortune-telling — a name woven from
+        <em>sound, meaning, form, and roots</em>, by a method more than
+        1,600 years old.
+      </p>
+
+      <div class="hero__cta reveal" data-d="3">
+        <a href="#start" class="btn btn--primary">Find your name — free<span class="btn__arrow" aria-hidden="true">→</span></a>
+        <a href="#method" class="btn btn--ghost">See the method</a>
+      </div>
+      <p class="hero__note reveal" data-d="4">One real name, free. No account. A companion to the book by Ho&nbsp;Tianshen.</p>
+    </div>
+
+    <div class="hero__sealwrap reveal" data-d="2">
+      <div class="seal" role="img" aria-label="Vermilion seal reading 我有嘉名 — “I have a fine name.”">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <rect x="3" y="3" width="94" height="94" rx="4" fill="none" stroke="var(--seal)" stroke-width="2.4"/>
+          <line x1="50" y1="7" x2="50" y2="93" stroke="var(--seal)" stroke-width="1.1"/>
+          <line x1="7" y1="50" x2="93" y2="50" stroke="var(--seal)" stroke-width="1.1"/>
+          <text x="28.5" y="34" font-family="Noto Serif SC, serif" font-weight="500" font-size="26" fill="var(--seal)" text-anchor="middle">我</text>
+          <text x="71.5" y="34" font-family="Noto Serif SC, serif" font-weight="500" font-size="26" fill="var(--seal)" text-anchor="middle">有</text>
+          <text x="28.5" y="78" font-family="Noto Serif SC, serif" font-weight="500" font-size="26" fill="var(--seal)" text-anchor="middle">嘉</text>
+          <text x="71.5" y="78" font-family="Noto Serif SC, serif" font-weight="500" font-size="26" fill="var(--seal)" text-anchor="middle">名</text>
+        </svg>
+      </div>
+      <p class="seal__cap">我有嘉名 · I have a fine name</p>
+    </div>
+  </div>
+</section>
+
+<div class="shell"><hr class="rule" aria-hidden="true"></div>
+
+<!-- ===================== THE DIFFERENCE ===================== -->
+<section class="diff shell band" id="difference" aria-labelledby="diff-h">
+  <div class="diff__head reveal">
+    <h2 id="diff-h">Not a transliteration.<br><em>Not fortune-telling.</em></h2>
+    <p class="diff__lede">Most services hand you a sound-alike — a rough echo of your name in Chinese syllables, meaning whatever it happens to mean. A name made by the Ho Method is composed: the sound is bridged, the characters chosen, the meaning intended.</p>
+  </div>
+
+  <div class="compare">
+    <div class="compare__col reveal" data-d="1">
+      <div class="compare__tag">
+        <span class="compare__dot compare__dot--off" aria-hidden="true"></span>
+        <span class="label">The sound-alike</span>
+      </div>
+      <div class="specimen specimen--off">
+        <span class="specimen__pin">Sophia →</span>
+        <div class="specimen__han">索菲娅</div>
+        <div class="specimen__rom"><em>Suǒ-fēi-yà</em></div>
+        <p class="specimen__note">Three characters chosen only to approximate the sound. “A cord,” “a leek,” “a maidservant.” Nothing was meant.</p>
+        <div class="specimen__gloss">Sound only · meaning by accident</div>
+      </div>
+    </div>
+
+    <div class="compare__col reveal" data-d="2">
+      <div class="compare__tag">
+        <span class="compare__dot compare__dot--on" aria-hidden="true"></span>
+        <span class="label label--seal">A crafted name</span>
+      </div>
+      <div class="specimen specimen--on">
+        <span class="specimen__pin">Sophia →</span>
+        <div class="specimen__han">苏菲</div>
+        <div class="specimen__rom">Sū Fēi <em>· 苏菲</em></div>
+        <p class="specimen__note">The sound still rides your own — but 苏 is <em>revival, the awakening of spring</em>; 菲 is <em>fragrant, flourishing</em>. A name that means the growing of something lovely.</p>
+        <div class="specimen__gloss" style="color:var(--seal-ink)">Sound · meaning · form · music</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== THREE POWERS & TWELVE PALACES ===================== -->
+<section class="palaces band" id="method" aria-labelledby="method-h">
+  <div class="palaces__grid shell">
+    <div class="palaces__intro">
+      <span class="label label--seal reveal">The signature reckoning</span>
+      <h2 id="method-h" class="reveal" data-d="1">Three Powers,<br>and the <em>Twelve Palaces</em> within.</h2>
+      <p class="palaces__body reveal" data-d="2">Every name is read against a full 命盘 — a chart of three tiers and twelve considerations. <em>Heaven</em> gives it aspiration; <em>Human</em> gives it music and meaning; <em>Earth</em> gives it roots. A name only earns the word <em>fine</em> when all twelve palaces agree.</p>
+
+      <div class="powers reveal" data-d="3">
+        <div class="power">
+          <span class="power__han">天</span>
+          <div>
+            <span class="power__en">Heaven · the aspiration</span>
+            <p class="power__desc">What the name reaches for — the wish it carries, the character it hopes you grow toward.</p>
+          </div>
+        </div>
+        <div class="power">
+          <span class="power__han">人</span>
+          <div>
+            <span class="power__en">Human · the music &amp; meaning</span>
+            <p class="power__desc">How it sounds, what it says, how it sits between people — the living part of the name.</p>
+          </div>
+        </div>
+        <div class="power">
+          <span class="power__han">地</span>
+          <div>
+            <span class="power__en">Earth · the roots</span>
+            <p class="power__desc">Its footing in the script, the classics, the surname — where the name stands in the world.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-wrap reveal" data-d="2">
+      <!-- Radial 命盘: three concentric tiers (天/人/地), twelve palaces around the rim -->
+      <svg class="chart" viewBox="0 0 320 320" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">The Twelve-Palace chart</title>
+        <desc id="chart-desc">A radial diagram: three concentric rings for Heaven, Human and Earth, ringed by twelve named palaces — Taiji, Momentum, Stature, Phoenix-Song, Six-Scripts, Meaning, Stellar-River, Lineage, Prudence, Aspiration, Classics and Destiny.</desc>
+
+        <g transform="translate(160,160)">
+          <!-- outer palace ring -->
+          <circle class="c-rule draw" style="--len:817" r="130"/>
+          <!-- three power rings -->
+          <circle class="c-hair fade" r="106"/>
+          <circle class="c-rule fade" r="82"/>
+          <circle class="c-hair fade" r="55"/>
+          <circle class="c-seal fade" r="26"/>
+
+          <!-- twelve spokes -->
+          <g class="c-spoke draw" style="--len:1560">
+            <!-- generated at 30° steps, from r=26 to r=130 -->
+            <line x1="0" y1="-26" x2="0" y2="-130"/>
+            <line x1="13" y1="-22.5" x2="65" y2="-112.6"/>
+            <line x1="22.5" y1="-13" x2="112.6" y2="-65"/>
+            <line x1="26" y1="0" x2="130" y2="0"/>
+            <line x1="22.5" y1="13" x2="112.6" y2="65"/>
+            <line x1="13" y1="22.5" x2="65" y2="112.6"/>
+            <line x1="0" y1="26" x2="0" y2="130"/>
+            <line x1="-13" y1="22.5" x2="-65" y2="112.6"/>
+            <line x1="-22.5" y1="13" x2="-112.6" y2="65"/>
+            <line x1="-26" y1="0" x2="-130" y2="0"/>
+            <line x1="-22.5" y1="-13" x2="-112.6" y2="-65"/>
+            <line x1="-13" y1="-22.5" x2="-65" y2="-112.6"/>
+          </g>
+
+          <!-- tier glyphs (rotated onto three arcs, kept upright) -->
+          <g class="fade">
+            <text class="c-tier" x="0" y="-93" font-size="12" fill="var(--ink-mute)" text-anchor="middle">天</text>
+            <text class="c-tier" x="0" y="-68" font-size="12" fill="var(--ink-soft)" text-anchor="middle">人</text>
+            <text class="c-tier" x="0" y="-40" font-size="12" fill="var(--ink)" text-anchor="middle">地</text>
+          </g>
+
+          <!-- centre -->
+          <g class="fade">
+            <text class="c-center-han" x="0" y="3" font-size="15" text-anchor="middle">名</text>
+            <text class="c-center-en" x="0" y="16" text-anchor="middle">命</text>
+          </g>
+
+          <!-- twelve palace glyphs on the rim + tiny index numbers -->
+          <!-- radius 118 for glyph, 130 rim; angle from top, clockwise -->
+          <g class="c-han fade" font-size="10.5" text-anchor="middle">
+            <text x="0"      y="-114">道</text>
+            <text x="59"     y="-98.6">势</text>
+            <text x="102.2"  y="-55.5">格</text>
+            <text x="118"    y="3.6">音</text>
+            <text x="102.2"  y="62.5">形</text>
+            <text x="59"     y="105.6">意</text>
+            <text x="0"      y="121">象</text>
+            <text x="-59"    y="105.6">脉</text>
+            <text x="-102.2" y="62.5">忌</text>
+            <text x="-118"   y="3.6">愿</text>
+            <text x="-102.2" y="-55.5">典</text>
+            <text x="-59"    y="-98.6">命</text>
+          </g>
+
+          <!-- rim dots -->
+          <g class="fade">
+            <circle class="c-dot-seal" cx="0" cy="-130" r="1.8"/>
+            <circle class="c-dot" cx="65" cy="-112.6" r="1.5"/>
+            <circle class="c-dot" cx="112.6" cy="-65" r="1.5"/>
+            <circle class="c-dot" cx="130" cy="0" r="1.5"/>
+            <circle class="c-dot" cx="112.6" cy="65" r="1.5"/>
+            <circle class="c-dot" cx="65" cy="112.6" r="1.5"/>
+            <circle class="c-dot" cx="0" cy="130" r="1.5"/>
+            <circle class="c-dot" cx="-65" cy="112.6" r="1.5"/>
+            <circle class="c-dot" cx="-112.6" cy="65" r="1.5"/>
+            <circle class="c-dot" cx="-130" cy="0" r="1.5"/>
+            <circle class="c-dot" cx="-112.6" cy="-65" r="1.5"/>
+            <circle class="c-dot" cx="-65" cy="-112.6" r="1.5"/>
+          </g>
+        </g>
+      </svg>
+
+      <!-- palace legend -->
+      <div class="chart-legend" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <!-- the twelve, named, as a quiet line beneath -->
+  <div class="shell" style="margin-top:clamp(2.5rem,5vw,4rem);">
+    <hr class="rule" style="margin-bottom:2rem;">
+    <p class="palace-list reveal" style="font-family:var(--sans);font-size:.82rem;letter-spacing:.02em;color:var(--ink-mute);line-height:2.1;max-width:none;margin:0;">
+      <span style="color:var(--seal-ink);">道</span> Taiji &nbsp;·&nbsp;
+      <span style="color:var(--ink);">势</span> Momentum &nbsp;·&nbsp;
+      <span style="color:var(--ink);">格</span> Stature &nbsp;·&nbsp;
+      <span style="color:var(--ink);">音</span> Phoenix-Song &nbsp;·&nbsp;
+      <span style="color:var(--ink);">形</span> Six-Scripts &nbsp;·&nbsp;
+      <span style="color:var(--ink);">意</span> Meaning &nbsp;·&nbsp;
+      <span style="color:var(--ink);">象</span> Stellar-River &nbsp;·&nbsp;
+      <span style="color:var(--ink);">脉</span> Lineage &nbsp;·&nbsp;
+      <span style="color:var(--ink);">忌</span> Prudence &nbsp;·&nbsp;
+      <span style="color:var(--ink);">愿</span> Aspiration &nbsp;·&nbsp;
+      <span style="color:var(--ink);">典</span> Classics &nbsp;·&nbsp;
+      <span style="color:var(--seal-ink);">命</span> Destiny
+    </p>
+  </div>
+</section>
+
+<!-- ===================== GALLERY OF FINE NAMES ===================== -->
+<section class="gallery shell band" id="names" aria-labelledby="names-h">
+  <div class="gallery__head">
+    <h2 id="names-h" class="reveal">A gallery of <em>fine names.</em></h2>
+    <p class="gallery__aside reveal" data-d="1">Names that opened doors. Each one bridged a sound, and carried a meaning worth being known by.</p>
+  </div>
+
+  <div class="names">
+    <article class="name reveal">
+      <div class="name__han">费正清</div>
+      <div class="name__pin">Fèi Zhèngqīng<em>John King Fairbank</em></div>
+      <p class="name__meaning"><span class="who">The historian</span>Chosen so the sound rides “Fairbank,” yet the characters say <q>upright and clear.</q> The dean of China studies wore a name that read like a scholar's virtue.</p>
+    </article>
+
+    <article class="name reveal">
+      <div class="name__han">何伟</div>
+      <div class="name__pin">Hé Wěi<em>Peter Hessler</em></div>
+      <p class="name__meaning"><span class="who">The writer</span>Two plain, strong characters — <q>direct, and unmistakably his own.</q> A name that sounds like someone you would trust to tell you the truth about a place.</p>
+    </article>
+
+    <article class="name reveal" data-d="1">
+      <div class="name__han">陆克文</div>
+      <div class="name__pin">Lù Kèwén<em>Kevin Rudd</em></div>
+      <p class="name__meaning"><span class="who">The statesman</span>The prime minister who spoke Mandarin, and carried a name to match: <q>cultured — and easy on the ear.</q> Diplomacy, in three characters.</p>
+    </article>
+
+    <article class="name reveal" data-d="1">
+      <div class="name__han">利玛窦</div>
+      <div class="name__pin">Lì Mǎdòu<em>Matteo Ricci · 1552–1610</em></div>
+      <p class="name__meaning"><span class="who">The origin</span>The Jesuit who first crossed into the Chinese mind four centuries ago — and the root text of all cross-cultural naming. <q>That name was not his disguise. It was his bridge.</q></p>
+    </article>
+  </div>
+</section>
+
+<!-- ===================== PHILOSOPHY / THE TRADITION ===================== -->
+<section class="tradition band" id="tradition" aria-labelledby="trad-h">
+  <div class="tradition__grid shell">
+    <div>
+      <svg class="tradition__seal reveal" viewBox="0 0 40 40" aria-hidden="true">
+        <rect x="1.5" y="1.5" width="37" height="37" rx="2.5" fill="none" stroke="var(--seal)" stroke-width="1.6"/>
+        <line x1="20" y1="4" x2="20" y2="36" stroke="var(--seal)" stroke-width=".8"/>
+        <line x1="4" y1="20" x2="36" y2="20" stroke="var(--seal)" stroke-width=".8"/>
+        <text x="12" y="15" font-family="Noto Serif SC, serif" font-size="10" fill="var(--seal)" text-anchor="middle">我</text>
+        <text x="28" y="15" font-family="Noto Serif SC, serif" font-size="10" fill="var(--seal)" text-anchor="middle">有</text>
+        <text x="12" y="31" font-family="Noto Serif SC, serif" font-size="10" fill="var(--seal)" text-anchor="middle">嘉</text>
+        <text x="28" y="31" font-family="Noto Serif SC, serif" font-size="10" fill="var(--seal)" text-anchor="middle">名</text>
+      </svg>
+      <span class="label reveal" style="display:block;margin-bottom:1.6rem;">名以载道 · A name carries the way</span>
+
+      <p class="tradition__lead reveal" data-d="1">
+        <span class="drop">“</span>A good name is like a lamp — it lights the road a person will walk for a lifetime.<span class="drop">”</span>
+      </p>
+
+      <div class="tradition__cols">
+        <div class="reveal" data-d="2">
+          <p>The <em>Shuowen</em>, China's first dictionary, tells us the character <strong>名</strong> joins <em>“mouth”</em> and <em>“dusk”</em>: in the dark, when a face cannot be seen, you speak your name. A name is how you let someone see you in the dark.</p>
+          <p>So a name is no small thing. It is <em>no spell to alter fate</em> — we make no such promise. It is a wise light that illuminates one. Confucius, asked where he would begin to set the world right, answered plainly: <em>first, rectify the names.</em> 正名.</p>
+        </div>
+        <div class="reveal" data-d="3">
+          <p>Four centuries ago a young Jesuit chose to be known as <strong>利玛窦, Lì Mǎdòu</strong>. He could have kept his own. He didn't. That name was not his disguise; <em>it was his bridge</em> — the hand he extended to an ancient culture, and the hand that culture extended back.</p>
+          <p>This is the whole of our craft. <em>Match the sound to your Western name, the meaning to the Eastern spirit; shape the form by the classical script, tune the music by the ancient scales.</em> Then read it against all twelve palaces, and sign it only when it is truly yours.</p>
+        </div>
+      </div>
+
+      <div class="tradition__provenance">
+        <div class="reveal">
+          <div class="prov__k">The lineage</div>
+          <div class="prov__v">A <em>54th-generation</em> heir to a naming tradition 1,600&nbsp;years deep.</div>
+        </div>
+        <div class="reveal" data-d="1">
+          <div class="prov__k">The studio</div>
+          <div class="prov__v">The <em>Chengtian</em> studio — 承天 — on Mount&nbsp;Zhongnan.</div>
+        </div>
+        <div class="reveal" data-d="2">
+          <div class="prov__k">The book</div>
+          <div class="prov__v"><em>My Chinese Name</em>, by Ho&nbsp;Tianshen. Available on&nbsp;Amazon.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRICING TEASER ===================== -->
+<section class="pricing shell band" id="pricing" aria-labelledby="pricing-h">
+  <div class="pricing__head">
+    <span class="label label--seal reveal" style="display:block;margin-bottom:1.4rem;">Three ways in</span>
+    <h2 id="pricing-h" class="reveal" data-d="1">Begin with a name. <em>Deepen at your own pace.</em></h2>
+    <p class="pricing__lede reveal" data-d="2">A real name costs nothing. When you want the full reckoning — the twelve palaces, the etymology, the three candidates — the dossier is waiting. And when the moment deserves a human hand, a master will craft and sign it.</p>
+  </div>
+
+  <div class="tiers">
+    <div class="tier reveal">
+      <div class="tier__step"><span class="n">Ⅰ</span> The invitation</div>
+      <h3 class="tier__name">The Name Finder</h3>
+      <p class="tier__price"><span class="free">Free</span></p>
+      <p class="tier__desc">One authentic name, with the single line of meaning behind it. No account. The door, held open.</p>
+    </div>
+
+    <div class="tier tier--feature reveal" data-d="1">
+      <div class="tier__step"><span class="n">Ⅱ</span> The reckoning</div>
+      <h3 class="tier__name">The Dossier<span class="tier__mark">— most chosen</span></h3>
+      <p class="tier__price">$39</p>
+      <p class="tier__desc">Three names — Safe, Cultural, Distinctive — each read against all twelve palaces, with etymology, pronunciation, usage, and a name card to keep.</p>
+    </div>
+
+    <div class="tier reveal" data-d="2">
+      <div class="tier__step"><span class="n">Ⅲ</span> The hand</div>
+      <h3 class="tier__name">The Master's Name</h3>
+      <p class="tier__price">$149</p>
+      <p class="tier__desc">A name-master crafts, weighs, and signs your name by hand. Three to five days. The artifact, and the authority behind it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FINAL CTA ===================== -->
+<section class="finalcta shell band" id="start" aria-labelledby="cta-h">
+  <svg class="finalcta__seal reveal" viewBox="0 0 40 40" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="37" height="37" rx="2.5" fill="none" stroke="var(--seal)" stroke-width="1.8"/>
+    <line x1="20" y1="4" x2="20" y2="36" stroke="var(--seal)" stroke-width=".9"/>
+    <line x1="4" y1="20" x2="36" y2="20" stroke="var(--seal)" stroke-width=".9"/>
+    <text x="12" y="15" font-family="Noto Serif SC, serif" font-size="10" fill="var(--seal)" text-anchor="middle">我</text>
+    <text x="28" y="15" font-family="Noto Serif SC, serif" font-size="10" fill="var(--seal)" text-anchor="middle">有</text>
+    <text x="12" y="31" font-family="Noto Serif SC, serif" font-size="10" fill="var(--seal)" text-anchor="middle">嘉</text>
+    <text x="28" y="31" font-family="Noto Serif SC, serif" font-size="10" fill="var(--seal)" text-anchor="middle">名</text>
+  </svg>
+  <h2 id="cta-h" class="reveal" data-d="1">Your name is<br>waiting to be <em>made.</em></h2>
+  <div class="finalcta__btns reveal" data-d="2">
+    <a href="#" class="btn btn--primary">Begin your name — free<span class="btn__arrow" aria-hidden="true">→</span></a>
+    <a href="#tradition" class="btn btn--ghost">Read the philosophy</a>
+  </div>
+  <p class="finalcta__whisper reveal" data-d="3">May this lamp light your road, too.</p>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="foot">
+  <div class="foot__in shell">
+    <div class="foot__brandcol">
+      <a href="#top" class="foot__brand">
+        <svg viewBox="0 0 40 40" aria-hidden="true">
+          <rect x="1.5" y="1.5" width="37" height="37" rx="2.5" fill="none" stroke="var(--seal)" stroke-width="1.8"/>
+          <line x1="20" y1="4" x2="20" y2="36" stroke="var(--seal)" stroke-width=".9"/>
+          <line x1="4" y1="20" x2="36" y2="20" stroke="var(--seal)" stroke-width=".9"/>
+          <text x="12" y="15" font-family="Noto Serif SC, serif" font-size="10" fill="var(--seal)" text-anchor="middle">我</text>
+          <text x="28" y="15" font-family="Noto Serif SC, serif" font-size="10" fill="var(--seal)" text-anchor="middle">有</text>
+          <text x="12" y="31" font-family="Noto Serif SC, serif" font-size="10" fill="var(--seal)" text-anchor="middle">嘉</text>
+          <text x="28" y="31" font-family="Noto Serif SC, serif" font-size="10" fill="var(--seal)" text-anchor="middle">名</text>
+        </svg>
+        <span>My Chinese Name</span>
+      </a>
+      <p class="foot__tag">More than a translation — a bridge between the name you carry and the culture you meet.</p>
+      <div class="foot__motto">承天<span class="sep">·</span>名以载道</div>
+    </div>
+
+    <div class="foot__col">
+      <div class="foot__coltitle">The work</div>
+      <nav class="foot__links" aria-label="The work">
+        <a href="#method">The Method</a>
+        <a href="#names">Fine Names</a>
+        <a href="#tradition">The Tradition</a>
+        <a href="#pricing">Pricing</a>
+      </nav>
+    </div>
+
+    <div class="foot__col">
+      <div class="foot__coltitle">The house</div>
+      <nav class="foot__links" aria-label="The house">
+        <a href="#start">Begin your name</a>
+        <a href="#tradition">The book on Amazon</a>
+        <a href="#">The Chengtian studio</a>
+        <a href="#">Contact a master</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="foot__bottom shell">
+    <span>© 2026 My Chinese Name · The Chengtian Studio, Mount Zhongnan</span>
+    <span>EN&nbsp;·&nbsp;中文 &nbsp;&nbsp;/&nbsp;&nbsp; <a href="#top">Back to top ↑</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Nav hairline on scroll */
+  var nav = document.getElementById('nav');
+  var onScroll = function(){ nav.classList.toggle('is-scrolled', window.scrollY > 8); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive:true });
+
+  var reveals = document.querySelectorAll('.reveal');
+
+  if(reduce || !('IntersectionObserver' in window)){
+    reveals.forEach(function(el){ el.classList.add('in'); });
+    return;
+  }
+
+  /* Fade-up reveals — barely there, 8px.
+     Anything already in view on load is shown immediately (no gating
+     above-the-fold content on the observer); everything else fades up on scroll. */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { rootMargin:'0px 0px -8% 0px', threshold:0.08 });
+
+  var vh = window.innerHeight || document.documentElement.clientHeight;
+  reveals.forEach(function(el){
+    if(el.getBoundingClientRect().top < vh * 0.92){ el.classList.add('in'); }
+    else{ io.observe(el); }
+  });
+
+  /* Failsafe: if a reveal never intersects (background tab, headless render,
+     odd viewport), reveal all so nothing ships invisible. */
+  window.setTimeout(function(){
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  }, 2600);
+
+  /* Hero brush-underline: draw once, slowly, after load */
+  var truly = document.querySelector('.hero .truly path');
+  if(truly){
+    window.setTimeout(function(){
+      truly.style.transition = 'stroke-dashoffset 1.4s cubic-bezier(.16,1,.3,1)';
+      truly.style.strokeDashoffset = '0';
+    }, 750);
+  }
+
+  /* Chart: draw the outer ring + spokes, then fade the rest in, once in view */
+  var chart = document.querySelector('.chart');
+  if(chart){
+    var drawn = false;
+    var drawChart = function(){
+      if(drawn) return; drawn = true;
+      chart.querySelectorAll('.draw').forEach(function(el){
+        el.style.transition = 'stroke-dashoffset 1.8s cubic-bezier(.16,1,.3,1)';
+        el.style.strokeDashoffset = '0';
+      });
+      chart.querySelectorAll('.fade').forEach(function(el, i){
+        el.style.transition = 'opacity 1s ease';
+        el.style.transitionDelay = (0.6 + Math.min(i,8)*0.05) + 's';
+        el.style.opacity = '1';
+      });
+    };
+    var cio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ drawChart(); cio.disconnect(); } });
+    }, { threshold:0.25 });
+    cio.observe(chart);
+    /* Failsafe so the diagram never ships blank. */
+    window.setTimeout(drawChart, 3200);
+  }
+})();
+</script>
+</body>
+</html>

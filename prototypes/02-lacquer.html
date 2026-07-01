@@ -1,0 +1,1023 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Chinese Name — 我有嘉名 · The Art of a Name That Is Truly Yours</title>
+<meta name="description" content="An authentic Chinese name, drawn by a 1,600-year method — the Ho Method of Three Powers and Twelve Palaces. Not a transliteration, and not fortune-telling: a name woven from sound, meaning, form, and roots." />
+<meta name="theme-color" content="#14110E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  /* ============================================================
+     黑漆描金 · BLACK LACQUER & GOLD
+     A black lacquer box inlaid with gold and one drop of cinnabar.
+     ============================================================ */
+
+  :root {
+    /* Lacquer grounds — warm, never cold, #000 forbidden */
+    --lacquer-0: #0E0C0A;   /* deepest, footer / spotlight edge */
+    --lacquer-1: #14110E;   /* page base */
+    --lacquer-2: #1B1712;   /* raised panels */
+    --lacquer-3: #241E17;   /* hairline-lit surfaces */
+
+    /* Cream text — warm rice paper by candlelight */
+    --cream-hi: #F2ECDD;    /* headings, the name */
+    --cream:    #DDD5C4;    /* body */
+    --cream-lo: #A69C86;    /* captions, muted */
+    --cream-xlo:#756E5D;    /* faint labels */
+
+    /* Gold leaf — hairlines, numerals, small-caps, metallic accents */
+    --gold:     #C9A85C;
+    --gold-hi:  #E4C878;
+    --gold-lo:  #8C7238;
+    --gold-line: rgba(201,168,92,0.28);
+    --gold-line-soft: rgba(201,168,92,0.14);
+
+    /* Cinnabar — the seal + one CTA only. It GLOWS. */
+    --cinnabar: #E2553B;
+    --cinnabar-deep: #C8341F;
+    --cinnabar-glow: rgba(226,85,59,0.42);
+
+    /* Type */
+    --display: "Cormorant Garamond", "Noto Serif SC", Georgia, serif;
+    --body: "Inter", system-ui, -apple-system, sans-serif;
+    --han: "Noto Serif SC", "Cormorant Garamond", serif;
+
+    /* Fluid scale — ratio ~1.28 */
+    --step--1: clamp(0.78rem, 0.75rem + 0.15vw, 0.86rem);
+    --step-0:  clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+    --step-1:  clamp(1.3rem, 1.2rem + 0.5vw, 1.6rem);
+    --step-2:  clamp(1.7rem, 1.5rem + 1vw, 2.3rem);
+    --step-3:  clamp(2.2rem, 1.8rem + 2vw, 3.4rem);
+    --step-4:  clamp(3rem, 2.2rem + 4vw, 5.4rem);
+
+    /* Rhythm */
+    --gutter: clamp(1.25rem, 5vw, 4rem);
+    --measure: 62ch;
+
+    /* z-scale */
+    --z-dust: 1;
+    --z-content: 2;
+    --z-nav: 50;
+
+    /* Easing — luxurious, exponential, no bounce */
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--lacquer-1);
+    color: var(--cream);
+    font-family: var(--body);
+    font-size: var(--step-0);
+    font-weight: 300;
+    line-height: 1.7;
+    letter-spacing: 0.005em;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: rgba(226,85,59,0.30); color: var(--cream-hi); }
+
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  /* ---------- Shared atoms ---------- */
+
+  .wrap { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: var(--gutter); }
+
+  .eyebrow {
+    font-family: var(--body);
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.9em;
+  }
+  .eyebrow::before, .eyebrow.flank::after {
+    content: "";
+    width: clamp(1.4rem, 4vw, 2.6rem);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-line), var(--gold));
+    opacity: 0.9;
+  }
+  .eyebrow.flank::after { background: linear-gradient(90deg, var(--gold), var(--gold-line), transparent); }
+  .eyebrow .han { font-family: var(--han); letter-spacing: 0.18em; font-weight: 400; color: var(--gold-hi); }
+
+  h1, h2, h3 { font-family: var(--display); font-weight: 500; color: var(--cream-hi); margin: 0; line-height: 1.06; letter-spacing: -0.012em; text-wrap: balance; }
+
+  .display {
+    font-size: var(--step-4);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  .display em { font-style: italic; font-weight: 500; color: var(--gold-hi); }
+
+  .lead { font-size: var(--step-1); line-height: 1.5; color: var(--cream); font-weight: 300; max-width: var(--measure); text-wrap: pretty; }
+  .lead.serif { font-family: var(--display); font-size: var(--step-2); font-style: italic; color: var(--cream-hi); line-height: 1.35; }
+
+  p { max-width: var(--measure); text-wrap: pretty; }
+
+  .num-index {
+    font-family: var(--display);
+    font-variant-numeric: oldstyle-nums;
+    font-size: var(--step--1);
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* Gold hairline that draws in on reveal */
+  .hairline {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-line) 12%, var(--gold-line) 88%, transparent);
+    transform-origin: center;
+  }
+
+  /* ---------- Buttons ---------- */
+
+  .btn {
+    --pad-y: 0.95em; --pad-x: 1.9em;
+    display: inline-flex; align-items: center; gap: 0.7em;
+    font-family: var(--body); font-size: var(--step--1); font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    padding: var(--pad-y) var(--pad-x);
+    border-radius: 2px;
+    cursor: pointer; border: 1px solid transparent;
+    transition: color .5s var(--ease), background .5s var(--ease), border-color .5s var(--ease), box-shadow .5s var(--ease), transform .5s var(--ease);
+    position: relative;
+  }
+  .btn:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 3px; }
+
+  /* Cinnabar primary — the one glowing CTA */
+  .btn--seal {
+    background: linear-gradient(180deg, var(--cinnabar) 0%, var(--cinnabar-deep) 100%);
+    color: #FBEEE9;
+    box-shadow: 0 0 0 1px rgba(226,85,59,0.5), 0 8px 30px -8px var(--cinnabar-glow), inset 0 1px 0 rgba(255,255,255,0.14);
+  }
+  .btn--seal:hover { transform: translateY(-1px); box-shadow: 0 0 0 1px rgba(226,85,59,0.7), 0 14px 44px -10px var(--cinnabar-glow), inset 0 1px 0 rgba(255,255,255,0.2); }
+
+  /* Gold ghost secondary */
+  .btn--gold {
+    background: transparent; color: var(--gold-hi);
+    border-color: var(--gold-line);
+  }
+  .btn--gold:hover { border-color: var(--gold); color: #F1DFA6; background: rgba(201,168,92,0.06); }
+
+  .btn .arw { font-family: var(--display); font-size: 1.4em; line-height: 0; transform: translateY(0.03em); transition: transform .5s var(--ease); }
+  .btn:hover .arw { transform: translate(0.2em, 0.03em); }
+
+  .textlink {
+    color: var(--gold-hi); font-size: var(--step--1); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 0.5em; padding-bottom: 0.25em;
+    border-bottom: 1px solid var(--gold-line); transition: border-color .4s var(--ease), color .4s var(--ease), gap .4s var(--ease);
+  }
+  .textlink:hover { color: #F1DFA6; border-color: var(--gold); gap: 0.8em; }
+
+  /* ============================================================
+     NAV
+     ============================================================ */
+  .nav {
+    position: fixed; inset: 0 0 auto 0; z-index: var(--z-nav);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1.5rem;
+    padding: clamp(1rem, 2.4vw, 1.6rem) var(--gutter);
+    background: linear-gradient(180deg, rgba(14,12,10,0.92), rgba(14,12,10,0));
+    transition: background .5s var(--ease), backdrop-filter .5s var(--ease), border-color .5s var(--ease);
+    border-bottom: 1px solid transparent;
+  }
+  .nav.scrolled {
+    background: rgba(16,13,11,0.86);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    border-bottom-color: var(--gold-line-soft);
+  }
+  .brand { display: inline-flex; align-items: center; gap: 0.75rem; }
+  .brand__seal { width: 30px; height: 30px; flex: none; }
+  .brand__word { font-family: var(--display); font-size: 1.32rem; font-weight: 600; letter-spacing: 0.01em; color: var(--cream-hi); white-space: nowrap; }
+  .brand__word b { color: var(--gold-hi); font-weight: 600; }
+
+  .nav__links { display: flex; align-items: center; gap: clamp(1.1rem, 2.2vw, 2.1rem); }
+  .nav__link { font-size: var(--step--1); letter-spacing: 0.06em; color: var(--cream-lo); position: relative; transition: color .4s var(--ease); padding: 0.3em 0; }
+  .nav__link::after { content:""; position:absolute; left:0; right:0; bottom:-2px; height:1px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .45s var(--ease); }
+  .nav__link:hover { color: var(--cream-hi); }
+  .nav__link:hover::after { transform: scaleX(1); }
+
+  .nav__lang { font-size: var(--step--1); letter-spacing: 0.1em; color: var(--cream-xlo); }
+  .nav__lang b { color: var(--gold); font-weight: 500; }
+  .nav__cta { display: inline-flex; }
+
+  .nav__links--desk { display: none; }
+  @media (min-width: 900px) { .nav__links--desk { display: flex; } .nav__mobcta { display:none; } }
+  @media (max-width: 899px) {
+    .brand__word { font-size: 1.12rem; }
+  }
+
+  /* ============================================================
+     HERO — the name emerges from darkness, the seal presses on
+     ============================================================ */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding-top: clamp(6rem, 14vh, 9rem);
+    padding-bottom: clamp(3rem, 8vh, 6rem);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  /* the radial spotlight, as if lit in a dark room */
+  .hero__spot {
+    position: absolute; inset: 0; z-index: -2;
+    background:
+      radial-gradient(120% 78% at 50% 30%, rgba(201,168,92,0.10) 0%, rgba(201,168,92,0.04) 26%, transparent 58%),
+      radial-gradient(100% 60% at 50% 24%, rgba(242,236,221,0.06), transparent 60%),
+      linear-gradient(180deg, var(--lacquer-0) 0%, var(--lacquer-1) 40%, var(--lacquer-1) 100%);
+  }
+  /* vignette closing the edges */
+  .hero__vig {
+    position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(130% 100% at 50% 34%, transparent 52%, rgba(8,7,6,0.55) 100%);
+  }
+  /* drifting gold-dust canvas */
+  #dust { position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0.85; }
+
+  .hero__inner { display: flex; flex-direction: column; align-items: center; text-align: center; gap: clamp(1.5rem, 3.5vw, 2.4rem); }
+
+  .hero__eyebrow { opacity: 0; animation: rise 1s var(--ease) 0.15s forwards; }
+
+  .hero__name {
+    position: relative;
+    display: inline-block;
+    margin-block: clamp(0.3rem, 1vw, 0.8rem);
+  }
+  .hero__name h1 {
+    font-family: var(--han);
+    font-weight: 500;
+    font-size: clamp(3.6rem, 3rem + 8vw, 8.4rem);
+    letter-spacing: 0.08em;
+    line-height: 1;
+    color: var(--cream-hi);
+    text-shadow: 0 0 60px rgba(228,200,120,0.16), 0 0 120px rgba(228,200,120,0.08);
+    opacity: 0;
+    transform: scale(0.94);
+    animation: emerge 1.7s var(--ease) 0.35s forwards;
+  }
+  .hero__name-pinyin {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: var(--step-1);
+    letter-spacing: 0.02em;
+    color: var(--gold-hi);
+    margin-top: 0.5em;
+    opacity: 0;
+    animation: rise 1s var(--ease) 1.1s forwards;
+  }
+
+  /* the seal presses on, upper-right of the name */
+  .hero__seal {
+    position: absolute;
+    top: -6%; right: -14%;
+    width: clamp(66px, 12vw, 118px);
+    transform: rotate(-4deg) scale(0.4);
+    opacity: 0;
+    filter: drop-shadow(0 0 22px var(--cinnabar-glow));
+    animation: seal-press 0.9s var(--ease) 1.5s forwards;
+  }
+  @media (max-width: 560px) { .hero__seal { top: -12%; right: -4%; } }
+
+  .hero__sub { opacity: 0; animation: rise 1s var(--ease) 1.25s forwards; }
+  .hero__sub p { color: var(--cream); font-size: var(--step-1); line-height: 1.5; font-weight: 300; max-width: 46ch; margin-inline: auto; text-wrap: balance; }
+  .hero__sub em { color: var(--gold-hi); font-style: italic; font-family: var(--display); }
+
+  .hero__cta { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; opacity: 0; animation: rise 1s var(--ease) 1.45s forwards; }
+
+  .hero__scroll { position: absolute; left: 50%; bottom: clamp(1.4rem, 4vh, 2.6rem); transform: translateX(-50%); opacity: 0; animation: rise 1s var(--ease) 2s forwards; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; color: var(--cream-xlo); }
+  .hero__scroll span { font-size: 0.66rem; letter-spacing: 0.32em; text-transform: uppercase; }
+  .hero__scroll .line { width: 1px; height: 40px; background: linear-gradient(180deg, var(--gold), transparent); }
+  @media (max-height: 720px) { .hero__scroll { display: none; } }
+
+  @keyframes emerge { from { opacity: 0; transform: scale(0.94); filter: blur(6px); } to { opacity: 1; transform: scale(1); filter: blur(0); } }
+  @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes seal-press {
+    0% { opacity: 0; transform: rotate(-4deg) scale(0.4); }
+    60% { opacity: 1; transform: rotate(-4deg) scale(1.08); }
+    100% { opacity: 1; transform: rotate(-4deg) scale(1); }
+  }
+
+  /* ============================================================
+     SECTION scaffold
+     ============================================================ */
+  section { position: relative; }
+  .section { padding-block: clamp(5rem, 12vh, 9rem); }
+  .section-head { max-width: 46ch; }
+  .section-head .eyebrow { margin-bottom: 1.4rem; }
+  .section-head h2 { font-size: var(--step-3); }
+  .section-head p { margin-top: 1.3rem; color: var(--cream-lo); }
+
+  /* Reveal on scroll — enhances an already-visible default (opacity kept at 1 fallback via .is-in default) */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+  .reveal.is-in { opacity: 1; transform: none; }
+  .reveal-line { transform: scaleX(0); transition: transform 1.2s var(--ease); }
+  .reveal-line.is-in { transform: scaleX(1); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .reveal-line { transform: none; transition: none; }
+  }
+
+  /* ============================================================
+     THE DIFFERENCE — transliteration vs a crafted name
+     ============================================================ */
+  .diff { border-top: 1px solid var(--gold-line-soft); }
+  .diff__grid { display: grid; gap: clamp(1.5rem, 3vw, 2.5rem); margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+  @media (min-width: 780px) { .diff__grid { grid-template-columns: 1fr 1fr; align-items: stretch; } }
+
+  .specimen {
+    position: relative;
+    padding: clamp(1.8rem, 4vw, 2.8rem);
+    border: 1px solid var(--gold-line-soft);
+    border-radius: 3px;
+    background: linear-gradient(180deg, rgba(27,23,18,0.6), rgba(20,17,14,0.3));
+    display: flex; flex-direction: column; gap: 1.1rem;
+    min-height: 100%;
+  }
+  .specimen__tag { font-size: 0.7rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 500; }
+  .specimen--off .specimen__tag { color: var(--cream-xlo); }
+  .specimen--fine { border-color: var(--gold-line); background: linear-gradient(180deg, rgba(36,30,23,0.7), rgba(24,20,15,0.4)); box-shadow: 0 0 0 1px var(--gold-line-soft), 0 24px 60px -30px rgba(0,0,0,0.7); }
+  .specimen--fine .specimen__tag { color: var(--gold-hi); }
+
+  .specimen__zh { font-family: var(--han); font-size: clamp(2.6rem, 8vw, 4rem); line-height: 1; letter-spacing: 0.06em; }
+  .specimen--off .specimen__zh { color: var(--cream-lo); opacity: 0.72; }
+  .specimen--fine .specimen__zh { color: var(--cream-hi); text-shadow: 0 0 40px rgba(228,200,120,0.12); }
+  .specimen__pinyin { font-family: var(--display); font-style: italic; font-size: var(--step-1); }
+  .specimen--fine .specimen__pinyin { color: var(--gold-hi); }
+  .specimen--off .specimen__pinyin { color: var(--cream-lo); }
+  .specimen__note { color: var(--cream-lo); font-size: var(--step-0); border-top: 1px solid var(--gold-line-soft); padding-top: 1.1rem; margin-top: auto; }
+  .specimen--fine .specimen__note { color: var(--cream); }
+  .specimen__note b { color: var(--gold-hi); font-weight: 500; }
+
+  /* ============================================================
+     THREE POWERS & TWELVE PALACES — the 命盘 radial centrepiece
+     ============================================================ */
+  .powers { border-top: 1px solid var(--gold-line-soft); background:
+      radial-gradient(120% 90% at 50% 42%, rgba(201,168,92,0.05), transparent 60%),
+      var(--lacquer-1); }
+  .powers__layout { display: grid; gap: clamp(2.5rem, 5vw, 4rem); align-items: center; }
+  @media (min-width: 940px) { .powers__layout { grid-template-columns: 0.85fr 1.15fr; } }
+
+  .powers__intro .lead { margin-top: 1.4rem; }
+  .triad { display: flex; flex-direction: column; gap: 1.1rem; margin-top: 2rem; }
+  .triad__row { display: grid; grid-template-columns: auto 1fr; gap: 1.1rem; align-items: baseline; padding-bottom: 1.1rem; border-bottom: 1px solid var(--gold-line-soft); }
+  .triad__row:last-child { border-bottom: 0; }
+  .triad__glyph { font-family: var(--han); font-size: 2.3rem; color: var(--gold-hi); line-height: 1; width: 1.4em; text-align: center; text-shadow: 0 0 24px rgba(228,200,120,0.2); }
+  .triad__body h3 { font-family: var(--display); font-size: var(--step-1); color: var(--cream-hi); display: flex; align-items: baseline; gap: 0.6em; }
+  .triad__body h3 span { font-size: 0.62em; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-family: var(--body); font-weight: 500; }
+  .triad__body p { color: var(--cream-lo); font-size: var(--step-0); margin: 0.3rem 0 0; }
+
+  /* The radial diagram */
+  .plate { position: relative; width: 100%; max-width: 560px; margin-inline: auto; aspect-ratio: 1; }
+  .plate svg { width: 100%; height: 100%; overflow: visible; }
+  .plate__center { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
+  .plate__center-zh { font-family: var(--han); font-size: clamp(2rem, 6vw, 2.9rem); color: var(--cream-hi); text-shadow: 0 0 30px rgba(228,200,120,0.25); letter-spacing: 0.05em; text-align: center; line-height: 1.05; }
+  .plate__center-en { font-family: var(--display); font-style: italic; font-size: var(--step-0); color: var(--gold-hi); letter-spacing: 0.08em; margin-top: 0.3em; }
+
+  .palace-node { cursor: default; }
+  .palace-node .pn-ring { fill: rgba(20,17,14,0.9); stroke: var(--gold-line); stroke-width: 1; transition: stroke .5s var(--ease), fill .5s var(--ease); }
+  .palace-node .pn-zh { font-family: var(--han); font-size: 15px; fill: var(--cream-hi); text-anchor: middle; dominant-baseline: central; }
+  .palace-node .pn-num { font-family: "Cormorant Garamond", serif; font-variant-numeric: oldstyle-nums; font-size: 8.5px; fill: var(--gold); text-anchor: middle; dominant-baseline: central; letter-spacing: 0.05em; }
+  .palace-node:hover .pn-ring { stroke: var(--gold-hi); fill: rgba(36,30,23,0.95); }
+
+  .plate__caption { text-align: center; margin-top: 1.6rem; color: var(--cream-xlo); font-size: var(--step--1); letter-spacing: 0.12em; }
+  .plate__caption b { color: var(--gold); font-weight: 500; }
+
+  /* ============================================================
+     GALLERY OF FINE NAMES
+     ============================================================ */
+  .gallery { border-top: 1px solid var(--gold-line-soft); }
+  .gallery__list { margin-top: clamp(2.5rem, 5vw, 3.5rem); display: flex; flex-direction: column; }
+
+  .fine {
+    display: grid; gap: clamp(1rem, 4vw, 3rem); align-items: center;
+    grid-template-columns: 1fr;
+    padding-block: clamp(2rem, 4.5vw, 3.2rem);
+    border-top: 1px solid var(--gold-line-soft);
+  }
+  .fine:first-child { border-top: 0; }
+  @media (min-width: 720px) { .fine { grid-template-columns: minmax(180px, 260px) 1fr auto; } }
+
+  .fine__name { display: flex; flex-direction: column; gap: 0.35rem; }
+  .fine__zh { font-family: var(--han); font-size: clamp(2.6rem, 7vw, 3.7rem); line-height: 1; letter-spacing: 0.06em; color: var(--cream-hi); transition: color .5s var(--ease), text-shadow .5s var(--ease); }
+  .fine__pinyin { font-family: var(--display); font-style: italic; font-size: var(--step-1); color: var(--gold-hi); }
+  .fine__body { max-width: 46ch; }
+  .fine__person { font-family: var(--body); font-size: var(--step--1); letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 0.6rem; }
+  .fine__gloss { font-family: var(--display); font-style: italic; font-size: var(--step-1); color: var(--cream-hi); line-height: 1.35; margin: 0; }
+  .fine__meaning { color: var(--cream-lo); font-size: var(--step-0); margin: 0.7rem 0 0; }
+  .fine__mark { font-family: var(--display); font-variant-numeric: oldstyle-nums; font-size: var(--step-1); color: var(--gold-line); text-align: right; white-space: nowrap; }
+  @media (max-width: 719px) { .fine__mark { display: none; } }
+  .fine:hover .fine__zh { color: #FBF6EA; text-shadow: 0 0 44px rgba(228,200,120,0.18); }
+
+  /* ============================================================
+     PHILOSOPHY / THE TRADITION
+     ============================================================ */
+  .tradition {
+    border-top: 1px solid var(--gold-line-soft);
+    background:
+      radial-gradient(90% 70% at 30% 20%, rgba(201,168,92,0.05), transparent 55%),
+      linear-gradient(180deg, var(--lacquer-1), var(--lacquer-0));
+  }
+  .tradition__inner { max-width: 760px; margin-inline: auto; text-align: center; }
+  .tradition__mark { font-family: var(--han); font-size: clamp(3rem, 9vw, 4.6rem); color: var(--gold-hi); opacity: 0.9; text-shadow: 0 0 40px rgba(228,200,120,0.2); }
+  .tradition__prose { margin-top: 2rem; text-align: left; }
+  .tradition__prose p { margin: 0 auto 1.5rem; color: var(--cream); font-size: var(--step-1); line-height: 1.65; max-width: 60ch; text-wrap: pretty; }
+  .tradition__prose p:first-of-type::first-letter {
+    font-family: var(--display); font-weight: 600; font-size: 3.4em; line-height: 0.72;
+    float: left; padding: 0.06em 0.12em 0 0; color: var(--gold-hi); text-shadow: 0 0 30px rgba(228,200,120,0.25);
+  }
+  .tradition__pull { font-family: var(--display); font-style: italic; font-size: var(--step-2); color: var(--cream-hi); line-height: 1.35; text-align: center; margin: 2.6rem auto; max-width: 22ch; text-wrap: balance; }
+  .tradition__pull .han { font-style: normal; font-family: var(--han); color: var(--gold-hi); font-size: 0.8em; }
+  .tradition__cite { display: flex; align-items: center; justify-content: center; gap: 1rem; color: var(--gold); font-size: var(--step--1); letter-spacing: 0.16em; text-transform: uppercase; margin-top: 3rem; }
+  .tradition__cite::before, .tradition__cite::after { content:""; width: 2.2rem; height: 1px; background: var(--gold-line); }
+
+  /* ============================================================
+     PRICING TEASER
+     ============================================================ */
+  .pricing { border-top: 1px solid var(--gold-line-soft); }
+  .pricing__grid { margin-top: clamp(2.5rem, 5vw, 3.5rem); display: grid; gap: 1.25rem; }
+  @media (min-width: 820px) { .pricing__grid { grid-template-columns: repeat(3, 1fr); align-items: stretch; } }
+
+  .tier {
+    position: relative; display: flex; flex-direction: column; gap: 0.9rem;
+    padding: clamp(1.8rem, 3.5vw, 2.4rem);
+    border: 1px solid var(--gold-line-soft); border-radius: 3px;
+    background: linear-gradient(180deg, rgba(27,23,18,0.5), rgba(20,17,14,0.25));
+    transition: border-color .5s var(--ease), transform .5s var(--ease), box-shadow .5s var(--ease);
+  }
+  .tier:hover { transform: translateY(-3px); border-color: var(--gold-line); }
+  .tier--hero {
+    border-color: var(--gold-line);
+    background: linear-gradient(180deg, rgba(40,33,24,0.75), rgba(26,21,16,0.5));
+    box-shadow: 0 0 0 1px var(--gold-line-soft), 0 30px 70px -34px rgba(0,0,0,0.8);
+  }
+  .tier__flag { position: absolute; top: -1px; right: 1.6rem; transform: translateY(-50%); font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--lacquer-0); background: linear-gradient(180deg, var(--gold-hi), var(--gold)); padding: 0.4em 0.9em; border-radius: 2px; font-weight: 600; }
+  .tier__name { font-family: var(--display); font-size: var(--step-1); color: var(--cream-hi); font-weight: 600; }
+  .tier__zh { font-family: var(--han); font-size: 0.66em; color: var(--gold); margin-left: 0.4em; font-weight: 400; }
+  .tier__price { font-family: var(--display); font-variant-numeric: oldstyle-nums; font-size: var(--step-3); color: var(--gold-hi); line-height: 1; }
+  .tier__price small { font-size: 0.36em; color: var(--cream-lo); letter-spacing: 0.06em; }
+  .tier__price .free { font-style: italic; }
+  .tier__desc { color: var(--cream-lo); font-size: var(--step-0); flex: 1; }
+  .tier__desc b { color: var(--cream); font-weight: 400; }
+  .tier__foot { padding-top: 0.4rem; }
+  .tier--hero .tier__price { color: #F1DFA6; }
+
+  .pricing__note { text-align: center; margin: clamp(2rem, 4vw, 3rem) auto 0; color: var(--cream-xlo); font-size: var(--step--1); letter-spacing: 0.04em; max-width: 60ch; }
+
+  /* ============================================================
+     FINAL CTA
+     ============================================================ */
+  .finale {
+    position: relative; text-align: center; overflow: hidden; isolation: isolate;
+    padding-block: clamp(6rem, 16vh, 11rem);
+    border-top: 1px solid var(--gold-line-soft);
+    background:
+      radial-gradient(80% 100% at 50% 40%, rgba(226,85,59,0.10), transparent 55%),
+      radial-gradient(120% 90% at 50% 50%, rgba(201,168,92,0.06), transparent 60%),
+      var(--lacquer-0);
+  }
+  .finale__seal { width: clamp(58px, 10vw, 92px); margin: 0 auto 2rem; filter: drop-shadow(0 0 30px var(--cinnabar-glow)); }
+  .finale h2 { font-size: var(--step-4); font-style: italic; font-weight: 500; }
+  .finale h2 em { font-style: normal; color: var(--gold-hi); }
+  .finale__sub { color: var(--cream-lo); margin: 1.6rem auto 2.6rem; font-size: var(--step-1); max-width: 42ch; }
+  .finale__cta { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+  .finale__whisper { margin-top: 2.6rem; font-family: var(--display); font-style: italic; font-size: var(--step-1); color: var(--gold); opacity: 0.85; }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  footer { background: var(--lacquer-0); border-top: 1px solid var(--gold-line-soft); padding-block: clamp(3.5rem, 7vw, 5rem); }
+  .foot__top { display: flex; flex-wrap: wrap; gap: 2rem 3rem; justify-content: space-between; align-items: flex-start; }
+  .foot__brand { max-width: 34ch; }
+  .foot__brand .brand { margin-bottom: 1.1rem; }
+  .foot__tag { color: var(--cream-lo); font-family: var(--display); font-style: italic; font-size: var(--step-1); line-height: 1.4; }
+  .foot__motto { margin-top: 1rem; color: var(--gold); font-size: var(--step--1); letter-spacing: 0.14em; }
+  .foot__motto .han { font-family: var(--han); color: var(--gold-hi); letter-spacing: 0.2em; }
+  .foot__nav { display: grid; grid-template-columns: repeat(2, minmax(120px, auto)); gap: 0.8rem 3rem; }
+  .foot__col h4 { font-size: 0.66rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin: 0 0 1rem; font-family: var(--body); font-weight: 500; }
+  .foot__col a { display: block; color: var(--cream-lo); font-size: var(--step--1); padding: 0.32em 0; transition: color .35s var(--ease); }
+  .foot__col a:hover { color: var(--cream-hi); }
+  .foot__rule { margin-block: clamp(2.2rem, 5vw, 3rem); }
+  .foot__bottom { display: flex; flex-wrap: wrap; gap: 0.6rem 1.5rem; justify-content: space-between; align-items: center; color: var(--cream-xlo); font-size: 0.72rem; letter-spacing: 0.04em; }
+  .foot__bottom .seal-tiny { display: inline-flex; align-items: center; gap: 0.5em; }
+  .foot__bottom .seal-tiny svg { width: 16px; height: 16px; }
+
+  /* ---------- small screens tidy ---------- */
+  @media (max-width: 560px) {
+    .btn { --pad-x: 1.5em; }
+    .hero__cta .btn, .finale__cta .btn { flex: 1 1 auto; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ SEAL SYMBOL (reused) ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- 我有嘉名 — square seal, 2x2, read right-to-left top-to-bottom -->
+    <symbol id="seal" viewBox="0 0 100 100">
+      <rect x="3" y="3" width="94" height="94" rx="4" fill="none" stroke="currentColor" stroke-width="4.5"/>
+      <line x1="50" y1="8" x2="50" y2="92" stroke="currentColor" stroke-width="2.4" opacity="0.85"/>
+      <line x1="8" y1="50" x2="92" y2="50" stroke="currentColor" stroke-width="2.4" opacity="0.85"/>
+      <!-- top-right 我, top-left 有 / bottom-right 嘉, bottom-left 名 -->
+      <text x="73" y="30" font-family="Noto Serif SC, serif" font-weight="600" font-size="27" fill="currentColor" text-anchor="middle" dominant-baseline="central">我</text>
+      <text x="27" y="30" font-family="Noto Serif SC, serif" font-weight="600" font-size="27" fill="currentColor" text-anchor="middle" dominant-baseline="central">有</text>
+      <text x="73" y="72" font-family="Noto Serif SC, serif" font-weight="600" font-size="27" fill="currentColor" text-anchor="middle" dominant-baseline="central">嘉</text>
+      <text x="27" y="72" font-family="Noto Serif SC, serif" font-weight="600" font-size="27" fill="currentColor" text-anchor="middle" dominant-baseline="central">名</text>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav" aria-label="Primary">
+  <a class="brand" href="#top" aria-label="My Chinese Name — home">
+    <svg class="brand__seal" style="color: var(--cinnabar);" aria-hidden="true"><use href="#seal"/></svg>
+    <span class="brand__word">My <b>Chinese</b> Name</span>
+  </a>
+  <div class="nav__links nav__links--desk">
+    <a class="nav__link" href="#method">The Method</a>
+    <a class="nav__link" href="#gallery">Fine Names</a>
+    <a class="nav__link" href="#pricing">Pricing</a>
+    <a class="nav__link" href="#tradition">The Tradition</a>
+    <span class="nav__lang"><b>EN</b> · 中文</span>
+  </div>
+  <a class="btn btn--gold nav__cta" href="#pricing">Begin <span class="arw">→</span></a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="hero__spot" aria-hidden="true"></div>
+  <canvas id="dust" aria-hidden="true"></canvas>
+  <div class="hero__vig" aria-hidden="true"></div>
+
+  <div class="wrap hero__inner">
+    <p class="hero__eyebrow eyebrow flank">The Ho Method&nbsp; <span class="han">承天</span> &nbsp;Three Powers &amp; Twelve Palaces</p>
+
+    <div class="hero__name">
+      <h1>嘉名</h1>
+      <svg class="hero__seal" style="color: var(--cinnabar);" aria-label="Seal reading 我有嘉名 — I have a fine name"><use href="#seal"/></svg>
+      <div class="hero__name-pinyin">jiā míng · a fine name</div>
+    </div>
+
+    <div class="hero__sub">
+      <p>A Chinese name that is truly yours — <em>not a transliteration, and not fortune-telling.</em> A name woven from sound, meaning, form, and roots, by a method more than 1,600 years old.</p>
+    </div>
+
+    <div class="hero__cta">
+      <a class="btn btn--seal" href="#pricing">Make my name <span class="arw">→</span></a>
+      <a class="btn btn--gold" href="#method">See the method</a>
+    </div>
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true">
+    <span>正名 · Begin</span>
+    <div class="line"></div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ THE DIFFERENCE ============ -->
+<section class="section diff wrap" id="difference">
+  <div class="section-head reveal">
+    <p class="eyebrow">The Difference</p>
+    <h2>Not a sound-alike.<br>A name that was <em style="font-style:italic;color:var(--gold-hi)">made</em>.</h2>
+    <p>Most "Chinese names" are a phonetic accident — the nearest characters that happen to sound like the English, chosen without a thought for what they mean when read aloud in a room. A crafted name begins the other way around.</p>
+  </div>
+
+  <div class="diff__grid">
+    <article class="specimen specimen--off reveal">
+      <span class="specimen__tag">The transliteration</span>
+      <div class="specimen__zh">索菲娅</div>
+      <div class="specimen__pinyin">Suǒ-fēi-yà</div>
+      <p class="specimen__note">Three characters conscripted for their sound alone — "cable," "rue," "elegant-lady." Serviceable, forgettable, unmistakably foreign. A label, not a name.</p>
+    </article>
+
+    <article class="specimen specimen--fine reveal">
+      <span class="specimen__tag">The crafted name</span>
+      <div class="specimen__zh">苏菲</div>
+      <div class="specimen__pinyin">Sū Fēi</div>
+      <p class="specimen__note">The same voice — <b>Sophie</b> — carried by two characters a Chinese ear receives as a person: <b>苏</b>, to revive, a scholar's surname; <b>菲</b>, fragrant and flourishing. Short, graceful, and hers.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============ THREE POWERS & TWELVE PALACES ============ -->
+<section class="section powers" id="method">
+  <div class="wrap">
+    <div class="powers__layout">
+
+      <div class="powers__intro reveal">
+        <p class="eyebrow">The Method</p>
+        <h2 style="font-size:var(--step-3)">Three&nbsp;Powers,<br>Twelve&nbsp;Palaces.</h2>
+        <p class="lead">Every name is measured against the ancient frame of <em style="font-style:italic;color:var(--gold-hi)">天 · 人 · 地</em> — Heaven, Human, Earth — and reckoned, palace by palace, until all twelve agree.</p>
+
+        <div class="triad">
+          <div class="triad__row">
+            <div class="triad__glyph">天</div>
+            <div class="triad__body">
+              <h3>Heaven <span>Powers I–III</span></h3>
+              <p>The Way, the momentum, the measure — what the name reaches toward.</p>
+            </div>
+          </div>
+          <div class="triad__row">
+            <div class="triad__glyph">人</div>
+            <div class="triad__body">
+              <h3>Human <span>Powers IV–VII</span></h3>
+              <p>Sound, form, meaning, imagery — the living body of the name.</p>
+            </div>
+          </div>
+          <div class="triad__row">
+            <div class="triad__glyph">地</div>
+            <div class="triad__body">
+              <h3>Earth <span>Powers VIII–XII</span></h3>
+              <p>Roots, red lines, wishes, canon, true self — where the name stands.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- The 命盘 radial plate -->
+      <figure class="powers__plate reveal" style="margin:0">
+        <div class="plate">
+          <svg viewBox="-20 -20 540 540" role="img" aria-labelledby="plate-t plate-d">
+            <title id="plate-t">The Twelve-Palace命盘</title>
+            <desc id="plate-d">A radial diagram: twelve palaces arranged in a ring around a central character 名, grouped into three arcs — Heaven, Human, and Earth.</desc>
+            <!-- concentric gold hairlines -->
+            <circle cx="250" cy="250" r="242" fill="none" stroke="var(--gold-line-soft)" stroke-width="1"/>
+            <circle cx="250" cy="250" r="196" fill="none" stroke="var(--gold-line)" stroke-width="1" stroke-dasharray="1.5 5" opacity="0.7"/>
+            <circle cx="250" cy="250" r="96" fill="none" stroke="var(--gold-line)" stroke-width="1"/>
+            <circle cx="250" cy="250" r="90" fill="none" stroke="var(--gold-line-soft)" stroke-width="1"/>
+            <!-- three-power arcs (subtle glow bands) will be drawn as node ring; spokes: -->
+            <g id="spokes" stroke="var(--gold-line-soft)" stroke-width="1"></g>
+            <!-- nodes injected by JS for exact trigonometry -->
+            <g id="nodes"></g>
+          </svg>
+          <div class="plate__center">
+            <div>
+              <div class="plate__center-zh">名</div>
+              <div class="plate__center-en">the name itself</div>
+            </div>
+          </div>
+        </div>
+        <figcaption class="plate__caption">Twelve palaces, one reckoning — <b>命</b> Destiny is their sum, not their master.</figcaption>
+      </figure>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY OF FINE NAMES ============ -->
+<section class="section gallery wrap" id="gallery">
+  <div class="section-head reveal">
+    <p class="eyebrow">A Gallery of Fine Names</p>
+    <h2>Names the world already knows.</h2>
+    <p>Each of these was chosen, not converted — and each opened a door its bearer walked through for a lifetime.</p>
+  </div>
+
+  <div class="gallery__list">
+    <article class="fine reveal">
+      <div class="fine__name">
+        <div class="fine__zh">费正清</div>
+        <div class="fine__pinyin">Fèi Zhèngqīng</div>
+      </div>
+      <div class="fine__body">
+        <p class="fine__person">John King Fairbank · Historian of China</p>
+        <p class="fine__gloss">"Upright, and clear."</p>
+        <p class="fine__meaning">A name that reads as a scholar's virtue — 正 upright, 清 clear — and rhymes, quietly, with the sound of "Fairbank." The dean of China studies wore it for half a century.</p>
+      </div>
+      <div class="fine__mark">I</div>
+    </article>
+
+    <article class="fine reveal">
+      <div class="fine__name">
+        <div class="fine__zh">何伟</div>
+        <div class="fine__pinyin">Hé Wěi</div>
+      </div>
+      <div class="fine__body">
+        <p class="fine__person">Peter Hessler · Writer</p>
+        <p class="fine__gloss">"Direct, strong — unmistakably his own."</p>
+        <p class="fine__meaning">Two plain characters, nothing borrowed, nothing ornate: 何 a common surname, 伟 great. A name a river-town could say without stumbling, and remember.</p>
+      </div>
+      <div class="fine__mark">II</div>
+    </article>
+
+    <article class="fine reveal">
+      <div class="fine__name">
+        <div class="fine__zh">陆克文</div>
+        <div class="fine__pinyin">Lù Kèwén</div>
+      </div>
+      <div class="fine__body">
+        <p class="fine__person">Kevin Rudd · Prime Minister of Australia</p>
+        <p class="fine__gloss">"Cultured — and easy on the ear."</p>
+        <p class="fine__meaning">克文, "to master the civil, the literary," carried on the sound of "Kevin." A diplomat's name: it says, before he does, that he came to understand.</p>
+      </div>
+      <div class="fine__mark">III</div>
+    </article>
+
+    <article class="fine reveal">
+      <div class="fine__name">
+        <div class="fine__zh">利玛窦</div>
+        <div class="fine__pinyin">Lì Mǎdòu</div>
+      </div>
+      <div class="fine__body">
+        <p class="fine__person">Matteo Ricci · Jesuit, 1552–1610</p>
+        <p class="fine__gloss">The root text of all cross-cultural naming.</p>
+        <p class="fine__meaning">Four centuries ago a scholar from Italy took a Chinese name and, with it, a seat among the literati. That name was not his disguise — it was his bridge.</p>
+      </div>
+      <div class="fine__mark">IV</div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ THE TRADITION / PHILOSOPHY ============ -->
+<section class="section tradition" id="tradition">
+  <div class="wrap tradition__inner">
+    <div class="tradition__mark reveal" aria-hidden="true">名</div>
+
+    <div class="tradition__prose reveal">
+      <p>The <em style="font-style:italic;color:var(--gold-hi)">Shuowen</em>, China's first dictionary, tells us the character 名 joins two things — a mouth, and the dusk. A name, the ancients reasoned, is how you make yourself known when the light has gone: how you let someone see you in the dark. It is the first word a stranger learns of you, and the last that outlives you.</p>
+
+      <p>To match a name across two languages, then, is not arithmetic. We match the sound to your Western name, the meaning to the Eastern spirit; we shape the form by the classical script, and tune the music by the ancient scales. What returns is not a translation of your name. It is a second name that could have been yours all along.</p>
+    </div>
+
+    <blockquote class="tradition__pull reveal">
+      "A good name is like a lamp: it lights the road a person will walk for a lifetime."
+    </blockquote>
+
+    <div class="tradition__prose reveal">
+      <p>This is the older understanding — the one Confucius reached for when, asked what he would do first to set a state in order, he answered: <span class="han" style="color:var(--gold-hi)">正名</span>, <em style="font-style:italic;color:var(--gold-hi)">first, rectify the names</em>. A name is no spell to alter fate. It is a wise light that illuminates one. A Chinese name chosen with care is a hand you extend to an ancient culture — and the hand that culture extends back to you.</p>
+    </div>
+
+    <p class="tradition__cite reveal">The Ho Method · a 54th-generation heir · Chengtian Studio, Mount Zhongnan</p>
+  </div>
+</section>
+
+<!-- ============ PRICING TEASER ============ -->
+<section class="section pricing wrap" id="pricing">
+  <div class="section-head reveal">
+    <p class="eyebrow">The Commission</p>
+    <h2>Begin free. Go as deep as the name deserves.</h2>
+    <p>One real name to start, given freely. Then the full reckoning — or the hand of a master.</p>
+  </div>
+
+  <div class="pricing__grid">
+    <article class="tier reveal">
+      <div class="tier__name">The Name Finder <span class="tier__zh">起名</span></div>
+      <div class="tier__price"><span class="free">Free</span></div>
+      <p class="tier__desc">One genuine name and its meaning, drawn by the engine in a moment. <b>The door, held open.</b></p>
+      <div class="tier__foot"><a class="textlink" href="#top">Find a name →</a></div>
+    </article>
+
+    <article class="tier tier--hero reveal">
+      <span class="tier__flag">The Heart of It</span>
+      <div class="tier__name">The Name Dossier <span class="tier__zh">取名记</span></div>
+      <div class="tier__price">$39</div>
+      <p class="tier__desc">Three crafted names, the full Twelve-Palace reckoning, etymology, pronunciation, usage — and a name card you'll be proud to send. <b>Yours in minutes.</b></p>
+      <div class="tier__foot"><a class="btn btn--seal" href="#top" style="width:100%;justify-content:center">Commission the dossier <span class="arw">→</span></a></div>
+    </article>
+
+    <article class="tier reveal">
+      <div class="tier__name">The Master's Name <span class="tier__zh">大师亲定</span></div>
+      <div class="tier__price">$149</div>
+      <p class="tier__desc">A name-master crafts, weighs, and signs your name by hand, with a written Naming Note. <b>Three to five days.</b></p>
+      <div class="tier__foot"><a class="textlink" href="#top">Request a master →</a></div>
+    </article>
+  </div>
+
+  <p class="pricing__note">Every name — free or signed — is screened for homophones, dialect, and gender at the Prudence Palace before it ever reaches you. We do not sell fortune-telling; we sell a name you can stand behind.</p>
+</section>
+
+</main>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="finale" id="begin">
+  <div class="wrap">
+    <svg class="finale__seal reveal" style="color: var(--cinnabar);" aria-label="Seal reading 我有嘉名 — I have a fine name"><use href="#seal"/></svg>
+    <h2 class="reveal">Your name is <em>waiting</em><br>to be made.</h2>
+    <p class="finale__sub reveal">Ten minutes now for a name you may carry the rest of your life. May this lamp light your road, too.</p>
+    <div class="finale__cta reveal">
+      <a class="btn btn--seal" href="#top">Begin my name <span class="arw">→</span></a>
+      <a class="btn btn--gold" href="#gallery">Read a few first</a>
+    </div>
+    <p class="finale__whisper reveal">我有嘉名 · I have a fine name.</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot__top">
+      <div class="foot__brand">
+        <a class="brand" href="#top" aria-label="My Chinese Name — home">
+          <svg class="brand__seal" style="color: var(--cinnabar);" aria-hidden="true"><use href="#seal"/></svg>
+          <span class="brand__word">My <b>Chinese</b> Name</span>
+        </a>
+        <p class="foot__tag">More than a translation — a bridge between the name you carry and the culture you meet.</p>
+        <p class="foot__motto"><span class="han">承天 · 名以载道</span> — a name carries the Way.</p>
+      </div>
+
+      <nav class="foot__nav" aria-label="Footer">
+        <div class="foot__col">
+          <h4>The Work</h4>
+          <a href="#method">The Method</a>
+          <a href="#gallery">Fine Names</a>
+          <a href="#tradition">The Tradition</a>
+          <a href="#pricing">Pricing</a>
+        </div>
+        <div class="foot__col">
+          <h4>The Studio</h4>
+          <a href="#top">The Ho Method</a>
+          <a href="#top">The Book · Amazon</a>
+          <a href="#top">The Masters</a>
+          <a href="#top">EN · 中文</a>
+        </div>
+      </nav>
+    </div>
+
+    <div class="foot__rule hairline"></div>
+
+    <div class="foot__bottom">
+      <span class="seal-tiny">
+        <svg style="color: var(--gold);" aria-hidden="true"><use href="#seal"/></svg>
+        © 2026 My Chinese Name · Chengtian Studio, Mount Zhongnan
+      </span>
+      <span>A 1,600-year tradition, for the name the world will know you by.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---- Nav condense on scroll ---- */
+  var nav = document.getElementById("nav");
+  function onScroll(){ nav.classList.toggle("scrolled", window.scrollY > 40); }
+  onScroll(); window.addEventListener("scroll", onScroll, { passive: true });
+
+  /* ---- Build the Twelve-Palace radial plate (exact trigonometry) ---- */
+  var palaces = [
+    { zh: "道", tier: "heaven" }, { zh: "势", tier: "heaven" }, { zh: "格", tier: "heaven" },
+    { zh: "音", tier: "human" },  { zh: "形", tier: "human" },  { zh: "意", tier: "human" }, { zh: "象", tier: "human" },
+    { zh: "脉", tier: "earth" },  { zh: "忌", tier: "earth" },  { zh: "愿", tier: "earth" }, { zh: "典", tier: "earth" }, { zh: "命", tier: "earth" }
+  ];
+  var tierColor = { heaven: "#E4C878", human: "#DDD5C4", earth: "#C9A85C" };
+  var romans = ["Ⅰ","Ⅱ","Ⅲ","Ⅳ","Ⅴ","Ⅵ","Ⅶ","Ⅷ","Ⅸ","Ⅹ","Ⅺ","Ⅻ"];
+  var cx = 250, cy = 250, R = 196, node = 30;
+  var SVGNS = "http://www.w3.org/2000/svg";
+  var nodesG = document.getElementById("nodes");
+  var spokesG = document.getElementById("spokes");
+
+  palaces.forEach(function (p, i) {
+    var ang = (-90 + i * (360 / 12)) * Math.PI / 180; // start at top, clockwise
+    var x = cx + R * Math.cos(ang);
+    var y = cy + R * Math.sin(ang);
+
+    // faint spoke from inner ring to node
+    var ix = cx + 96 * Math.cos(ang), iy = cy + 96 * Math.sin(ang);
+    var ox = cx + (R - node - 4) * Math.cos(ang), oy = cy + (R - node - 4) * Math.sin(ang);
+    var line = document.createElementNS(SVGNS, "line");
+    line.setAttribute("x1", ix); line.setAttribute("y1", iy);
+    line.setAttribute("x2", ox); line.setAttribute("y2", oy);
+    spokesG.appendChild(line);
+
+    var g = document.createElementNS(SVGNS, "g");
+    g.setAttribute("class", "palace-node");
+    g.setAttribute("transform", "translate(" + x.toFixed(2) + "," + y.toFixed(2) + ")");
+
+    var ring = document.createElementNS(SVGNS, "circle");
+    ring.setAttribute("class", "pn-ring");
+    ring.setAttribute("r", node);
+    if (p.zh === "命") { ring.setAttribute("stroke", "var(--gold-hi)"); ring.setAttribute("stroke-width", "1.4"); }
+    g.appendChild(ring);
+
+    var num = document.createElementNS(SVGNS, "text");
+    num.setAttribute("class", "pn-num");
+    num.setAttribute("y", -node + 8.5);
+    num.textContent = romans[i];
+    g.appendChild(num);
+
+    var zh = document.createElementNS(SVGNS, "text");
+    zh.setAttribute("class", "pn-zh");
+    zh.setAttribute("y", 3);
+    zh.setAttribute("fill", tierColor[p.tier]);
+    zh.textContent = p.zh;
+    g.appendChild(zh);
+
+    // reveal stagger
+    if (!reduce) {
+      g.style.opacity = "0";
+      g.style.transformBox = "fill-box";
+      g.style.transition = "opacity .7s var(--ease)";
+      g.dataset.delay = (i * 70).toString();
+    }
+    nodesG.appendChild(g);
+  });
+
+  /* ---- Scroll reveals ---- */
+  if (!reduce && "IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.14, rootMargin: "0px 0px -8% 0px" });
+    document.querySelectorAll(".reveal, .reveal-line").forEach(function (el) { io.observe(el); });
+
+    // stagger the palace nodes once the plate scrolls in
+    var plate = document.querySelector(".powers__plate");
+    if (plate) {
+      var pio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            document.querySelectorAll(".palace-node").forEach(function (n) {
+              setTimeout(function () { n.style.opacity = "1"; }, parseInt(n.dataset.delay || "0", 10));
+            });
+            pio.disconnect();
+          }
+        });
+      }, { threshold: 0.25 });
+      pio.observe(plate);
+    }
+  }
+
+  /* ---- Drifting gold-dust field (canvas), reduced-motion aware ---- */
+  var canvas = document.getElementById("dust");
+  if (canvas && canvas.getContext) {
+    var ctx = canvas.getContext("2d");
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var W, H, motes = [];
+    function seed(n){ var s = n; return function(){ s = (s * 1103515245 + 12345) & 0x7fffffff; return s / 0x7fffffff; }; }
+    var rnd = seed(20260702);
+
+    function build() {
+      W = canvas.clientWidth; H = canvas.clientHeight;
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var count = Math.round(Math.min(90, (W * H) / 14000));
+      motes = [];
+      for (var i = 0; i < count; i++) {
+        motes.push({
+          x: rnd() * W,
+          y: Math.pow(rnd(), 1.4) * H,   // bias upward toward the spotlight
+          r: 0.4 + rnd() * 1.5,
+          a: 0.05 + rnd() * 0.34,
+          vy: -(0.03 + rnd() * 0.14),    // drift up slowly
+          vx: (rnd() - 0.5) * 0.06,
+          tw: rnd() * Math.PI * 2         // twinkle phase
+        });
+      }
+    }
+
+    function draw(t) {
+      ctx.clearRect(0, 0, W, H);
+      for (var i = 0; i < motes.length; i++) {
+        var m = motes[i];
+        m.y += m.vy; m.x += m.vx; m.tw += 0.012;
+        if (m.y < -4) { m.y = H + 4; m.x = rnd() * W; }
+        if (m.x < -4) m.x = W + 4; else if (m.x > W + 4) m.x = -4;
+        var flicker = 0.65 + 0.35 * Math.sin(m.tw);
+        ctx.beginPath();
+        ctx.arc(m.x, m.y, m.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(228,200,120," + (m.a * flicker).toFixed(3) + ")";
+        ctx.fill();
+      }
+      raf = requestAnimationFrame(draw);
+    }
+
+    var raf;
+    function start(){ if (!reduce) { cancelAnimationFrame(raf); raf = requestAnimationFrame(draw); } else { drawStatic(); } }
+    function drawStatic(){ ctx.clearRect(0,0,W,H); for (var i=0;i<motes.length;i++){ var m=motes[i]; ctx.beginPath(); ctx.arc(m.x,m.y,m.r,0,Math.PI*2); ctx.fillStyle="rgba(228,200,120,"+m.a.toFixed(3)+")"; ctx.fill(); } }
+
+    build(); start();
+    var rt;
+    window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function(){ build(); if (reduce) drawStatic(); }, 200); }, { passive: true });
+    // pause when tab hidden
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) cancelAnimationFrame(raf); else start();
+    });
+  }
+})();
+</script>
+</body>
+</html>

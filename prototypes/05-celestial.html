@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Chinese Name · 星河 — A name that finds its place in the cosmos</title>
+<meta name="description" content="An authentic Chinese name by the Ho Method — Three Powers & Twelve Palaces. Not a transliteration, and not fortune-telling: a name woven from sound, meaning, form, and roots, by a tradition more than 1,600 years old." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;900&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================================
+   星河 · Celestial Cosmology — My Chinese Name
+   Midnight cosmic-ink. The Three Powers and the Stellar-River Palace made visual.
+   ========================================================================= */
+
+:root {
+  /* —— the night —— */
+  --sky-1: #0B1026;
+  --sky-2: #131A3A;
+  --sky-3: #1A1030;
+  --sky-deep: #070A1B;
+  --sky-panel: #10152F;
+
+  /* —— starlight —— */
+  --star: #E8ECFF;
+  --star-soft: #B8C0E0;
+  --star-dim: #7A83A8;
+  --star-faint: #565E82;
+
+  /* —— gold constellations —— */
+  --gold: #E4C878;
+  --gold-bright: #F0DDA0;
+  --gold-deep: #B8923F;
+  --gold-glow: rgba(228, 200, 120, 0.55);
+
+  /* —— the warm star (cinnabar) —— */
+  --cinnabar: #E2553B;
+  --cinnabar-glow: rgba(226, 85, 59, 0.5);
+
+  /* —— hairlines —— */
+  --line: rgba(184, 192, 224, 0.14);
+  --line-gold: rgba(228, 200, 120, 0.24);
+  --line-soft: rgba(184, 192, 224, 0.07);
+
+  /* —— type —— */
+  --display: "Marcellus", "Noto Serif SC", serif;
+  --serif: "Spectral", "Noto Serif SC", Georgia, serif;
+  --sans: "Inter", system-ui, -apple-system, sans-serif;
+  --han: "Noto Serif SC", "Marcellus", serif;
+
+  /* —— rhythm —— */
+  --measure: 64ch;
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+  --section-y: clamp(5.5rem, 13vw, 11rem);
+
+  /* —— z-scale —— */
+  --z-field: 0;
+  --z-content: 10;
+  --z-nav: 100;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  font-family: var(--serif);
+  color: var(--star-soft);
+  background: var(--sky-deep);
+  line-height: 1.7;
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: rgba(228, 200, 120, 0.24); color: var(--star); }
+
+/* —— the cosmic ground: fixed layered nebula gradient —— */
+.cosmos {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-field);
+  background:
+    radial-gradient(120% 90% at 78% 8%, rgba(90, 70, 130, 0.30) 0%, transparent 46%),
+    radial-gradient(90% 70% at 12% 82%, rgba(40, 62, 120, 0.28) 0%, transparent 50%),
+    radial-gradient(140% 120% at 50% 118%, rgba(226, 85, 59, 0.07) 0%, transparent 44%),
+    linear-gradient(168deg, var(--sky-1) 0%, var(--sky-2) 44%, var(--sky-3) 78%, var(--sky-deep) 100%);
+}
+#starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  display: block;
+}
+/* faint gold grain / vignette over everything */
+.veil {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(130% 100% at 50% 40%, transparent 58%, rgba(7, 10, 27, 0.55) 100%);
+  mix-blend-mode: multiply;
+}
+
+/* ============================================================================
+   Layout primitives
+   ========================================================================= */
+.wrap {
+  width: min(100% - (var(--gutter) * 2), 1180px);
+  margin-inline: auto;
+  position: relative;
+  z-index: var(--z-content);
+}
+.narrow { width: min(100% - (var(--gutter) * 2), 760px); margin-inline: auto; }
+
+section { position: relative; z-index: var(--z-content); }
+
+.eyebrow {
+  font-family: var(--sans);
+  font-size: clamp(0.62rem, 1.1vw, 0.72rem);
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85em;
+}
+.eyebrow::before {
+  content: "";
+  width: 1.6em; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-deep));
+  opacity: 0.8;
+}
+.eyebrow.center { justify-content: center; }
+.eyebrow.center::after {
+  content: "";
+  width: 1.6em; height: 1px;
+  background: linear-gradient(90deg, var(--gold-deep), transparent);
+  opacity: 0.8;
+}
+
+h1, h2, h3 { font-family: var(--display); font-weight: 400; color: var(--star); line-height: 1.08; text-wrap: balance; letter-spacing: -0.005em; }
+
+.han-glow {
+  font-family: var(--han);
+  color: var(--gold-bright);
+  text-shadow: 0 0 22px var(--gold-glow), 0 0 44px rgba(228, 200, 120, 0.22);
+}
+
+/* Reveal system — content is visible by default; motion enhances. */
+.rise { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .js .rise {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--d, 0ms);
+  }
+  .js .rise.lit { opacity: 1; transform: none; }
+}
+
+/* ============================================================================
+   Buttons
+   ========================================================================= */
+.btn {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  padding: 0.95em 1.7em;
+  border-radius: 2px;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), box-shadow 0.5s ease, background 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+  white-space: nowrap;
+}
+.btn .arw { transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+.btn:hover .arw { transform: translateX(4px); }
+
+.btn-star {
+  background: linear-gradient(135deg, var(--cinnabar), #C4402A);
+  color: #FCEDE7;
+  box-shadow: 0 0 0 1px rgba(226,85,59,0.4), 0 8px 30px -8px var(--cinnabar-glow), inset 0 1px 0 rgba(255,255,255,0.14);
+}
+.btn-star:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px rgba(226,85,59,0.6), 0 0 34px -4px var(--cinnabar-glow), 0 14px 40px -10px rgba(226,85,59,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--star);
+  border-color: var(--line-gold);
+}
+.btn-ghost:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold);
+  box-shadow: 0 0 24px -6px var(--gold-glow);
+  color: var(--gold-bright);
+}
+
+/* ============================================================================
+   1 · Top nav
+   ========================================================================= */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: var(--z-nav);
+  transition: background 0.5s ease, backdrop-filter 0.5s ease, border-color 0.5s ease, padding 0.5s ease;
+  border-bottom: 1px solid transparent;
+  padding-block: clamp(0.85rem, 2vw, 1.35rem);
+}
+.nav.scrolled {
+  background: rgba(9, 13, 30, 0.72);
+  backdrop-filter: blur(16px) saturate(1.1);
+  -webkit-backdrop-filter: blur(16px) saturate(1.1);
+  border-bottom-color: var(--line);
+  padding-block: 0.7rem;
+}
+.nav-inner {
+  width: min(100% - (var(--gutter) * 2), 1180px);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.brand { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; color: var(--star); }
+.brand-seal {
+  width: 34px; height: 34px;
+  flex: none;
+  display: grid; place-items: center;
+  border: 1px solid var(--line-gold);
+  border-radius: 3px;
+  background: rgba(226, 85, 59, 0.06);
+}
+.brand-seal span {
+  font-family: var(--han);
+  font-size: 0.94rem;
+  font-weight: 500;
+  color: var(--cinnabar);
+  line-height: 1;
+  text-shadow: 0 0 12px var(--cinnabar-glow);
+}
+.brand-name { font-family: var(--display); font-size: 1.06rem; letter-spacing: 0.02em; line-height: 1; }
+.brand-name small { display:block; font-family: var(--sans); font-size: 0.56rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-top: 0.28em; font-weight: 500; }
+
+.nav-links { display: flex; align-items: center; gap: clamp(1.2rem, 2.4vw, 2.1rem); }
+.nav-links a {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  color: var(--star-soft);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.35s ease;
+}
+.nav-links a::after {
+  content: ""; position: absolute; left: 0; bottom: -6px; height: 1px; width: 0;
+  background: var(--gold); transition: width 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.nav-links a:hover { color: var(--gold-bright); }
+.nav-links a:hover::after { width: 100%; }
+.nav-lang {
+  font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.16em;
+  color: var(--star-dim); padding-left: 1.1rem; border-left: 1px solid var(--line);
+}
+.nav-lang b { color: var(--star); font-weight: 500; }
+.nav-cta { padding: 0.62em 1.25em; font-size: 0.76rem; }
+.nav-desk { display: contents; }
+
+.nav-toggle { display: none; }
+
+/* ============================================================================
+   2 · Hero
+   ========================================================================= */
+.hero {
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  padding-top: clamp(6rem, 12vh, 9rem);
+  padding-bottom: clamp(3rem, 8vh, 6rem);
+  position: relative;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.02fr 0.98fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+.hero-eyebrow { margin-bottom: clamp(1.4rem, 3vw, 2rem); }
+.hero-eyebrow .han { font-family: var(--han); color: var(--gold-bright); font-size: 1.05em; letter-spacing: 0.1em; }
+
+.hero h1 {
+  font-size: clamp(2.7rem, 6.4vw, 5.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin-bottom: clamp(1.3rem, 2.6vw, 1.9rem);
+}
+.hero h1 .em { font-style: italic; font-family: var(--serif); font-weight: 300; color: var(--gold-bright); }
+.hero h1 .ignite {
+  color: var(--star);
+  text-shadow: 0 0 30px rgba(232, 236, 255, 0.18);
+}
+
+.hero-sub {
+  font-size: clamp(1rem, 1.7vw, 1.19rem);
+  line-height: 1.72;
+  color: var(--star-soft);
+  max-width: 40ch;
+  margin-bottom: clamp(1.9rem, 4vw, 2.7rem);
+  font-weight: 300;
+}
+.hero-sub em { font-style: italic; color: var(--star); }
+
+.hero-cta { display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; }
+.hero-note {
+  font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.02em;
+  color: var(--star-dim); margin-top: 1.6rem; display: flex; align-items: center; gap: 0.6em;
+}
+.hero-note .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 8px var(--gold-glow); flex:none; }
+
+/* —— hero star-chart 命盘 —— */
+.chart-stage {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  max-width: 540px;
+  margin-inline: auto;
+  display: grid;
+  place-items: center;
+}
+.chart-svg { width: 100%; height: 100%; overflow: visible; display: block; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .orbit-slow { animation: spin 220s linear infinite; transform-origin: 300px 300px; }
+  .orbit-mid  { animation: spin 150s linear infinite reverse; transform-origin: 300px 300px; }
+  .orbit-fast { animation: spin 96s linear infinite; transform-origin: 300px 300px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+}
+.palace-node text {
+  font-family: var(--han);
+  font-size: 21px;
+  font-weight: 500;
+  fill: var(--gold-bright);
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+.palace-star { fill: var(--gold-bright); }
+.orbit-ring { fill: none; stroke: var(--line-gold); stroke-width: 1; }
+.orbit-label {
+  font-family: var(--sans); font-size: 10px; letter-spacing: 0.28em;
+  fill: var(--star-dim); text-transform: uppercase;
+}
+
+/* the igniting name at chart core */
+.core-name {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  pointer-events: none;
+}
+.core-name .cn {
+  font-family: var(--han);
+  font-weight: 500;
+  font-size: clamp(2.4rem, 7vw, 3.5rem);
+  color: var(--gold-bright);
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-shadow: 0 0 26px var(--gold-glow), 0 0 60px rgba(228,200,120,0.3);
+}
+.core-name .py {
+  font-family: var(--serif); font-style: italic; font-size: 0.98rem;
+  color: var(--star); margin-top: 0.7rem; letter-spacing: 0.04em;
+}
+.core-name .gl {
+  font-family: var(--sans); font-size: 0.6rem; letter-spacing: 0.26em;
+  text-transform: uppercase; color: var(--star-dim); margin-top: 0.5rem;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .js .igniter { opacity: 0; animation: ignite 2.4s cubic-bezier(0.16,1,0.3,1) 0.5s forwards; }
+  @keyframes ignite {
+    0%   { opacity: 0; filter: blur(14px); transform: scale(0.86); }
+    55%  { opacity: 1; }
+    100% { opacity: 1; filter: blur(0); transform: scale(1); }
+  }
+}
+
+/* ============================================================================
+   Divider — constellation hairline
+   ========================================================================= */
+.constel-div {
+  display: flex; align-items: center; justify-content: center; gap: 0;
+  padding-block: clamp(1.5rem, 4vw, 2.5rem);
+  opacity: 0.9;
+}
+.constel-div svg { width: min(100%, 460px); height: 34px; overflow: visible; }
+
+/* ============================================================================
+   3 · The difference
+   ========================================================================= */
+.diff { padding-block: var(--section-y); }
+.diff-head { max-width: 40ch; margin-bottom: clamp(2.6rem, 6vw, 4rem); }
+.diff-head h2 { font-size: clamp(2rem, 4.4vw, 3.2rem); margin-top: 1.2rem; margin-bottom: 1.1rem; letter-spacing: -0.015em; }
+.diff-head p { color: var(--star-soft); font-size: clamp(1rem, 1.6vw, 1.1rem); max-width: 54ch; }
+
+.compare {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: clamp(1rem, 3vw, 2.4rem);
+  align-items: stretch;
+}
+.cmp-card {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: clamp(1.6rem, 3.5vw, 2.6rem);
+  position: relative;
+  background: linear-gradient(180deg, rgba(16,21,47,0.5), rgba(9,13,30,0.32));
+  display: flex; flex-direction: column;
+}
+.cmp-card.crafted {
+  border-color: var(--line-gold);
+  background: linear-gradient(180deg, rgba(26,20,42,0.6), rgba(16,21,47,0.4));
+  box-shadow: 0 0 60px -30px var(--gold-glow);
+}
+.cmp-tag {
+  font-family: var(--sans); font-size: 0.62rem; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--star-dim); margin-bottom: 1.5rem;
+}
+.cmp-card.crafted .cmp-tag { color: var(--gold); }
+.cmp-name-lg { font-family: var(--han); font-size: clamp(2.3rem, 6vw, 3.1rem); line-height: 1; margin-bottom: 0.6rem; font-weight: 500; }
+.cmp-card.offhand .cmp-name-lg { color: var(--star-dim); }
+.cmp-card.crafted .cmp-name-lg { color: var(--gold-bright); text-shadow: 0 0 22px var(--gold-glow); }
+.cmp-py { font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: var(--star); margin-bottom: 1.3rem; }
+.cmp-card.offhand .cmp-py { color: var(--star-faint); }
+.cmp-desc { font-size: 0.94rem; color: var(--star-soft); line-height: 1.65; margin-top: auto; }
+.cmp-card.offhand .cmp-desc { color: var(--star-dim); }
+.cmp-desc b { color: var(--star); font-weight: 400; }
+
+.cmp-arrow {
+  display: grid; place-items: center;
+  font-family: var(--display); color: var(--gold); font-size: 1.5rem;
+  align-self: center;
+}
+.cmp-arrow span { display: grid; place-items:center; width: 46px; height: 46px; border: 1px solid var(--line-gold); border-radius: 50%; }
+
+/* ============================================================================
+   4 · Three Powers & Twelve Palaces
+   ========================================================================= */
+.powers { padding-block: var(--section-y); }
+.powers-head { text-align: center; max-width: 60ch; margin: 0 auto clamp(2.4rem, 5vw, 3.6rem); }
+.powers-head h2 { font-size: clamp(2.1rem, 4.6vw, 3.4rem); margin-top: 1.2rem; margin-bottom: 1.2rem; }
+.powers-head p { color: var(--star-soft); font-size: clamp(1rem, 1.6vw, 1.1rem); }
+
+.powers-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+/* the big radial 命盘 star chart */
+.mingpan-stage { position: relative; aspect-ratio: 1/1; width: 100%; max-width: 560px; margin-inline: auto; }
+.mingpan-svg { width: 100%; height: 100%; overflow: visible; }
+@media (prefers-reduced-motion: no-preference) {
+  .mp-rotor { animation: spin 300s linear infinite; transform-origin: 300px 300px; }
+}
+.mp-ring { fill: none; stroke: var(--line-gold); }
+.mp-hair { stroke: var(--line-soft); stroke-width: 1; }
+.mp-power text {
+  font-family: var(--han); font-weight: 500; text-anchor: middle; dominant-baseline: central;
+}
+.mp-power .big { font-size: 30px; }
+.mp-power .en { font-family: var(--sans); font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; }
+.mp-palace text { font-family: var(--han); font-size: 17px; fill: var(--gold-bright); text-anchor: middle; dominant-baseline: central; }
+.mp-palace circle { fill: var(--sky-panel); stroke: var(--line-gold); stroke-width: 1; }
+.mp-core-char { font-family: var(--han); font-size: 40px; fill: var(--cinnabar); text-anchor: middle; dominant-baseline: central; }
+
+/* the three-powers legend */
+.powers-list { display: flex; flex-direction: column; gap: 0; }
+.power-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(1rem, 2.5vw, 1.6rem);
+  padding: clamp(1.3rem, 3vw, 1.9rem) 0;
+  border-top: 1px solid var(--line);
+  align-items: start;
+}
+.power-row:last-child { border-bottom: 1px solid var(--line); }
+.power-glyph {
+  font-family: var(--han);
+  font-size: clamp(2.1rem, 5vw, 2.8rem);
+  line-height: 1;
+  color: var(--gold-bright);
+  font-weight: 400;
+  width: 1.6em; text-align: center;
+  text-shadow: 0 0 20px var(--gold-glow);
+}
+.power-row h3 { font-size: 1.2rem; margin-bottom: 0.45rem; letter-spacing: 0.01em; }
+.power-row h3 .lat { font-family: var(--sans); font-size: 0.64rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--star-dim); margin-left: 0.8em; vertical-align: 0.15em; }
+.power-row p { font-size: 0.95rem; color: var(--star-soft); line-height: 1.62; max-width: 46ch; }
+.power-row .palaces {
+  font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.04em; color: var(--gold-deep);
+  margin-top: 0.7rem;
+}
+.power-row .palaces b { color: var(--gold); font-weight: 500; }
+
+.palace-caption { text-align: center; margin-top: clamp(1.5rem,3vw,2rem); }
+.palace-caption p { font-family: var(--serif); font-style: italic; color: var(--star-soft); font-size: 0.98rem; }
+
+/* ============================================================================
+   5 · Gallery of fine names
+   ========================================================================= */
+.gallery { padding-block: var(--section-y); }
+.gallery-head { max-width: 52ch; margin-bottom: clamp(2.6rem, 6vw, 4rem); }
+.gallery-head h2 { font-size: clamp(2.1rem, 4.6vw, 3.4rem); margin-top: 1.2rem; margin-bottom: 1.1rem; }
+.gallery-head p { color: var(--star-soft); font-size: clamp(1rem, 1.6vw, 1.1rem); max-width: 56ch; }
+
+.names-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1rem, 2.5vw, 1.6rem);
+}
+.name-plate {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: clamp(1.7rem, 3.5vw, 2.5rem);
+  background: linear-gradient(180deg, rgba(16,21,47,0.42), rgba(9,13,30,0.28));
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.6s ease, transform 0.6s cubic-bezier(0.16,1,0.3,1), box-shadow 0.6s ease;
+}
+.name-plate::after {
+  content: "";
+  position: absolute; top: -40%; right: -30%;
+  width: 60%; height: 120%;
+  background: radial-gradient(circle, var(--gold-glow) 0%, transparent 62%);
+  opacity: 0; transition: opacity 0.7s ease;
+  pointer-events: none;
+}
+.name-plate:hover {
+  border-color: var(--line-gold);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 50px -24px rgba(0,0,0,0.6);
+}
+.name-plate:hover::after { opacity: 0.5; }
+.np-top { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 1.4rem; }
+.np-han { font-family: var(--han); font-size: clamp(2.1rem, 5.4vw, 2.7rem); line-height: 1; color: var(--gold-bright); font-weight: 500; text-shadow: 0 0 20px var(--gold-glow); }
+.np-idx { font-family: var(--sans); font-size: 0.66rem; letter-spacing: 0.18em; color: var(--star-faint); }
+.np-py { font-family: var(--serif); font-style: italic; font-size: 1.14rem; color: var(--star); margin-bottom: 0.35rem; }
+.np-who { font-family: var(--sans); font-size: 0.76rem; letter-spacing: 0.02em; color: var(--star-dim); margin-bottom: 1.15rem; }
+.np-bio { font-size: 0.95rem; color: var(--star-soft); line-height: 1.66; }
+.np-bio em { font-style: italic; color: var(--star); }
+
+/* ============================================================================
+   6 · Philosophy / tradition
+   ========================================================================= */
+.philos {
+  padding-block: clamp(6rem, 15vw, 12rem);
+  position: relative;
+}
+.philos-inner { width: min(100% - (var(--gutter)*2), 720px); margin-inline: auto; text-align: center; }
+.philos .lead {
+  font-family: var(--display);
+  font-size: clamp(1.7rem, 4vw, 2.9rem);
+  line-height: 1.28;
+  color: var(--star);
+  letter-spacing: -0.01em;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+  text-wrap: balance;
+}
+.philos .lead .em { font-style: italic; font-family: var(--serif); color: var(--gold-bright); font-weight: 300; }
+.philos-body p {
+  font-size: clamp(1.02rem, 1.7vw, 1.16rem);
+  line-height: 1.85;
+  color: var(--star-soft);
+  max-width: 60ch;
+  margin-inline: auto;
+  margin-bottom: 1.5rem;
+  text-wrap: pretty;
+}
+.philos-body p em { font-style: italic; color: var(--star); }
+.philos-body .han-inline { font-family: var(--han); color: var(--gold-bright); }
+
+.pull-quote {
+  margin: clamp(2.5rem, 6vw, 4rem) auto;
+  max-width: 46ch;
+  position: relative;
+}
+.pull-quote blockquote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.25rem, 2.8vw, 1.7rem);
+  line-height: 1.5;
+  color: var(--gold-bright);
+  text-shadow: 0 0 30px rgba(228,200,120,0.16);
+}
+.pull-quote cite {
+  display: block;
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--star-dim);
+  margin-top: 1.4rem;
+}
+.provenance {
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  padding-top: clamp(2rem, 4vw, 2.8rem);
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(1.4rem, 4vw, 3rem);
+}
+.prov-item { text-align: center; }
+.prov-item .n { font-family: var(--display); font-size: clamp(1.5rem, 3.4vw, 2.1rem); color: var(--gold-bright); line-height: 1; }
+.prov-item .l { font-family: var(--sans); font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--star-dim); margin-top: 0.6rem; }
+
+/* ============================================================================
+   7 · Pricing teaser
+   ========================================================================= */
+.pricing { padding-block: var(--section-y); }
+.pricing-head { text-align: center; max-width: 56ch; margin: 0 auto clamp(2.6rem, 6vw, 4rem); }
+.pricing-head h2 { font-size: clamp(2.1rem, 4.6vw, 3.4rem); margin-top: 1.2rem; margin-bottom: 1.1rem; }
+.pricing-head p { color: var(--star-soft); font-size: clamp(1rem, 1.6vw, 1.1rem); }
+
+.tiers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2.4vw, 1.5rem);
+  align-items: stretch;
+}
+.tier {
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: clamp(1.8rem, 3.6vw, 2.5rem);
+  background: linear-gradient(180deg, rgba(16,21,47,0.44), rgba(9,13,30,0.3));
+  display: flex; flex-direction: column;
+  position: relative;
+  transition: border-color 0.5s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.tier:hover { transform: translateY(-3px); border-color: var(--line-gold); }
+.tier.feature {
+  border-color: var(--line-gold);
+  background: linear-gradient(180deg, rgba(26,20,42,0.66), rgba(16,21,47,0.44));
+  box-shadow: 0 0 70px -34px var(--gold-glow);
+}
+.tier.feature::before {
+  content: "★ The keepsake";
+  position: absolute; top: -1px; right: clamp(1.4rem, 3vw, 2rem);
+  transform: translateY(-50%);
+  font-family: var(--sans); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--sky-deep); background: var(--gold); padding: 0.4em 0.9em; border-radius: 2px;
+  font-weight: 600;
+}
+.tier-name { font-family: var(--display); font-size: 1.3rem; color: var(--star); margin-bottom: 0.35rem; }
+.tier-zh { font-family: var(--han); font-size: 0.82rem; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 1.3rem; }
+.tier-price { font-family: var(--display); font-size: clamp(2.2rem, 5vw, 2.9rem); color: var(--gold-bright); line-height: 1; margin-bottom: 0.3rem; }
+.tier-price small { font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--star-dim); text-transform: uppercase; margin-left: 0.4em; }
+.tier-price.free { color: var(--star); }
+.tier-tag { font-family: var(--sans); font-size: 0.74rem; color: var(--star-dim); margin-bottom: 1.6rem; letter-spacing: 0.02em; }
+.tier-feats { list-style: none; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.7rem; }
+.tier-feats li { font-size: 0.9rem; color: var(--star-soft); line-height: 1.5; padding-left: 1.5em; position: relative; }
+.tier-feats li::before {
+  content: "✦"; position: absolute; left: 0; top: 0.05em;
+  color: var(--gold); font-size: 0.75em;
+}
+.tier .btn { margin-top: auto; justify-content: center; width: 100%; }
+
+/* ============================================================================
+   8 · Final CTA
+   ========================================================================= */
+.finale {
+  padding-block: clamp(6rem, 16vw, 13rem);
+  text-align: center;
+  position: relative;
+}
+.finale-seal {
+  width: clamp(78px, 14vw, 104px); height: clamp(78px, 14vw, 104px);
+  margin: 0 auto clamp(2rem, 4vw, 2.8rem);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+  border: 1.5px solid var(--cinnabar);
+  border-radius: 5px;
+  padding: 8px;
+  background: rgba(226,85,59,0.05);
+  box-shadow: 0 0 40px -12px var(--cinnabar-glow), inset 0 0 30px -18px var(--cinnabar-glow);
+}
+.finale-seal span {
+  font-family: var(--han); font-weight: 500;
+  color: var(--cinnabar);
+  display: grid; place-items: center;
+  font-size: clamp(1.4rem, 3.6vw, 2rem);
+  line-height: 1;
+  text-shadow: 0 0 14px var(--cinnabar-glow);
+}
+.finale h2 { font-size: clamp(2.4rem, 6vw, 4.4rem); letter-spacing: -0.02em; margin-bottom: 1.2rem; line-height: 1.04; }
+.finale h2 .em { font-style: italic; font-family: var(--serif); color: var(--gold-bright); font-weight: 300; }
+.finale p {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  color: var(--star-soft);
+  max-width: 46ch; margin: 0 auto clamp(2.2rem, 5vw, 3rem);
+}
+.finale .cta-wrap { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+/* ============================================================================
+   9 · Footer
+   ========================================================================= */
+.footer {
+  border-top: 1px solid var(--line);
+  padding-block: clamp(3.5rem, 8vw, 5.5rem) clamp(2rem, 4vw, 3rem);
+  position: relative;
+  z-index: var(--z-content);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+.footer-brand .brand { margin-bottom: 1.2rem; }
+.footer-tag { font-family: var(--serif); font-style: italic; color: var(--star-soft); font-size: 1rem; line-height: 1.6; max-width: 34ch; margin-bottom: 1.4rem; }
+.footer-seal-line { font-family: var(--han); color: var(--gold); font-size: 0.9rem; letter-spacing: 0.14em; }
+.footer-seal-line .sep { color: var(--star-faint); margin: 0 0.5em; }
+.footer-col h4 { font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; font-weight: 500; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+.footer-col a { font-family: var(--sans); font-size: 0.86rem; color: var(--star-soft); text-decoration: none; transition: color 0.3s ease; }
+.footer-col a:hover { color: var(--gold-bright); }
+.footer-base {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;
+  padding-top: clamp(1.6rem, 3vw, 2.2rem); border-top: 1px solid var(--line-soft);
+}
+.footer-base p { font-family: var(--sans); font-size: 0.74rem; color: var(--star-faint); letter-spacing: 0.02em; }
+.footer-base .han { font-family: var(--han); color: var(--star-dim); }
+
+/* ============================================================================
+   Responsive
+   ========================================================================= */
+@media (max-width: 940px) {
+  .hero-grid { grid-template-columns: 1fr; gap: clamp(2.5rem, 8vw, 4rem); }
+  .chart-stage { order: -1; max-width: 440px; }
+  .powers-layout { grid-template-columns: 1fr; gap: clamp(2.5rem, 8vw, 4rem); }
+  .mingpan-stage { order: -1; max-width: 480px; }
+}
+@media (max-width: 860px) {
+  .nav-desk { display: none; }
+  .nav-toggle {
+    display: grid; place-items: center;
+    width: 44px; height: 44px; background: none; border: 1px solid var(--line-gold);
+    border-radius: 3px; cursor: pointer;
+  }
+  .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after {
+    content: ""; display: block; width: 18px; height: 1.5px; background: var(--gold); transition: transform 0.4s ease, opacity 0.3s ease;
+  }
+  .nav-toggle span { position: relative; }
+  .nav-toggle span::before { position: absolute; top: -6px; left: 0; }
+  .nav-toggle span::after { position: absolute; top: 6px; left: 0; }
+  .nav.open .nav-toggle span { background: transparent; }
+  .nav.open .nav-toggle span::before { transform: translateY(6px) rotate(45deg); }
+  .nav.open .nav-toggle span::after { transform: translateY(-6px) rotate(-45deg); }
+
+  .mobile-menu {
+    position: fixed; inset: 0;
+    background: rgba(7,10,27,0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: calc(var(--z-nav) - 1);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 1.8rem;
+    opacity: 0; pointer-events: none; transition: opacity 0.5s ease;
+  }
+  .nav.open ~ .mobile-menu { opacity: 1; pointer-events: auto; }
+  .mobile-menu a { font-family: var(--display); font-size: 1.6rem; color: var(--star); text-decoration: none; letter-spacing: 0.01em; }
+  .mobile-menu a:hover { color: var(--gold-bright); }
+  .mobile-menu .mm-lang { font-family: var(--sans); font-size: 0.8rem; letter-spacing: 0.16em; color: var(--star-dim); margin-top: 1rem; }
+  .mobile-menu .btn { margin-top: 1rem; }
+}
+.mobile-menu { display: none; }
+@media (max-width: 860px) { .mobile-menu { display: flex; } }
+
+@media (max-width: 720px) {
+  .compare { grid-template-columns: 1fr; }
+  .cmp-arrow { transform: rotate(90deg); padding-block: 0.5rem; }
+  .names-grid { grid-template-columns: 1fr; }
+  .tiers { grid-template-columns: 1fr; }
+  .tier.feature { order: -1; }
+  .tier.feature::before { right: 50%; transform: translate(50%, -50%); }
+  .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+@media (max-width: 420px) {
+  :root { --gutter: 1.1rem; }
+  .hero h1 { font-size: clamp(2.3rem, 11vw, 3rem); }
+}
+</style>
+</head>
+<body>
+
+<!-- —— cosmic ground —— -->
+<div class="cosmos" aria-hidden="true"></div>
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="veil" aria-hidden="true"></div>
+
+<!-- ============================================================
+     1 · NAV
+     ============================================================ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top" aria-label="My Chinese Name — home">
+      <span class="brand-seal" aria-hidden="true"><span>名</span></span>
+      <span class="brand-name">My Chinese Name<small>承天 · The Ho Method</small></span>
+    </a>
+
+    <nav class="nav-desk" aria-label="Primary">
+      <div class="nav-links">
+        <a href="#method">The Method</a>
+        <a href="#gallery">Fine Names</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#tradition">The Tradition</a>
+        <span class="nav-lang"><b>EN</b> · 中文</span>
+      </div>
+    </nav>
+    <a class="btn btn-star nav-cta nav-desk" href="#pricing">Begin<span class="arw" aria-hidden="true">→</span></a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span></button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+  <a href="#method">The Method</a>
+  <a href="#gallery">Fine Names</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#tradition">The Tradition</a>
+  <span class="mm-lang"><b style="color:var(--star)">EN</b> · 中文</span>
+  <a class="btn btn-star" href="#pricing">Begin your name <span class="arw" aria-hidden="true">→</span></a>
+</nav>
+
+<main id="top">
+
+<!-- ============================================================
+     2 · HERO
+     ============================================================ -->
+<section class="hero wrap" aria-labelledby="hero-title">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <div class="hero-eyebrow rise">
+        <span class="eyebrow">The Ho Method <span class="han">· 承天 ·</span> Three Powers &amp; Twelve Palaces</span>
+      </div>
+      <h1 id="hero-title" class="rise" style="--d:80ms">
+        A Chinese name that is <span class="em">truly</span> <span class="ignite">yours</span>.
+      </h1>
+      <p class="hero-sub rise" style="--d:160ms">
+        Not a transliteration, and not fortune-telling — <em>a name woven from sound, meaning, form, and roots</em>, by a method more than 1,600 years old.
+      </p>
+      <div class="hero-cta rise" style="--d:240ms">
+        <a class="btn btn-star" href="#pricing">Find your name — free <span class="arw" aria-hidden="true">→</span></a>
+        <a class="btn btn-ghost" href="#method">See the method</a>
+      </div>
+      <p class="hero-note rise" style="--d:320ms">
+        <span class="dot" aria-hidden="true"></span>
+        A 54th-generation tradition · the Chengtian studio, Mount Zhongnan
+      </p>
+    </div>
+
+    <!-- hero star-chart 命盘 with igniting name at the core -->
+    <div class="chart-stage rise" style="--d:200ms">
+      <svg class="chart-svg" viewBox="0 0 600 600" role="img" aria-label="A star chart: twelve palace-characters arranged as constellations across three orbits of Heaven, Human, and Earth, with the name 苏菲 igniting at its centre.">
+        <defs>
+          <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(228,200,120,0.28)"/>
+            <stop offset="55%" stop-color="rgba(228,200,120,0.06)"/>
+            <stop offset="100%" stop-color="transparent"/>
+          </radialGradient>
+          <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="1.4"/>
+          </filter>
+        </defs>
+
+        <!-- central bloom -->
+        <circle cx="300" cy="300" r="230" fill="url(#coreGlow)"/>
+
+        <!-- three orbit rings -->
+        <circle class="orbit-ring" cx="300" cy="300" r="120" stroke-dasharray="1 6"/>
+        <circle class="orbit-ring" cx="300" cy="300" r="190" stroke-dasharray="1 5"/>
+        <circle class="orbit-ring" cx="300" cy="300" r="258"/>
+
+        <!-- orbit label -->
+        <path id="skyArc" d="M 300 300 m -258 0 a 258 258 0 0 1 516 0" fill="none"/>
+        <text class="orbit-label"><textPath href="#skyArc" startOffset="50%">Heaven · Human · Earth</textPath></text>
+
+        <!-- INNER orbit — Heaven (天): dao, shi, ge, yin -->
+        <g class="orbit-slow">
+          <!-- connecting constellation lines -->
+          <polygon points="300,180 420,300 300,420 180,300" fill="none" stroke="var(--line-gold)" stroke-width="0.8" opacity="0.55"/>
+          <g class="palace-node"><circle class="palace-star" cx="300" cy="180" r="2.6"/><text x="300" y="180">道</text></g>
+          <g class="palace-node"><circle class="palace-star" cx="420" cy="300" r="2.6"/><text x="420" y="300">势</text></g>
+          <g class="palace-node"><circle class="palace-star" cx="300" cy="420" r="2.6"/><text x="300" y="420">格</text></g>
+          <g class="palace-node"><circle class="palace-star" cx="180" cy="300" r="2.6"/><text x="180" y="300">音</text></g>
+        </g>
+
+        <!-- MIDDLE orbit — Human (人): xing, yi, xiang, mai -->
+        <g class="orbit-mid">
+          <polygon points="300,110 434,224 490,300 434,376 300,490 166,376 110,300 166,224" fill="none" stroke="var(--line-gold)" stroke-width="0.7" opacity="0.4"/>
+          <g class="palace-node"><circle class="palace-star" cx="434" cy="224" r="2.4"/><text x="434" y="224">形</text></g>
+          <g class="palace-node"><circle class="palace-star" cx="434" cy="376" r="2.4"/><text x="434" y="376">意</text></g>
+          <g class="palace-node"><circle class="palace-star" cx="166" cy="376" r="2.4"/><text x="166" y="376">象</text></g>
+          <g class="palace-node"><circle class="palace-star" cx="166" cy="224" r="2.4"/><text x="166" y="224">脉</text></g>
+        </g>
+
+        <!-- OUTER orbit — Earth (地): ji, yuan, dian, ming -->
+        <g class="orbit-fast">
+          <g class="palace-node"><circle class="palace-star" cx="300" cy="42" r="2.2"/><text x="300" y="42">忌</text></g>
+          <g class="palace-node"><circle class="palace-star" cx="558" cy="300" r="2.2"/><text x="558" y="300">愿</text></g>
+          <g class="palace-node"><circle class="palace-star" cx="300" cy="558" r="2.2"/><text x="300" y="558">典</text></g>
+          <g class="palace-node"><circle class="palace-star" cx="42" cy="300" r="2.2"/><text x="42" y="300">命</text></g>
+          <!-- faint scattered guide stars -->
+          <circle class="palace-star" cx="470" cy="130" r="1.1" opacity="0.5"/>
+          <circle class="palace-star" cx="130" cy="470" r="1.1" opacity="0.5"/>
+          <circle class="palace-star" cx="480" cy="470" r="1.1" opacity="0.5"/>
+          <circle class="palace-star" cx="120" cy="120" r="1.1" opacity="0.5"/>
+        </g>
+      </svg>
+
+      <!-- the name igniting at the core -->
+      <div class="core-name">
+        <div class="igniter">
+          <div class="cn">苏菲</div>
+          <div class="py">Sū Fēi</div>
+          <div class="gl">a name igniting</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- constellation divider -->
+<div class="constel-div wrap" aria-hidden="true">
+  <svg viewBox="0 0 460 34">
+    <line x1="0" y1="17" x2="180" y2="17" stroke="var(--line-gold)" stroke-width="1"/>
+    <line x1="180" y1="17" x2="230" y2="8" stroke="var(--line-gold)" stroke-width="1"/>
+    <line x1="230" y1="8" x2="280" y2="17" stroke="var(--line-gold)" stroke-width="1"/>
+    <line x1="280" y1="17" x2="460" y2="17" stroke="var(--line-gold)" stroke-width="1"/>
+    <circle cx="180" cy="17" r="2.5" fill="var(--gold-bright)"/>
+    <circle cx="230" cy="8" r="3.5" fill="var(--gold-bright)"/>
+    <circle cx="280" cy="17" r="2.5" fill="var(--gold-bright)"/>
+    <circle cx="90" cy="17" r="1.5" fill="var(--gold)"/>
+    <circle cx="370" cy="17" r="1.5" fill="var(--gold)"/>
+  </svg>
+</div>
+
+<!-- ============================================================
+     3 · THE DIFFERENCE
+     ============================================================ -->
+<section class="diff wrap" id="difference" aria-labelledby="diff-title">
+  <div class="diff-head rise">
+    <span class="eyebrow">The difference</span>
+    <h2 id="diff-title">Not a transliteration.<br>Not fortune-telling.</h2>
+    <p>Most "Chinese names" are a sound spelled out in the nearest characters — an accident, not a choice. A name made by the Ho Method matches the <em>sound</em> to your Western name and the <em>meaning</em> to the Eastern spirit, then shapes the form by the classical script.</p>
+  </div>
+
+  <div class="compare rise" style="--d:120ms">
+    <div class="cmp-card offhand">
+      <div class="cmp-tag">An offhand sound-alike</div>
+      <div class="cmp-name-lg">索菲娅</div>
+      <div class="cmp-py">Suǒ-fēi-yà</div>
+      <div class="cmp-desc">Three characters chased after the <b>sound</b> of "Sophia" and nothing more. <b>索</b> means <em>rope, to demand</em>; the whole reads as a foreigner's label, correct but hollow — a name no one chose.</div>
+    </div>
+
+    <div class="cmp-arrow" aria-hidden="true"><span>→</span></div>
+
+    <div class="cmp-card crafted">
+      <div class="cmp-tag">A crafted name</div>
+      <div class="cmp-name-lg">苏菲</div>
+      <div class="cmp-py">Sū Fēi</div>
+      <div class="cmp-desc"><b>苏</b> — to revive, to reawaken, and the city of gardens; <b>菲</b> — fragrant, flourishing. Two characters that keep the music of "Sophia" yet open a <em>meaning</em> she would gladly carry: a life reawakening in fragrance.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     4 · THREE POWERS & TWELVE PALACES
+     ============================================================ -->
+<section class="powers wrap" id="method" aria-labelledby="powers-title">
+  <div class="powers-head rise">
+    <span class="eyebrow center">The signature diagram · 命盘</span>
+    <h2 id="powers-title">Three Powers, Twelve Palaces</h2>
+    <p>The ancients read a life as a small cosmos: <span class="han-glow">天</span> Heaven above, <span class="han-glow">地</span> Earth below, and <span class="han-glow">人</span> the Human between. Every name we make is weighed across twelve palaces within these three — a full reckoning, not a lucky guess.</p>
+  </div>
+
+  <div class="powers-layout">
+    <!-- the radial star-chart 命盘 -->
+    <div class="mingpan-stage rise">
+      <svg class="mingpan-svg" viewBox="0 0 600 600" role="img" aria-label="The 命盘 star chart: an inner ring of the Three Powers — Heaven, Human, Earth — surrounded by an outer ring of the Twelve Palaces, each a named character, orbiting a central vermilion 名.">
+        <defs>
+          <radialGradient id="mpGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(226,85,59,0.22)"/>
+            <stop offset="60%" stop-color="rgba(228,200,120,0.05)"/>
+            <stop offset="100%" stop-color="transparent"/>
+          </radialGradient>
+        </defs>
+
+        <circle cx="300" cy="300" r="250" fill="url(#mpGlow)"/>
+
+        <!-- rings -->
+        <circle class="mp-ring" cx="300" cy="300" r="96"  stroke-width="1"/>
+        <circle class="mp-ring" cx="300" cy="300" r="170" stroke-width="1" stroke-dasharray="1 4"/>
+        <circle class="mp-ring" cx="300" cy="300" r="248" stroke-width="1"/>
+
+        <!-- twelve radial hairlines -->
+        <g class="mp-rotor">
+          <!-- generated spokes -->
+          <g id="spokes"></g>
+
+          <!-- twelve palace stations on the outer ring -->
+          <g id="palaces"></g>
+        </g>
+
+        <!-- three powers on the inner ring (static, upright) -->
+        <g class="mp-power">
+          <text class="big han-glow" x="300" y="228" fill="var(--gold-bright)">天</text>
+          <text class="en" x="300" y="252" fill="var(--star-dim)">Heaven</text>
+
+          <text class="big han-glow" x="238" y="342" fill="var(--gold-bright)">人</text>
+          <text class="en" x="238" y="366" fill="var(--star-dim)">Human</text>
+
+          <text class="big han-glow" x="362" y="342" fill="var(--gold-bright)">地</text>
+          <text class="en" x="362" y="366" fill="var(--star-dim)">Earth</text>
+        </g>
+
+        <!-- core seal character -->
+        <circle cx="300" cy="300" r="34" fill="var(--sky-panel)" stroke="var(--cinnabar)" stroke-width="1" opacity="0.9"/>
+        <text class="mp-core-char" x="300" y="302">名</text>
+      </svg>
+    </div>
+
+    <!-- the three-powers legend -->
+    <div class="powers-list rise" style="--d:120ms">
+      <div class="power-row">
+        <div class="power-glyph">天</div>
+        <div>
+          <h3>Heaven <span class="lat">Tiān · what you reach for</span></h3>
+          <p>The aspiration a name carries — its bearing, its music, the momentum it takes from the name you already answer to.</p>
+          <p class="palaces">Palaces of <b>道 Way</b> · <b>势 Momentum</b> · <b>格 Stature</b> · <b>音 Phoenix-Song</b></p>
+        </div>
+      </div>
+      <div class="power-row">
+        <div class="power-glyph">人</div>
+        <div>
+          <h3>Human <span class="lat">Rén · who you are</span></h3>
+          <p>The meaning and the image at the name's heart — the scene it opens in the mind, and the line of characters you now belong to.</p>
+          <p class="palaces">Palaces of <b>形 Form</b> · <b>意 Meaning</b> · <b>象 Stellar-River</b> · <b>脉 Lineage</b></p>
+        </div>
+      </div>
+      <div class="power-row">
+        <div class="power-glyph">地</div>
+        <div>
+          <h3>Earth <span class="lat">Dì · where you stand</span></h3>
+          <p>The ground beneath the name — screened for homophone and tone, rooted in a wish and, where it earns it, in the classics.</p>
+          <p class="palaces">Palaces of <b>忌 Prudence</b> · <b>愿 Aspiration</b> · <b>典 Classics</b> · <b>命 Destiny</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="palace-caption rise">
+    <p>“First, rectify the names.” — 正名, Confucius, <i>Analects</i> XIII</p>
+  </div>
+</section>
+
+<!-- constellation divider -->
+<div class="constel-div wrap" aria-hidden="true">
+  <svg viewBox="0 0 460 34">
+    <line x1="0" y1="17" x2="150" y2="17" stroke="var(--line-gold)" stroke-width="1"/>
+    <line x1="150" y1="17" x2="205" y2="24" stroke="var(--line-gold)" stroke-width="1"/>
+    <line x1="205" y1="24" x2="255" y2="10" stroke="var(--line-gold)" stroke-width="1"/>
+    <line x1="255" y1="10" x2="310" y2="17" stroke="var(--line-gold)" stroke-width="1"/>
+    <line x1="310" y1="17" x2="460" y2="17" stroke="var(--line-gold)" stroke-width="1"/>
+    <circle cx="150" cy="17" r="2.5" fill="var(--gold-bright)"/>
+    <circle cx="205" cy="24" r="2" fill="var(--gold)"/>
+    <circle cx="255" cy="10" r="3.5" fill="var(--gold-bright)"/>
+    <circle cx="310" cy="17" r="2.5" fill="var(--gold-bright)"/>
+  </svg>
+</div>
+
+<!-- ============================================================
+     5 · GALLERY OF FINE NAMES
+     ============================================================ -->
+<section class="gallery wrap" id="gallery" aria-labelledby="gallery-title">
+  <div class="gallery-head rise">
+    <span class="eyebrow">A gallery of fine names</span>
+    <h2 id="gallery-title">Names the world already knows</h2>
+    <p>For four centuries, the West's finest China hands carried names made this way — not spelled, but composed. Each is a miniature biography.</p>
+  </div>
+
+  <div class="names-grid">
+    <article class="name-plate rise">
+      <div class="np-top">
+        <div class="np-han">费正清</div>
+        <div class="np-idx">i.</div>
+      </div>
+      <div class="np-py">Fèi Zhèngqīng</div>
+      <div class="np-who">John King Fairbank · historian of China</div>
+      <p class="np-bio">The dean of American sinology took a name meaning <em>“upright and clear.”</em> 正 rectifies, 清 clarifies — the whole a quiet manifesto for a life spent making China legible to the West.</p>
+    </article>
+
+    <article class="name-plate rise" style="--d:80ms">
+      <div class="np-top">
+        <div class="np-han">何伟</div>
+        <div class="np-idx">ii.</div>
+      </div>
+      <div class="np-py">Hé Wěi</div>
+      <div class="np-who">Peter Hessler · writer</div>
+      <p class="np-bio">Two strokes of plainness: 何 a common surname, 伟 <em>great.</em> Direct, strong, and unmistakably his own — a name that walks into a room without announcing itself, and is remembered anyway.</p>
+    </article>
+
+    <article class="name-plate rise" style="--d:160ms">
+      <div class="np-top">
+        <div class="np-han">陆克文</div>
+        <div class="np-idx">iii.</div>
+      </div>
+      <div class="np-py">Lù Kèwén</div>
+      <div class="np-who">Kevin Rudd · statesman</div>
+      <p class="np-bio">A prime minister who could debate in Mandarin wore a name to match: 克文 <em>“able in letters, cultured.”</em> It keeps the sound of “Kevin,” yet lands soft and literate on a Chinese ear.</p>
+    </article>
+
+    <article class="name-plate rise" style="--d:240ms">
+      <div class="np-top">
+        <div class="np-han">利玛窦</div>
+        <div class="np-idx">iv.</div>
+      </div>
+      <div class="np-py">Lì Mǎdòu</div>
+      <div class="np-who">Matteo Ricci · Jesuit, 1552–1610</div>
+      <p class="np-bio">The root text of all cross-cultural naming. Four hundred years on, his name still opens doors in Beijing. <em>That name was not his disguise — it was his bridge.</em></p>
+    </article>
+  </div>
+</section>
+
+<!-- ============================================================
+     6 · PHILOSOPHY / THE TRADITION
+     ============================================================ -->
+<section class="philos" id="tradition" aria-labelledby="philos-title">
+  <div class="philos-inner">
+    <div class="rise">
+      <span class="eyebrow center">The tradition · 名以载道</span>
+    </div>
+    <p class="lead rise" id="philos-title" style="--d:80ms">
+      A name is <span class="em">no spell</span> to alter fate.<br>It is a wise light that <span class="em">illuminates</span> one.
+    </p>
+
+    <div class="philos-body rise" style="--d:140ms">
+      <p>The <i>Shuowen</i>, China's first dictionary, tells us the character <span class="han-inline">名</span> joins <b style="color:var(--star);font-weight:400">口</b> (mouth) and <b style="color:var(--star);font-weight:400">夕</b> (dusk): a name is how you let someone see you in the dark. When faces fade at nightfall, the name is what you call across the distance — and what answers.</p>
+      <p>So a good name is like a lamp: <em>it lights the road a person will walk for a lifetime.</em> Ours is not chosen by chance or by machine, but reckoned — sound matched to your Western name, meaning to the Eastern spirit, form shaped by the classical script, music tuned to the ancient scales.</p>
+    </div>
+
+    <figure class="pull-quote rise">
+      <blockquote>“A Chinese name chosen with care is a hand you extend to an ancient culture — and the hand that culture extends back to you.”</blockquote>
+      <cite>Ho Tianshen · My Chinese Name</cite>
+    </figure>
+
+    <div class="philos-body rise">
+      <p>This is the inheritance of a single line — a <b style="color:var(--star);font-weight:400">54th-generation</b> heir to a naming tradition more than 1,600 years old, kept at the Chengtian studio beneath Mount Zhongnan. The method is written down; the judgment is handed, teacher to student, across the centuries.</p>
+    </div>
+
+    <div class="provenance rise">
+      <div class="prov-item"><div class="n">1,600<span style="font-size:0.5em;vertical-align:0.4em;color:var(--star-dim)"> yrs</span></div><div class="l">of tradition</div></div>
+      <div class="prov-item"><div class="n">54th</div><div class="l">generation heir</div></div>
+      <div class="prov-item"><div class="n">12</div><div class="l">palaces reckoned</div></div>
+      <div class="prov-item"><div class="n">終南</div><div class="l">Mount Zhongnan</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- constellation divider -->
+<div class="constel-div wrap" aria-hidden="true">
+  <svg viewBox="0 0 460 34">
+    <line x1="0" y1="17" x2="200" y2="17" stroke="var(--line-gold)" stroke-width="1"/>
+    <line x1="200" y1="17" x2="230" y2="7" stroke="var(--line-gold)" stroke-width="1"/>
+    <line x1="230" y1="7" x2="260" y2="17" stroke="var(--line-gold)" stroke-width="1"/>
+    <line x1="260" y1="17" x2="460" y2="17" stroke="var(--line-gold)" stroke-width="1"/>
+    <circle cx="230" cy="7" r="3.5" fill="var(--gold-bright)"/>
+    <circle cx="200" cy="17" r="2" fill="var(--gold)"/>
+    <circle cx="260" cy="17" r="2" fill="var(--gold)"/>
+  </svg>
+</div>
+
+<!-- ============================================================
+     7 · PRICING TEASER
+     ============================================================ -->
+<section class="pricing wrap" id="pricing" aria-labelledby="pricing-title">
+  <div class="pricing-head rise">
+    <span class="eyebrow center">Three ways to begin</span>
+    <h2 id="pricing-title">From a single star to a whole sky</h2>
+    <p>Start with one real name, free. Unfold the full reckoning when you're ready — or let a master light it by hand.</p>
+  </div>
+
+  <div class="tiers">
+    <div class="tier rise">
+      <div class="tier-name">The Name Finder</div>
+      <div class="tier-zh">观名 · a first light</div>
+      <div class="tier-price free">Free</div>
+      <div class="tier-tag">One name, made properly.</div>
+      <ul class="tier-feats">
+        <li>One genuine name, by the method</li>
+        <li>A one-line reading of its meaning</li>
+        <li>Its place among the twelve palaces</li>
+        <li>Yours to keep, always</li>
+      </ul>
+      <a class="btn btn-ghost" href="#">Begin free <span class="arw" aria-hidden="true">→</span></a>
+    </div>
+
+    <div class="tier feature rise" style="--d:100ms">
+      <div class="tier-name">The Name Dossier</div>
+      <div class="tier-zh">名录 · the full reckoning</div>
+      <div class="tier-price">$39</div>
+      <div class="tier-tag">Three names, fully reckoned.</div>
+      <ul class="tier-feats">
+        <li>Three names — Safe, Cultural, Distinctive</li>
+        <li>The complete Twelve-Palace scorecard</li>
+        <li>Etymology, pronunciation &amp; usage</li>
+        <li>A shareable seal name-card</li>
+      </ul>
+      <a class="btn btn-star" href="#">Compose my dossier <span class="arw" aria-hidden="true">→</span></a>
+    </div>
+
+    <div class="tier rise" style="--d:200ms">
+      <div class="tier-name">The Master's Name</div>
+      <div class="tier-zh">大师亲授 · by hand</div>
+      <div class="tier-price">$149</div>
+      <div class="tier-tag">Crafted &amp; signed by a name-master.</div>
+      <ul class="tier-feats">
+        <li>A name-master crafts it, by hand</li>
+        <li>Personally signed &amp; sealed</li>
+        <li>A written rationale, master to bearer</li>
+        <li>Delivered within three to five days</li>
+      </ul>
+      <a class="btn btn-ghost" href="#">Request a master <span class="arw" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     8 · FINAL CTA
+     ============================================================ -->
+<section class="finale wrap" aria-labelledby="finale-title">
+  <div class="finale-seal rise" role="img" aria-label="The vermilion seal: 我有嘉名 — I have a fine name.">
+    <span>我</span><span>有</span><span>嘉</span><span>名</span>
+  </div>
+  <h2 id="finale-title" class="rise" style="--d:80ms">Your name is waiting<br>to be <span class="em">made</span>.</h2>
+  <p class="rise" style="--d:140ms">May this lamp light your road, too. Begin with one name — and see yourself in the dark.</p>
+  <div class="cta-wrap rise" style="--d:200ms">
+    <a class="btn btn-star" href="#pricing">Find your name — free <span class="arw" aria-hidden="true">→</span></a>
+    <a class="btn btn-ghost" href="#method">Read the method</a>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     9 · FOOTER
+     ============================================================ -->
+<footer class="footer wrap">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="#top">
+        <span class="brand-seal" aria-hidden="true"><span>名</span></span>
+        <span class="brand-name">My Chinese Name<small>承天 · The Ho Method</small></span>
+      </a>
+      <p class="footer-tag">More than a translation — a bridge between the name you carry and the culture you meet.</p>
+      <div class="footer-seal-line">承天 <span class="sep">·</span> 名以载道</div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#method">The Method</a></li>
+        <li><a href="#gallery">A Gallery of Fine Names</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#tradition">The Tradition</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>The Ho Method</h4>
+      <ul>
+        <li><a href="#">The book, on Amazon</a></li>
+        <li><a href="#">Ho Tianshen, the author</a></li>
+        <li><a href="#">The Chengtian studio</a></li>
+        <li><a href="#">EN · 中文</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-base">
+    <p>© <span id="year">2026</span> My Chinese Name · Chengtian Studio, Mount Zhongnan</p>
+    <p class="han">我有嘉名 — <span style="font-family:var(--serif);font-style:italic;color:var(--star-faint)">I have a fine name.</span></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.documentElement.classList.add("js");
+  var yr = document.getElementById("year"); if (yr) yr.textContent = new Date().getFullYear();
+
+  /* —————————————————————————————————————————————
+     Build the 命盘 spokes + twelve palace stations
+     ————————————————————————————————————————————— */
+  (function buildMingpan() {
+    var spokes = document.getElementById("spokes");
+    var palaces = document.getElementById("palaces");
+    if (!spokes || !palaces) return;
+    var SVGNS = "http://www.w3.org/2000/svg";
+    var cx = 300, cy = 300, rIn = 96, rOut = 248, rChar = 210;
+    // twelve palaces, read as three groups of four (Heaven / Human / Earth)
+    var glyphs = ["道","势","格","音","形","意","象","脉","忌","愿","典","命"];
+    for (var i = 0; i < 12; i++) {
+      var ang = (-90 + i * 30) * Math.PI / 180;
+      var x1 = cx + rIn * Math.cos(ang), y1 = cy + rIn * Math.sin(ang);
+      var x2 = cx + rOut * Math.cos(ang), y2 = cy + rOut * Math.sin(ang);
+      var ln = document.createElementNS(SVGNS, "line");
+      ln.setAttribute("x1", x1.toFixed(1)); ln.setAttribute("y1", y1.toFixed(1));
+      ln.setAttribute("x2", x2.toFixed(1)); ln.setAttribute("y2", y2.toFixed(1));
+      ln.setAttribute("class", "mp-hair");
+      spokes.appendChild(ln);
+
+      var px = cx + rChar * Math.cos(ang), py = cy + rChar * Math.sin(ang);
+      var g = document.createElementNS(SVGNS, "g");
+      g.setAttribute("class", "mp-palace");
+      var c = document.createElementNS(SVGNS, "circle");
+      c.setAttribute("cx", px.toFixed(1)); c.setAttribute("cy", py.toFixed(1)); c.setAttribute("r", "17");
+      var t = document.createElementNS(SVGNS, "text");
+      t.setAttribute("x", px.toFixed(1)); t.setAttribute("y", (py + 1).toFixed(1));
+      t.textContent = glyphs[i];
+      g.appendChild(c); g.appendChild(t);
+      palaces.appendChild(g);
+    }
+  })();
+
+  /* —————————————————————————————————————————————
+     Scroll reveals — resilient: content is never gated on a
+     transition that a background/headless renderer won't paint.
+     ————————————————————————————————————————————— */
+  var rises = Array.prototype.slice.call(document.querySelectorAll(".rise"));
+  function lite(el) { el.classList.add("lit"); }
+
+  if (reduced || !("IntersectionObserver" in window)) {
+    rises.forEach(lite);
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { lite(e.target); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -6% 0px" });
+    rises.forEach(function (el) { io.observe(el); });
+
+    // 1) Reveal everything already in the first viewport right away,
+    //    so the hero paints even if the observer callback is delayed.
+    (function revealInitial() {
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      rises.forEach(function (el) {
+        if (el.getBoundingClientRect().top < vh * 0.92) { lite(el); io.unobserve(el); }
+      });
+    })();
+
+    // 2) Failsafe: nothing may stay hidden. If a renderer never paints
+    //    (backgrounded tab, print, social crawler), light all after a beat.
+    setTimeout(function () { rises.forEach(lite); }, 2600);
+  }
+
+  /* —————————————————————————————————————————————
+     Nav — scrolled state + mobile menu
+     ————————————————————————————————————————————— */
+  var nav = document.getElementById("nav");
+  function onScroll() {
+    if (window.scrollY > 40) nav.classList.add("scrolled");
+    else nav.classList.remove("scrolled");
+  }
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  var toggle = document.getElementById("navToggle");
+  var menu = document.getElementById("mobileMenu");
+  if (toggle) {
+    toggle.addEventListener("click", function () {
+      var open = nav.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", String(open));
+      document.body.style.overflow = open ? "hidden" : "";
+    });
+    menu.addEventListener("click", function (e) {
+      if (e.target.tagName === "A") {
+        nav.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      }
+    });
+  }
+
+  /* —————————————————————————————————————————————
+     Signature star field — low density, slow twinkle, drift
+     ————————————————————————————————————————————— */
+  var canvas = document.getElementById("starfield");
+  var ctx = canvas.getContext("2d");
+  var stars = [], shooting = null, W = 0, H = 0, dpr = 1, raf = null;
+  var GOLD = [240, 221, 160], WHITE = [232, 236, 255], BLUE = [184, 192, 224];
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = canvas.width = Math.floor(innerWidth * dpr);
+    H = canvas.height = Math.floor(innerHeight * dpr);
+    canvas.style.width = innerWidth + "px";
+    canvas.style.height = innerHeight + "px";
+    seed();
+  }
+
+  function seed() {
+    stars = [];
+    // low density: roughly one star per ~9000 css px², capped — elegant, not busy
+    var area = (W / dpr) * (H / dpr);
+    var count = Math.min(150, Math.max(60, Math.round(area / 9000)));
+    for (var i = 0; i < count; i++) {
+      var roll = Math.random();
+      var pal = roll > 0.82 ? GOLD : (roll > 0.5 ? BLUE : WHITE);
+      stars.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: (Math.random() * 1.1 + 0.35) * dpr,
+        base: Math.random() * 0.4 + 0.25,
+        amp: Math.random() * 0.4 + 0.2,
+        // slow, individually-phased twinkle
+        speed: Math.random() * 0.5 + 0.15,
+        phase: Math.random() * Math.PI * 2,
+        col: pal,
+        drift: (Math.random() * 0.02 + 0.004) * dpr * (Math.random() > 0.5 ? 1 : -1)
+      });
+    }
+  }
+
+  function maybeShoot(t) {
+    // a rare, quiet shooting star
+    if (shooting || Math.random() > 0.004) return;
+    var fromLeft = Math.random() > 0.5;
+    shooting = {
+      x: fromLeft ? Math.random() * W * 0.4 : W - Math.random() * W * 0.4,
+      y: Math.random() * H * 0.4,
+      vx: (fromLeft ? 1 : -1) * (Math.random() * 3 + 4) * dpr,
+      vy: (Math.random() * 1.5 + 1.5) * dpr,
+      life: 0, max: 60 + Math.random() * 30
+    };
+  }
+
+  function frame(t) {
+    ctx.clearRect(0, 0, W, H);
+    for (var i = 0; i < stars.length; i++) {
+      var s = stars[i];
+      var tw = s.base + s.amp * (0.5 + 0.5 * Math.sin(t * 0.001 * s.speed + s.phase));
+      // drift horizontally, wrap
+      s.x += s.drift;
+      if (s.x < -4) s.x = W + 4; else if (s.x > W + 4) s.x = -4;
+      var c = s.col;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + tw.toFixed(3) + ")";
+      ctx.fill();
+      // occasional soft halo on the brighter gold stars
+      if (s.col === GOLD && s.r > 1.1 * dpr) {
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r * 3.2, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(240,221,160," + (tw * 0.08).toFixed(3) + ")";
+        ctx.fill();
+      }
+    }
+
+    maybeShoot(t);
+    if (shooting) {
+      var sh = shooting;
+      sh.life++;
+      sh.x += sh.vx; sh.y += sh.vy;
+      var k = 1 - sh.life / sh.max;
+      var tailX = sh.x - sh.vx * 6, tailY = sh.y - sh.vy * 6;
+      var grad = ctx.createLinearGradient(sh.x, sh.y, tailX, tailY);
+      grad.addColorStop(0, "rgba(240,221,160," + (0.7 * k).toFixed(3) + ")");
+      grad.addColorStop(1, "rgba(240,221,160,0)");
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 1.4 * dpr;
+      ctx.beginPath();
+      ctx.moveTo(sh.x, sh.y); ctx.lineTo(tailX, tailY);
+      ctx.stroke();
+      if (sh.life >= sh.max || sh.x < -50 || sh.x > W + 50 || sh.y > H + 50) shooting = null;
+    }
+
+    raf = requestAnimationFrame(frame);
+  }
+
+  function drawStatic() {
+    // reduced-motion: a frozen field, no animation loop
+    ctx.clearRect(0, 0, W, H);
+    for (var i = 0; i < stars.length; i++) {
+      var s = stars[i], c = s.col;
+      var a = s.base + s.amp * 0.6;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + a.toFixed(3) + ")";
+      ctx.fill();
+    }
+  }
+
+  resize();
+  var rt;
+  window.addEventListener("resize", function () {
+    clearTimeout(rt);
+    rt = setTimeout(function () {
+      resize();
+      if (reduced) drawStatic();
+    }, 180);
+  });
+
+  if (reduced) {
+    drawStatic();
+  } else {
+    raf = requestAnimationFrame(frame);
+    // pause when tab hidden (saves cycles, avoids the "blank on wake" trap)
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) { if (raf) cancelAnimationFrame(raf); raf = null; }
+      else if (!raf) raf = requestAnimationFrame(frame);
+    });
+  }
+})();
+</script>
+</body>
+</html>
