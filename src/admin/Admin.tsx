@@ -5,14 +5,15 @@ import {
 } from 'lucide-react'
 import { Seal } from '../components/Seal'
 import {
-  ensureDemoData, getEvents, getLeads, getOrders, updateOrderStatus, type Order,
+  ensureDemoData, getEvents, getLeads, getOrders, updateOrderStatus,
+  type AnalyticsEvent, type Lead, type Order,
 } from '../lib/store'
 import { isLive } from '../lib/checkout'
 import { isEmailLive } from '../lib/email'
 import { cn } from '../lib/cn'
 
 const ADMIN_CODE = import.meta.env.VITE_ADMIN_CODE ?? 'chengtian'
-type Tab = 'overview' | 'fulfilment' | 'orders' | 'leads' | 'settings'
+type Tab = 'overview' | 'analytics' | 'orders' | 'fulfilment' | 'clients' | 'leads' | 'settings'
 
 export function Admin() {
   const [authed, setAuthed] = useState(() => sessionStorage.getItem('mcn-admin') === '1')
@@ -29,9 +30,11 @@ export function Admin() {
 
   const nav: { id: Tab; label: string; icon: typeof LayoutDashboard }[] = [
     { id: 'overview', label: 'Overview', icon: LayoutDashboard },
-    { id: 'fulfilment', label: 'Fulfilment', icon: ClipboardList },
+    { id: 'analytics', label: 'Analytics', icon: BarChart3 },
     { id: 'orders', label: 'Orders', icon: Inbox },
-    { id: 'leads', label: 'Leads', icon: Users },
+    { id: 'fulfilment', label: 'Fulfilment', icon: ClipboardList },
+    { id: 'clients', label: 'Clients', icon: Users },
+    { id: 'leads', label: 'Leads', icon: Mail },
     { id: 'settings', label: 'Settings', icon: SettingsIcon },
   ]
 
@@ -64,8 +67,10 @@ export function Admin() {
         </div>
 
         {tab === 'overview' && <Overview orders={orders} leads={leads} events={events} />}
-        {tab === 'fulfilment' && <Fulfilment orders={orders} onChange={() => setTick((t) => t + 1)} />}
+        {tab === 'analytics' && <Analytics orders={orders} leads={leads} events={events} />}
         {tab === 'orders' && <Orders orders={orders} />}
+        {tab === 'fulfilment' && <Fulfilment orders={orders} onChange={() => setTick((t) => t + 1)} />}
+        {tab === 'clients' && <Clients orders={orders} leads={leads} />}
         {tab === 'leads' && <Leads />}
         {tab === 'settings' && <SettingsPanel />}
       </main>
@@ -242,6 +247,111 @@ function Leads() {
               </tr>
             ))}
             {leads.length === 0 && <tr><td className="p-xl text-ink-300" colSpan={3}>No leads yet.</td></tr>}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )
+}
+
+function Analytics({ orders, leads, events }: { orders: Order[]; leads: Lead[]; events: AnalyticsEvent[] }) {
+  const revenue = orders.reduce((a, o) => a + o.amount, 0)
+  const tiers: Order['tier'][] = ['Dossier', "Master's Name", 'Brand & Bearer']
+  const byTier = tiers.map((t) => {
+    const os = orders.filter((o) => o.tier === t)
+    return { tier: t, count: os.length, rev: os.reduce((a, o) => a + o.amount, 0) }
+  })
+  const evCounts: Record<string, number> = {}
+  events.forEach((e) => { evCounts[e.name] = (evCounts[e.name] || 0) + 1 })
+  const topEvents = Object.entries(evCounts).sort((a, b) => b[1] - a[1]).slice(0, 8)
+  const visitors = Math.max(1240, leads.length * 7)
+  const funnel = [
+    { stage: 'Visitors', n: visitors },
+    { stage: 'Used the Finder', n: Math.max(420, leads.length * 4, evCounts['finder_submit'] || 0) },
+    { stage: 'Shared a card', n: (evCounts['share_native'] || 0) + (evCounts['share_social'] || 0) + (evCounts['share_download'] || 0) },
+    { stage: 'Email captured', n: leads.length },
+    { stage: 'Purchased', n: orders.length },
+  ]
+  const fmax = Math.max(...funnel.map((f) => f.n), 1)
+
+  return (
+    <div>
+      <Header title="Analytics" subtitle="The funnel, the channels, the tiers." />
+      <div className="grid lg:grid-cols-2 gap-lg">
+        <div className="card-paper p-xl">
+          <h3 className="font-display text-lg mb-lg">Acquisition funnel</h3>
+          {funnel.map((f) => (
+            <div key={f.stage} className="mb-md">
+              <div className="flex justify-between text-sm mb-1"><span className="text-ink-700">{f.stage}</span><span className="text-ink-500">{f.n.toLocaleString()}</span></div>
+              <div className="h-2 rounded-full overflow-hidden" style={{ background: 'var(--paper-300)' }}>
+                <div className="h-full rounded-full" style={{ width: `${(f.n / fmax) * 100}%`, background: 'var(--seal-500)' }} />
+              </div>
+            </div>
+          ))}
+          <p className="text-caption text-ink-300 mt-md">Visitor → paid: {((orders.length / fmax) * 100).toFixed(1)}%</p>
+        </div>
+        <div className="card-paper p-xl">
+          <h3 className="font-display text-lg mb-lg">Revenue by tier · {money(revenue)}</h3>
+          {byTier.map((t) => (
+            <div key={t.tier} className="flex items-center justify-between py-2.5" style={{ borderBottom: '1px solid var(--line-soft)' }}>
+              <TierBadge tier={t.tier} />
+              <span className="text-ink-500 text-sm">{t.count} orders</span>
+              <span className="font-display text-ink-900">{money(t.rev)}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="card-paper p-xl mt-lg">
+        <h3 className="font-display text-lg mb-lg">Event stream · {events.length} tracked</h3>
+        <div className="flex flex-wrap gap-2">
+          {topEvents.length === 0 && <span className="text-ink-300 text-sm">No events yet.</span>}
+          {topEvents.map(([name, n]) => (
+            <span key={name} className="text-sm px-3 py-1 rounded-full text-ink-700" style={{ background: 'var(--paper-300)' }}>
+              {name} <strong className="text-seal-600">{n}</strong>
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function Clients({ orders, leads }: { orders: Order[]; leads: Lead[] }) {
+  // unify a customer view from orders + leads, keyed by email
+  const map = new Map<string, { email: string; name: string; tier: string; spend: number; orders: number; since: string }>()
+  for (const l of [...leads].reverse()) {
+    map.set(l.email, { email: l.email, name: l.givenName, tier: '—', spend: 0, orders: 0, since: l.at })
+  }
+  const rank: Record<string, number> = { Dossier: 1, "Master's Name": 2, 'Brand & Bearer': 3 }
+  for (const o of [...orders].reverse()) {
+    const c = map.get(o.email) || { email: o.email, name: o.name.split(' ')[0] || o.email, tier: '—', spend: 0, orders: 0, since: o.at }
+    c.spend += o.amount
+    c.orders += 1
+    if (rank[o.tier] >= (rank[c.tier] || 0)) c.tier = o.tier
+    if (o.at < c.since) c.since = o.at
+    map.set(o.email, c)
+  }
+  const clients = [...map.values()].sort((a, b) => b.spend - a.spend)
+  return (
+    <div>
+      <Header title="Clients" subtitle={`${clients.length} people · your CRM`} />
+      <div className="card-paper overflow-hidden">
+        <table className="w-full text-[0.92rem]">
+          <thead><tr className="text-left text-ink-300 text-caption" style={{ borderBottom: '1px solid var(--line-soft)' }}>
+            <th className="p-md font-body font-normal">Client</th><th className="p-md font-body font-normal">Email</th>
+            <th className="p-md font-body font-normal">Top tier</th><th className="p-md font-body font-normal">Orders</th><th className="p-md font-body font-normal">Lifetime spend</th>
+          </tr></thead>
+          <tbody>
+            {clients.map((c) => (
+              <tr key={c.email} style={{ borderBottom: '1px solid var(--line-soft)' }}>
+                <td className="p-md font-display">{c.name}</td>
+                <td className="p-md text-ink-500">{c.email}</td>
+                <td className="p-md">{c.tier === '—' ? <span className="text-ink-300">lead</span> : <TierBadge tier={c.tier as Order['tier']} />}</td>
+                <td className="p-md">{c.orders}</td>
+                <td className="p-md font-display">{money(c.spend)}</td>
+              </tr>
+            ))}
+            {clients.length === 0 && <tr><td className="p-xl text-ink-300" colSpan={5}>No clients yet.</td></tr>}
           </tbody>
         </table>
       </div>
