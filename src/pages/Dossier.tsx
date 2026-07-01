@@ -6,7 +6,8 @@ import { PalaceRadar } from '../components/PalaceRadar'
 import type { CharRecord, GenerateResult, NameCandidate } from '../engine/types'
 import { loadResult, track } from '../lib/store'
 import { toneInfo } from '../lib/pronounce'
-import { useT } from '../i18n'
+import { birthReading, ELEMENTS, harmonyNote } from '../engine/wuxing'
+import { useLang, useT } from '../i18n'
 
 // The Name Dossier — the paid deliverable. A rich, printable document rendered
 // from the generated result. "Print / Save as PDF" uses the browser's print
@@ -60,6 +61,13 @@ export function Dossier() {
 
           <SectionRule label={t('VI · The Naming Note', 'VI · 取名记')} />
           <NamingNote result={result} primary={primary} />
+
+          {result.intake.birthYear && (
+            <>
+              <SectionRule label={t('Appendix · Five Elements & Birth Harmony', '附 · 五行 · 生辰之和')} />
+              <FiveElements year={result.intake.birthYear} />
+            </>
+          )}
 
           <footer className="mt-3xl pt-lg text-center" style={{ borderTop: '1px solid var(--line-soft)' }}>
             <Seal size={44} className="mx-auto mb-md" />
@@ -271,6 +279,30 @@ function NamingNote({ result, primary }: { result: GenerateResult; primary: Name
           {t('From the book’s reference table:', '书中范例：')} {result.intake.givenName} → {result.referenceSeed.hanzi} ({result.referenceSeed.pinyin}) — {result.referenceSeed.sense}
         </p>
       )}
+    </div>
+  )
+}
+
+function FiveElements({ year }: { year: number }) {
+  const t = useT()
+  const { lang } = useLang()
+  const r = birthReading(year)
+  if (!r) return null
+  const m = ELEMENTS[r.element]
+  const s = ELEMENTS[r.supports]
+  return (
+    <div className="container-reading !px-0">
+      <div className="flex items-center gap-lg mb-lg">
+        <span className="han text-6xl leading-none" style={{ color: 'var(--seal-500)' }}>{m.glyph}</span>
+        <div>
+          <p className="font-display text-xl text-ink-900">{t(`${m.el} · born ${r.year}, year of the ${r.zodiac}`, `${m.zh}命 · ${r.year}年生，属${r.zodiacZh}`)}</p>
+          <p className="text-caption text-ink-300">{t(`Heavenly stem ${r.stemZh} · nourished by ${s.el}`, `天干${r.stemZh} · ${s.zh}生之`)}</p>
+        </div>
+      </div>
+      <p className="text-ink-700 leading-relaxed" style={{ fontFamily: 'Fraunces, serif', fontSize: '1.08rem', lineHeight: 1.8 }}>{harmonyNote(r, lang)}</p>
+      <p className="text-caption text-ink-300 mt-lg" style={{ borderTop: '1px solid var(--line-soft)', paddingTop: '0.75rem' }}>
+        {t('A cultural interpretation offered for completeness — not fortune-telling, and no promise about fate. The full four-pillar reading is part of the Master’s service.', '此为求完整而附的文化诠释——非算命，不承诺命运。完整四柱解读属《大师甄选》之服务。')}
+      </p>
     </div>
   )
 }

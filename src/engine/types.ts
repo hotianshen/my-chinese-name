@@ -66,6 +66,9 @@ export interface Intake {
   cultureAffinity?: string
   /** how tightly the sound should match the original name */
   soundCloseness?: 'very' | 'moderate' | 'loose' | 'meaning'
+  /** optional birth year — powers the L2+ Five-Elements cultural layer only
+   * (never affects name generation; 命 is one palace of twelve, not decisive) */
+  birthYear?: number
 }
 
 export interface PalaceScore {
