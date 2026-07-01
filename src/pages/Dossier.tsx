@@ -210,15 +210,27 @@ function Pronunciation({ candidate }: { candidate: NameCandidate }) {
 
 function Usage({ candidate }: { candidate: NameCandidate }) {
   const t = useT()
-  const given = candidate.given.map((g) => g.hanzi).join('')
-  const givenPy = candidate.given.map((g) => g.toned).join('')
   const items = [
     { h: t('On a business card', '名片之上'), b: t(`Print your name as 「${candidate.fullHanzi}」 with the pinyin “${candidate.fullPinyin}” beneath. Surname first, in the Chinese order.`, `将「${candidate.fullHanzi}」印于名片，下注拼音“${candidate.fullPinyin}”，依中文姓在前之序。`) },
     { h: t('On WeChat & online', '微信与网络'), b: t(`Use 「${candidate.fullHanzi}」 as your display name. Chinese contacts will read it as a real name, not a transliteration.`, `以「${candidate.fullHanzi}」为昵称。中国友人读来即真名，而非音译。`) },
-    { h: t('Introducing yourself', '自我介绍'), b: t(`“你好，我叫${candidate.fullHanzi}（${candidate.fullPinyin}）。你可以叫我${given}。” — Hello, my name is ${candidate.fullPinyin}; you can call me ${givenPy}.`, `「你好，我叫${candidate.fullHanzi}（${candidate.fullPinyin}）。你可以叫我${given}。」`) },
   ]
   return (
     <div className="space-y-lg">
+      {/* nicknames */}
+      <div>
+        <h4 className="font-display text-lg text-ink-900">{t('What friends will call you', '朋友会怎么称呼你')}</h4>
+        <div className="flex flex-wrap gap-2 mt-sm">
+          {candidate.nicknames.map((n) => (
+            <span key={n} className="han px-3 py-1 rounded-chip text-ink-700" style={{ background: 'var(--paper-200)', border: '1px solid var(--line-soft)' }}>{n}</span>
+          ))}
+        </div>
+      </div>
+      {/* self-introduction, both languages */}
+      <div>
+        <h4 className="font-display text-lg text-ink-900">{t('Introducing yourself', '自我介绍')}</h4>
+        <p className="han text-ink-700 text-[1.02rem] mt-sm leading-relaxed" style={{ borderLeft: '2px solid var(--gold-400)', paddingLeft: '0.9rem' }}>{candidate.introZh}</p>
+        <p className="text-ink-500 text-[0.95rem] mt-sm italic" style={{ paddingLeft: '0.9rem' }}>{candidate.introEn}</p>
+      </div>
       {items.map((it) => (
         <div key={it.h}>
           <h4 className="font-display text-lg text-ink-900">{it.h}</h4>

@@ -55,6 +55,17 @@ export interface Intake {
   nativeLanguage?: string
   /** characters or sounds to avoid (red lines) */
   avoid?: string
+  // —— richer, all optional (migrated from the production intake) ——
+  /** default 'auto' → 3-character name (surname + 2 given) */
+  nameLength?: 'auto' | 'surname_plus_1' | 'surname_plus_2'
+  /** personality traits (Outgoing, Calm, Creative, Kind, Ambitious, …) */
+  personality?: string[]
+  /** where the name will be used (daily, business, academic, social, longterm) */
+  useContext?: string
+  /** free-text cultural leanings (poetry, mountains, jade, modern business, …) */
+  cultureAffinity?: string
+  /** how tightly the sound should match the original name */
+  soundCloseness?: 'very' | 'moderate' | 'loose' | 'meaning'
 }
 
 export interface PalaceScore {
@@ -87,6 +98,11 @@ export interface NameCandidate {
   scorecard: PalaceScore[]
   totalScore: number // 0–100
   risks: RiskFlag[]
+  /** suggested Chinese nicknames */
+  nicknames: string[]
+  /** self-introduction scripts */
+  introEn: string
+  introZh: string
 }
 
 export interface GenerateResult {

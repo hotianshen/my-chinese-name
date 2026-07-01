@@ -133,6 +133,13 @@ function PrimaryName({ candidate }: { candidate: NameCandidate }) {
           </p>
         )}
 
+        <div className="flex flex-wrap items-center gap-2 mt-lg">
+          <span className="text-caption text-ink-300">{t('Also called', '亦可称')}</span>
+          {candidate.nicknames.map((n) => (
+            <span key={n} className="han text-ink-700 px-2.5 py-0.5 rounded-chip text-[0.95rem]" style={{ background: 'var(--paper-300)' }}>{n}</span>
+          ))}
+        </div>
+
         <div className="flex flex-wrap items-center gap-md mt-xl">
           <button className="btn-ghost !py-2.5" onClick={() => { track('pronounce_click'); speakChinese(candidate.fullHanzi) }}>
             <Volume2 size={16} /> {t('Hear it', '听其声')}

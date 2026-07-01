@@ -27,6 +27,8 @@ export function Finder() {
     givenName: '', surname: '', middleName: '', gender: 'neutral',
     themes: [], qualities: '', profession: '', takeSurname: true,
     surnameStrategy: 'sound', nativeLanguage: 'English', avoid: '',
+    nameLength: 'auto', personality: [], useContext: 'daily',
+    cultureAffinity: '', soundCloseness: 'moderate',
   })
   const set = (patch: Partial<Intake>) => setForm((f) => ({ ...f, ...patch }))
 
@@ -42,6 +44,15 @@ export function Finder() {
       if (has) return { ...f, themes: f.themes.filter((x) => x !== key) }
       if (f.themes.length >= 3) return f
       return { ...f, themes: [...f.themes, key] }
+    })
+  }
+  const togglePersonality = (key: string) => {
+    setForm((f) => {
+      const list = f.personality || []
+      const has = list.includes(key)
+      if (has) return { ...f, personality: list.filter((x) => x !== key) }
+      if (list.length >= 3) return f
+      return { ...f, personality: [...list, key] }
     })
   }
 
@@ -84,7 +95,7 @@ export function Finder() {
           <div className="min-h-[320px]">
             {step === 0 && <StepName form={form} set={set} />}
             {step === 1 && <StepPerson form={form} set={set} />}
-            {step === 2 && <StepWishes form={form} toggleTheme={toggleTheme} set={set} />}
+            {step === 2 && <StepWishes form={form} toggleTheme={toggleTheme} togglePersonality={togglePersonality} set={set} />}
             {step === 3 && <StepRoots form={form} set={set} />}
           </div>
         )}
@@ -172,11 +183,28 @@ function StepPerson({ form, set }: { form: Intake; set: (p: Partial<Intake>) => 
           {NATIVE_LANGUAGES.map((l) => <option key={l} value={l}>{l}</option>)}
         </select>
       </Field>
+      <Field label={t('Where will you use the name?', '你将在何处使用此名？')} hint={t('This shapes its register and bearing.', '此项塑造名字的气度与格调。')}>
+        <select className={inputCls} value={form.useContext} onChange={(e) => set({ useContext: e.target.value })}>
+          <option value="daily">{t('Daily life & friends', '日常与朋友')}</option>
+          <option value="business">{t('Business & professional', '商务与职场')}</option>
+          <option value="academic">{t('Academic & study', '学术与求学')}</option>
+          <option value="social">{t('Social media & creating', '社媒与创作')}</option>
+          <option value="longterm">{t('A long-term life in China', '在华长居')}</option>
+        </select>
+      </Field>
     </div>
   )
 }
 
-function StepWishes({ form, toggleTheme, set }: { form: Intake; toggleTheme: (k: string) => void; set: (p: Partial<Intake>) => void }) {
+const TRAITS: { key: string; en: string; zh: string }[] = [
+  { key: 'Outgoing', en: 'Outgoing', zh: '开朗' }, { key: 'Calm', en: 'Calm', zh: '沉静' },
+  { key: 'Creative', en: 'Creative', zh: '富创造' }, { key: 'Kind', en: 'Kind', zh: '仁厚' },
+  { key: 'Ambitious', en: 'Ambitious', zh: '有抱负' }, { key: 'Elegant', en: 'Elegant', zh: '优雅' },
+  { key: 'Brave', en: 'Brave', zh: '勇敢' }, { key: 'Intellectual', en: 'Intellectual', zh: '好学思' },
+  { key: 'Gentle', en: 'Gentle', zh: '温和' }, { key: 'Humorous', en: 'Humorous', zh: '幽默' },
+]
+
+function StepWishes({ form, toggleTheme, togglePersonality, set }: { form: Intake; toggleTheme: (k: string) => void; togglePersonality: (k: string) => void; set: (p: Partial<Intake>) => void }) {
   const t = useT()
   return (
     <div>
@@ -199,6 +227,19 @@ function StepWishes({ form, toggleTheme, set }: { form: Intake; toggleTheme: (k:
           )
         })}
       </div>
+      <Field label={t('A few words for who you are', '几个词，描述你自己')} hint={t('Optional — choose up to three traits.', '可选——至多择其三。')}>
+        <div className="flex flex-wrap gap-2">
+          {TRAITS.map((tr) => {
+            const on = (form.personality || []).includes(tr.key)
+            return (
+              <button key={tr.key} type="button" onClick={() => togglePersonality(tr.key)}
+                className={cn('px-3.5 py-1.5 rounded-chip text-[0.92rem] border transition-all', on ? 'border-seal-500 bg-seal-100 text-seal-600' : 'border-[var(--line-mid)] text-ink-500 hover:border-ink-300')}>
+                {t(tr.en, tr.zh)}
+              </button>
+            )
+          })}
+        </div>
+      </Field>
       <Field label={t('Your field of work', '你的领域')} hint={t('Optional — some characters favour certain professions.', '可选——某些字更宜于特定行业。')}>
         <select className={inputCls} value={form.profession} onChange={(e) => set({ profession: e.target.value })}>
           {PROFESSIONS.map((p) => <option key={p.key} value={p.key}>{p.label}</option>)}
@@ -235,8 +276,18 @@ function StepRoots({ form, set }: { form: Intake; set: (p: Partial<Intake>) => v
           </div>
         </Field>
       )}
+      <Field label={t('Name length', '名字长度')} hint={t('Three characters (surname + two) is the classic Chinese form.', '三字（姓 + 二名）是最经典的中文名形式。')}>
+        <select className={inputCls} value={form.nameLength} onChange={(e) => set({ nameLength: e.target.value as Intake['nameLength'] })}>
+          <option value="auto">{t('Three characters (recommended)', '三字（推荐）')}</option>
+          <option value="surname_plus_1">{t('Two characters (surname + one)', '两字（姓 + 一名）')}</option>
+          <option value="surname_plus_2">{t('Three characters (surname + two)', '三字（姓 + 二名）')}</option>
+        </select>
+      </Field>
       <Field label={t('A word about yourself', '关于你自己')} hint={t('Optional — a quality you reach for, in your own words.', '可选——以你自己的话，写下你所追求的一种品质。')}>
         <input className={inputCls} value={form.qualities} onChange={(e) => set({ qualities: e.target.value })} placeholder={t('e.g. calm, far-seeing, kind', '例如：沉静、远见、仁厚')} />
+      </Field>
+      <Field label={t('Cultural leanings', '文化偏好')} hint={t('Optional — poetry, mountains, jade, modern business…', '可选——诗词、山水、美玉、现代商业……')}>
+        <input className={inputCls} value={form.cultureAffinity} onChange={(e) => set({ cultureAffinity: e.target.value })} placeholder={t('e.g. classical poetry, rivers, quiet strength', '例如：古典诗词、江河、静水流深')} />
       </Field>
       <Field label={t('Anything to avoid?', '有何须回避？')} hint={t('Optional — characters or sounds you’d rather not have.', '可选——你不愿用的字或音。')}>
         <input className={inputCls} value={form.avoid} onChange={(e) => set({ avoid: e.target.value })} placeholder="—" />
