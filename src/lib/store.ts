@@ -46,6 +46,7 @@ export function captureLead(lead: Lead) {
   const leads = read<Lead[]>(LEADS_KEY, [])
   leads.unshift(lead)
   write(LEADS_KEY, leads.slice(0, 500))
+  try { localStorage.setItem('mcn-email', lead.email) } catch { /* ignore */ } // for server entitlement reconcile
   track('email_capture', { email: lead.email })
 }
 export const getLeads = () => read<Lead[]>(LEADS_KEY, [])

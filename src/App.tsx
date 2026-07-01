@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, type ReactNode } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { Nav } from './components/Nav'
 import { Footer } from './components/Footer'
+import { reconcileOnLoad } from './lib/api'
 import { Seal } from './components/Seal'
 import { Home } from './pages/Home'
 
@@ -53,6 +54,9 @@ function SiteLayout({ children }: { children: ReactNode }) {
 
 export default function App() {
   const { pathname } = useLocation()
+  // Reconcile server-authoritative entitlement once on load (no-op until a
+  // backend is configured via VITE_API_BASE).
+  useEffect(() => { void reconcileOnLoad() }, [])
   // The admin back-office stands alone (no marketing chrome).
   if (pathname.startsWith('/admin')) {
     return (
