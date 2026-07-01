@@ -49,7 +49,29 @@ export function knownEmail(): string {
 /** Called once on app load: if we know the visitor's email and a server is
  * configured, reconcile their entitlement from the server. */
 export async function reconcileOnLoad(): Promise<void> {
-  if (!API) return
+  if (!isServerBacked()) return
   const email = knownEmail()
   if (email) await syncEntitlement(email)
+}
+
+// —— admin (server-side auth via signed cookie) ——
+export async function adminLogin(code: string): Promise<boolean> {
+  if (!isServerBacked()) return false
+  try {
+    const r = await fetch(`${API}/api/admin-login`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      credentials: 'include', body: JSON.stringify({ code }),
+    })
+    return r.ok
+  } catch { return false }
+}
+
+export interface AdminOrder { id: string; email?: string; amount?: number; level?: number; at?: string; source?: string }
+export async function adminData(): Promise<{ orders: AdminOrder[]; revenue: number; count: number } | null> {
+  if (!isServerBacked()) return null
+  try {
+    const r = await fetch(`${API}/api/admin-data`, { credentials: 'include' })
+    if (!r.ok) return null
+    return (await r.json()) as { orders: AdminOrder[]; revenue: number; count: number }
+  } catch { return null }
 }

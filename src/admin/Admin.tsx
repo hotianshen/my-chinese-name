@@ -10,6 +10,7 @@ import {
 } from '../lib/store'
 import { isLive } from '../lib/checkout'
 import { isEmailLive } from '../lib/email'
+import { adminLogin, isServerBacked } from '../lib/api'
 import { cn } from '../lib/cn'
 
 const ADMIN_CODE = import.meta.env.VITE_ADMIN_CODE ?? 'chengtian'
@@ -81,8 +82,18 @@ export function Admin() {
 function Gate({ onPass }: { onPass: () => void }) {
   const [code, setCode] = useState('')
   const [err, setErr] = useState(false)
-  const submit = (e: React.FormEvent) => {
+  const [busy, setBusy] = useState(false)
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setErr(false)
+    // server-side auth when a backend is configured; local passcode otherwise
+    if (isServerBacked()) {
+      setBusy(true)
+      const ok = await adminLogin(code)
+      setBusy(false)
+      if (ok) { sessionStorage.setItem('mcn-admin', '1'); onPass() } else setErr(true)
+      return
+    }
     if (code === ADMIN_CODE) { sessionStorage.setItem('mcn-admin', '1'); onPass() }
     else setErr(true)
   }
@@ -95,7 +106,7 @@ function Gate({ onPass }: { onPass: () => void }) {
         <input autoFocus type="password" value={code} onChange={(e) => { setCode(e.target.value); setErr(false) }} placeholder="Passcode"
           className="w-full bg-paper-200 border rounded-card px-md py-3 text-center outline-none focus:border-gold-500" />
         {err && <p className="text-error text-sm mt-sm">Incorrect passcode.</p>}
-        <button type="submit" className="btn-seal w-full justify-center mt-lg">Enter</button>
+        <button type="submit" disabled={busy} className="btn-seal w-full justify-center mt-lg">{busy ? 'Checking…' : 'Enter'}</button>
         <p className="text-caption text-ink-300 mt-lg">Demo passcode: <code className="text-ink-500">chengtian</code></p>
       </form>
     </div>
